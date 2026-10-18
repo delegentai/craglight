@@ -54,3 +54,4 @@ No existing Play app, project, listing or credential has been changed. A store r
 - [Google Play target API requirements](https://support.google.com/googleplay/android-developer/answer/11926878)
 - [Google Play User Data policy](https://support.google.com/googleplay/android-developer/answer/10144311)
 - [Android 16 KB page-size support](https://developer.android.com/guide/practices/page-sizes)
+- [Google Play preview asset requirements](https://support.google.com/googleplay/android-developer/answer/9866151): capture real phone screenshots at 1080 × 1920 and supply RGB PNGs; the longest side must be no more than twice the shortest.

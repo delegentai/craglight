@@ -1,6 +1,7 @@
 $ErrorActionPreference = 'Stop'
 $projectPath = Split-Path $PSScriptRoot -Parent
 . (Join-Path $projectPath 'tools/env.ps1')
+$ErrorActionPreference = 'Stop'
 $releasePath = Join-Path $projectPath 'release'
 $evidencePath = Join-Path $projectPath 'evidence/release'
 New-Item -ItemType Directory -Path $releasePath,$evidencePath -Force | Out-Null
