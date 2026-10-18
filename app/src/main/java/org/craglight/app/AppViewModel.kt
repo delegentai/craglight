@@ -25,6 +25,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     val ticks = repo.dao.ticks().stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
     val contributions = repo.dao.contributions().stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
     private var routeJob: Job? = null
+    private var routeRequest = 0L
     init { initialize() }
     fun initialize() = viewModelScope.launch {
         _state.update { it.copy(loading = true, error = null) }
@@ -61,16 +62,27 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     }
     fun chooseOrigin(point: GeoPoint?, label: String? = null) {
         routeJob?.cancel()
+        val request = ++routeRequest
         _state.update { it.copy(origin = point, originLabel = label, pathEstimates = emptyMap(), crags = repo.crags, routing = point != null) }
         if (point == null) return
         routeJob = viewModelScope.launch {
-            val paths = repo.pathsNear(point)
-            val estimates = withContext(Dispatchers.Default) {
-                repo.crags.filter { Geo.distanceMeters(point, GeoPoint(it.lat, it.lon)) <= 15000 }
-                    .mapNotNull { crag -> ensureActive(); Geo.shortestPath(point, GeoPoint(crag.lat, crag.lon), paths + crag.approaches)?.let { crag.id to it } }.toMap()
+            try {
+                val paths = repo.pathsNear(point)
+                val catalogue = repo.crags
+                val estimates = withContext(Dispatchers.Default) {
+                    val candidates = catalogue.filter { ensureActive(); Geo.distanceMeters(point, GeoPoint(it.lat, it.lon)) <= 15000 }
+                    Geo.shortestPaths(point, candidates.associate { it.id to GeoPoint(it.lat, it.lon) },
+                        paths + candidates.flatMap { it.approaches }, checkCancelled = { ensureActive() })
+                }
+                val adapted = catalogue.map { crag -> crag.copy(walkInDistanceM = estimates[crag.id]?.distanceM, walkInTimeMin = estimates[crag.id]?.timeMin) }
+                if (request == routeRequest) _state.update { it.copy(crags = adapted, pathEstimates = estimates) }
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (error: Exception) {
+                if (request == routeRequest) _state.update { it.copy(message = "Approach estimates unavailable: ${error.message ?: "please try again"}") }
+            } finally {
+                if (request == routeRequest) _state.update { it.copy(routing = false) }
             }
-            val adapted = repo.crags.map { crag -> crag.copy(walkInDistanceM = estimates[crag.id]?.distanceM, walkInTimeMin = estimates[crag.id]?.timeMin) }
-            _state.update { it.copy(crags = adapted, pathEstimates = estimates, routing = false) }
         }
     }
     fun csv(rows: List<TickRecord>): String = buildString {

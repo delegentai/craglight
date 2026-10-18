@@ -174,6 +174,7 @@ fun CragMap(
                                 if (!controller.disposed) {
                                     controller.install(style)
                                     controller.refresh()
+                                    if (focus == null) controller.showAll()
                                 }
                             }
                             map.addOnMapClickListener { coordinate ->
@@ -271,12 +272,12 @@ private class OfflineMapController {
         style.addLayer(CircleLayer(CLUSTER_LAYER, CRAG_SOURCE).withFilter(has("point_count"))
             .withProperties(circleColor("#294D40"), circleRadius(18f), circleStrokeColor("#FAF8EE"), circleStrokeWidth(2.5f)))
         // Rasterized device-font labels are packaged in memory, so offline rendering never needs a glyph service.
-        for (count in 2..99) style.addImage("count-$count", labelBitmap(count.toString(), 24f, AndroidColor.WHITE))
-        style.addImage("count-99+", labelBitmap("99+", 24f, AndroidColor.WHITE))
+        for (count in 2..99) style.addImage("count-$count", labelBitmap(count.toString(), 46f, AndroidColor.WHITE))
+        style.addImage("count-99+", labelBitmap("99+", 42f, AndroidColor.WHITE))
         style.addLayer(SymbolLayer("cluster-counts", CRAG_SOURCE).withFilter(has("point_count"))
             .withProperties(iconImage(switchCase(gt(get("point_count"), literal(99)), literal("count-99+"),
                 concat(literal("count-"), toString(get("point_count"))))),
-                iconSize(0.7f), iconAllowOverlap(true)))
+                iconSize(0.9f), iconAllowOverlap(true), iconIgnorePlacement(true)))
         style.addLayer(CircleLayer(CRAG_LAYER, CRAG_SOURCE).withFilter(not(has("point_count")))
             .withProperties(circleColor("#CE6D42"), circleRadius(7.5f), circleStrokeColor("#FFFCF2"), circleStrokeWidth(2.5f)))
         ready = true

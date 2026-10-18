@@ -44,7 +44,27 @@ object Geo {
      * estimate, not evidence of a legal approach. No disconnected gap is filled with a straight line.
      */
     fun shortestPath(from: GeoPoint, to: GeoPoint, approaches: List<Approach>, maxSnapM: Double = 80.0): PathEstimate? {
-        require(valid(from) && valid(to) && maxSnapM.isFinite() && maxSnapM >= 0)
+        return shortestPaths(from, mapOf("destination" to to), approaches, maxSnapM)["destination"]
+    }
+
+    /**
+     * Builds one graph and runs Dijkstra once for all destinations. Destination projections never
+     * become graph vertices, so snapping several destinations cannot join separate paths/bridges.
+     * Callers can supply a coroutine cancellation check; it is invoked throughout CPU-heavy work.
+     */
+    fun shortestPaths(
+        from: GeoPoint,
+        destinations: Map<String, GeoPoint>,
+        approaches: List<Approach>,
+        maxSnapM: Double = 80.0,
+        checkCancelled: () -> Unit = {},
+    ): Map<String, PathEstimate> {
+        require(valid(from) && maxSnapM.isFinite() && maxSnapM >= 0)
+        checkCancelled()
+        if (destinations.isEmpty()) return emptyMap()
+        var work = 0
+        fun checkpoint() { if ((work++ and 255) == 0) checkCancelled() }
+        destinations.values.forEach { checkpoint(); require(valid(it)) }
         val points = mutableListOf<GeoPoint>()
         val vertexIds = mutableMapOf<String, Int>()
         val edges = mutableListOf<MutableList<Edge>>()
@@ -59,8 +79,13 @@ object Geo {
             edges[b].add(Edge(a, distance))
         }
         val segments = mutableListOf<Segment>()
-        approaches.filter(::usableForEstimate).forEach { approach ->
-            approach.geometry.zipWithNext().forEachIndexed { index, (a, b) ->
+        approaches.forEach { approach ->
+            checkpoint()
+            if (!usableForEstimate(approach)) return@forEach
+            for (index in 0 until approach.geometry.lastIndex) {
+                checkpoint()
+                val a = approach.geometry[index]
+                val b = approach.geometry[index + 1]
                 if (valid(a) && valid(b)) {
                     val aId = node(a, approach.nodeIds.getOrNull(index))
                     val bId = node(b, approach.nodeIds.getOrNull(index + 1))
@@ -72,38 +97,39 @@ object Geo {
                 }
             }
         }
-        if (segments.isEmpty()) return null
+        if (segments.isEmpty()) return emptyMap()
         fun snap(point: GeoPoint): Snap? {
-            return segments.mapIndexed { index, segment ->
+            var best: Snap? = null
+            segments.forEachIndexed { index, segment ->
+                checkpoint()
                 val fraction = projectFraction(point, segment.a, segment.b)
                 val projected = GeoPoint(segment.a.lat + fraction * (segment.b.lat - segment.a.lat), segment.a.lon + fraction * (segment.b.lon - segment.a.lon))
-                Snap(index, fraction, projected, distanceMeters(point, projected))
-            }.minByOrNull { it.distance }?.takeIf { it.distance <= maxSnapM }
+                val distance = distanceMeters(point, projected)
+                if (distance <= maxSnapM && (best == null || distance < best!!.distance)) {
+                    best = Snap(index, fraction, projected, distance)
+                }
+            }
+            return best
         }
-        val startSnap = snap(from) ?: return null
-        val endSnap = snap(to) ?: return null
-        fun insert(snap: Snap): Int {
-            val id = node(snap.point)
-            val segment = segments[snap.segment]
-            connect(id, segment.aId, segment.length * snap.fraction)
-            connect(id, segment.bId, segment.length * (1.0 - snap.fraction))
-            return id
-        }
-        val start = insert(startSnap)
-        val end = insert(endSnap)
-        if (startSnap.segment == endSnap.segment) {
-            connect(start, end, segments[startSnap.segment].length * abs(startSnap.fraction - endSnap.fraction))
-        }
+        val startSnap = snap(from) ?: return emptyMap()
+        val startSegment = segments[startSnap.segment]
         val distances = DoubleArray(points.size) { Double.POSITIVE_INFINITY }
         val previous = IntArray(points.size) { -1 }
         val pending = PriorityQueue<Visit>(compareBy { it.distance })
-        distances[start] = 0.0
-        pending.add(Visit(start, 0.0))
+        // A unique virtual source connects only to this source segment's two actual vertices.
+        // Seeding their costs is equivalent, without introducing a coordinate-keyed junction.
+        fun seed(id: Int, distance: Double) {
+            distances[id] = distance
+            pending.add(Visit(id, distance))
+        }
+        seed(startSegment.aId, startSegment.length * startSnap.fraction)
+        seed(startSegment.bId, startSegment.length * (1.0 - startSnap.fraction))
         while (pending.isNotEmpty()) {
+            checkpoint()
             val visit = pending.remove()
             if (visit.distance > distances[visit.id]) continue
-            if (visit.id == end) break
             edges[visit.id].forEach { edge ->
+                checkpoint()
                 val candidate = visit.distance + edge.distance
                 if (candidate < distances[edge.to]) {
                     distances[edge.to] = candidate
@@ -112,21 +138,44 @@ object Geo {
                 }
             }
         }
-        if (!distances[end].isFinite()) return null
-        val reversed = mutableListOf<GeoPoint>()
-        var cursor = end
-        while (cursor >= 0) {
-            reversed.add(points[cursor])
-            if (cursor == start) break
-            cursor = previous[cursor]
+        val results = linkedMapOf<String, PathEstimate>()
+        destinations.forEach { (id, to) ->
+            checkCancelled()
+            val endSnap = snap(to) ?: return@forEach
+            val endSegment = segments[endSnap.segment]
+            val throughA = distances[endSegment.aId] + endSegment.length * endSnap.fraction
+            val throughB = distances[endSegment.bId] + endSegment.length * (1.0 - endSnap.fraction)
+            val endpoint = if (throughA <= throughB) endSegment.aId else endSegment.bId
+            var networkDistance = min(throughA, throughB)
+            val direct = if (startSnap.segment == endSnap.segment) {
+                endSegment.length * abs(startSnap.fraction - endSnap.fraction)
+            } else Double.POSITIVE_INFINITY
+            val middle = mutableListOf<GeoPoint>()
+            if (direct <= networkDistance && direct.isFinite()) {
+                networkDistance = direct
+            } else {
+                if (!networkDistance.isFinite()) return@forEach
+                var cursor = endpoint
+                while (cursor >= 0) {
+                    checkpoint()
+                    middle.add(points[cursor])
+                    cursor = previous[cursor]
+                }
+                middle.reverse()
+            }
+            val geometry = mutableListOf<GeoPoint>()
+            fun append(point: GeoPoint) { if (geometry.lastOrNull() != point) geometry.add(point) }
+            append(from)
+            append(startSnap.point)
+            middle.forEach(::append)
+            append(endSnap.point)
+            append(to)
+            val snapDistance = startSnap.distance + endSnap.distance
+            val distance = networkDistance + snapDistance
+            results[id] = PathEstimate(geometry, distance, distance / (4_000.0 / 60.0), snapDistance)
         }
-        val geometry = (listOf(from) + reversed.asReversed() + to).fold(mutableListOf<GeoPoint>()) { result, point ->
-            if (result.lastOrNull() != point) result.add(point)
-            result
-        }
-        val snapDistance = startSnap.distance + endSnap.distance
-        val distance = distances[end] + snapDistance
-        return PathEstimate(geometry, distance, distance / (4_000.0 / 60.0), snapDistance)
+        checkCancelled()
+        return results
     }
 
     private fun valid(point: GeoPoint) = point.lat.isFinite() && point.lon.isFinite() && point.lat in -90.0..90.0 && point.lon in -180.0..180.0

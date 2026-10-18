@@ -18,7 +18,7 @@ def font(size, bold=False):
     return ImageFont.load_default(size=size)
 
 def icon(size=512):
-    image = Image.new('RGB', (size, size), FOREST)
+    image = Image.new('RGBA', (size, size), FOREST)
     draw = ImageDraw.Draw(image)
     scale = size / 108
     def point(x, y): return (round(x * scale), round(y * scale))

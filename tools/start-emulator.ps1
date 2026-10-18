@@ -8,7 +8,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $taskAvdPath 'config.ini'))) {
 }
 $taskLogPath = Join-Path $env:CRAGLIGHT_TOOLS 'emulator.log'
 $taskErrorPath = Join-Path $env:CRAGLIGHT_TOOLS 'emulator-error.log'
-$taskArgs = @('-avd', $taskAvdName, '-port', '5580', '-no-snapshot', '-no-audio', '-no-boot-anim', '-gpu', 'swiftshader_indirect', '-memory', '2048')
+$taskArgs = @('-avd', $taskAvdName, '-port', '5580', '-no-snapshot', '-no-audio', '-no-boot-anim', '-gpu', 'host', '-memory', '2048')
 if (-not $Visible) { $taskArgs += '-no-window' }
 $taskProcess = Start-Process -FilePath "$env:ANDROID_HOME\emulator\emulator.exe" -ArgumentList $taskArgs -WindowStyle Hidden -RedirectStandardOutput $taskLogPath -RedirectStandardError $taskErrorPath -PassThru
 Write-Output "CragLight emulator PID $($taskProcess.Id); serial emulator-5580; isolated adb port 5047."
