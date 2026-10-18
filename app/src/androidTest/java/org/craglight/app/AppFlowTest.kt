@@ -77,7 +77,47 @@ class AppFlowTest {
             }
             visibleCount > 0 && landCount > 0
         }
+        compose.runOnIdle {
+            val clusters = native.second.queryRenderedFeatures(RectF(0f, 0f, native.first.width.toFloat(), native.first.height.toFloat()), "crag-clusters")
+            outputFile("map-clusters.json").writeText(org.maplibre.geojson.FeatureCollection.fromFeatures(clusters).toJson())
+            outputFile("map-style.json").writeText(native.second.style!!.json)
+            native.second.style!!.getImage("count-4")!!.let { bitmap ->
+                outputFile("map-count-sprite.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+            }
+        }
+        compose.waitUntil(15_000) {
+            var labelled = 0
+            compose.runOnIdle { labelled = native.second.queryRenderedFeatures(RectF(0f, 0f, native.first.width.toFloat(), native.first.height.toFloat()), "cluster-counts").size }
+            labelled >= 3
+        }
         screenshot("02-offline-uk-map")
+        // Geometry queries alone can pass when a device GPU fails to draw its
+        // sprite atlas. Verify actual white numeral pixels inside cluster fills.
+        val clusterCenters = mutableListOf<android.graphics.PointF>()
+        val mapLocation = IntArray(2)
+        compose.runOnIdle {
+            native.first.getLocationOnScreen(mapLocation)
+            native.second.queryRenderedFeatures(RectF(50f, 100f, native.first.width - 100f, native.first.height - 60f), "crag-clusters")
+                .mapNotNull { it.geometry() as? Point }.forEach { point ->
+                    clusterCenters += native.second.projection.toScreenLocation(LatLng(point.latitude(), point.longitude()))
+                }
+        }
+        val clusterScreen = instrumentation.uiAutomation.takeScreenshot()
+        try {
+            val drawnCounts = clusterCenters.count { center ->
+                var white = 0
+                for (dx in -18..18) for (dy in -18..18) {
+                    val x = center.x.toInt() + mapLocation[0] + dx
+                    val y = center.y.toInt() + mapLocation[1] + dy
+                    if (x in 0 until clusterScreen.width && y in 0 until clusterScreen.height) {
+                        val pixel = clusterScreen.getPixel(x, y)
+                        if (android.graphics.Color.red(pixel) > 245 && android.graphics.Color.green(pixel) > 245 && android.graphics.Color.blue(pixel) > 245) white++
+                    }
+                }
+                white >= 8
+            }
+            assertTrue("At least three cluster numerals must actually draw pixels", drawnCounts >= 3)
+        } finally { clusterScreen.recycle() }
         var clusterPixel: Offset? = null
         var originalZoom = 0.0
         compose.runOnIdle {
@@ -144,6 +184,7 @@ class AppFlowTest {
         compose.waitUntil(10_000) { compose.onAllNodesWithText(routeName).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText(routeName).assertIsDisplayed()
         compose.onNodeWithText("Export CSV").assertIsEnabled()
+        compose.waitUntil(12_000) { model.state.value.message == null }
         screenshot("06-local-logbook")
 
         // Validate export quoting with the persisted Room record and the same exporter used by the UI.
@@ -168,6 +209,7 @@ class AppFlowTest {
         compose.onNodeWithTag("pack-$regionId").performClick()
         compose.waitUntil(60_000) { installedFile.exists() && installedFile.length() > 0L && installedFile.lastModified() > previousModified && installedTiles.exists() && installedTiles.length() > 0 }
         compose.waitUntil(10_000) { compose.onAllNodesWithText("Saved on this device").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitUntil(12_000) { model.state.value.message == null }
         screenshot("07-region-saved-offline")
         compose.onNodeWithText("Explore", substring = false).performClick()
         compose.onNodeWithText("Map", substring = false).performClick()
@@ -196,6 +238,22 @@ class AppFlowTest {
             rendered > 0
         }
         screenshot("08-offline-vector-paths")
+        // A real connected OSM path from Clean Wall's nearby parking proves the
+        // streaming regional path reader and source-node routing work together.
+        compose.onNodeWithText("List", substring = false).performClick()
+        compose.onNodeWithTag("search").performTextReplacement("Clean Wall")
+        compose.onNodeWithTag("crag-list").performScrollToNode(hasTestTag("crag-osm:relation:21389059"))
+        compose.onNodeWithTag("crag-osm:relation:21389059").performClick()
+        compose.onNodeWithText("Approach", substring = false).performClick()
+        compose.onNodeWithTag("crag-detail").performScrollToNode(hasText("Calculate from this parking"))
+        compose.onAllNodesWithText("Calculate from this parking").onFirst().performClick()
+        compose.waitUntil(45_000) { model.state.value.pathEstimates.containsKey("osm:relation:21389059") }
+        val approach = checkNotNull(model.state.value.pathEstimates["osm:relation:21389059"])
+        assertEquals(836.55, approach.distanceM, 3.0)
+        assertTrue(approach.geometry.size >= 2)
+        compose.onNodeWithTag("crag-detail").performScrollToNode(hasText("Walk-in"))
+        screenshot("09-mapped-walk-in")
+        compose.onNodeWithContentDescription("Back to explore").performClick()
         compose.onNodeWithText("Offline", substring = false).performClick()
         compose.activityRule.scenario.recreate()
         compose.waitUntil(90_000) { compose.onAllNodes(hasScrollToIndexAction()).fetchSemanticsNodes().isNotEmpty() }
@@ -209,7 +267,17 @@ class AppFlowTest {
         val queueTitle = "Your review queue (${proposals.size})"
         compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText(queueTitle))
         compose.onNodeWithText(queueTitle).assertIsDisplayed()
-        screenshot("09-moderation-queue")
+        screenshot("10-moderation-queue")
+        compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText("Offline licences & photo credits"))
+        compose.onNodeWithText("Offline licences & photo credits").performClick()
+        awaitTag("licence-list")
+        compose.onNodeWithTag("licence-list").performScrollToNode(hasText("Apache License 2.0"))
+        compose.onNodeWithText("Apache License 2.0").performClick()
+        awaitTag("licence-text")
+        compose.onNodeWithTag("licence-text").performScrollToIndex(2)
+        compose.onAllNodesWithText("This bundled notice could not be opened.").assertCountEquals(0)
+        screenshot("11-offline-licence")
+        compose.onNodeWithText("Close", substring = false).performClick()
     }
 
     private fun awaitTag(tag: String) {
@@ -241,12 +309,16 @@ class AppFlowTest {
     @After fun captureFinalState() { runCatching { capture("99-final-state") } }
 
     private fun capture(name: String) {
+        instrumentation.uiAutomation.takeScreenshot().useBitmap { bitmap ->
+            outputFile("$name.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        }
+    }
+
+    private fun outputFile(name: String): File {
         val directory = InstrumentationRegistry.getArguments().getString("additionalTestOutputDir")
             ?.let(::File) ?: File(context.getExternalFilesDir(null), "evidence")
         directory.mkdirs()
-        instrumentation.uiAutomation.takeScreenshot().useBitmap { bitmap ->
-            File(directory, "$name.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
-        }
+        return File(directory, name)
     }
 
     private fun Bitmap.useBitmap(block: (Bitmap) -> Unit) { try { block(this) } finally { recycle() } }
