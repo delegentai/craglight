@@ -21,7 +21,7 @@ CragLight is a native Android application, Kotlin + Jetpack Compose, min SDK 26.
 
 ## Walk-in and conditions
 
-Choose location only on explicit user action; request Android location permission then, with manual parking selection always available. Proximity distance must be labelled as straight-line unless a walkable connected path exists. A path graph may estimate walking distance/time from mapped permitted paths; disclose missing connectivity and do not fabricate routes. Solar incidence uses latitude, longitude, UTC timestamp and crag aspect; unknown aspect means unknown sun exposure. Terrain shadows and overhangs are not modelled. Forecast freshness and drying estimates are explicit, never a guarantee of safe climbing or access.
+Choose location only on explicit user action; request Android location permission then, with manual parking selection always available. Proximity distance must be labelled as straight-line unless a connected mapped path exists. A path graph may estimate walking distance/time from mapped paths after excluding recorded access restrictions; untagged access remains unknown. Disclose missing connectivity and do not fabricate routes. Solar incidence uses latitude, longitude, UTC timestamp and crag aspect; unknown aspect means unknown sun exposure. Terrain shadows and overhangs are not modelled. Forecast freshness and drying estimates are explicit, never a guarantee of safe climbing or access.
 
 ## Verification
 

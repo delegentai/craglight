@@ -11,6 +11,7 @@ documents = [
     "docs/ARCHITECTURE.md", "docs/DATA_RELEASE.md", "docs/GRADING.md",
     "docs/MODERATION.md", "docs/PRIVACY.md", "docs/QA.md", "docs/RELEASE_NOTES.md",
     "docs/SIGNING.md", "docs/STORE_LISTING.md", "docs/THIRD_PARTY_NOTICES.md",
+    "docs/RELEASE_BUNDLE_VALIDATION.md",
     "data/photos.json", "data/LICENSE.txt", "data/os-open-names-licence.txt",
 ]
 files = [root / name for name in documents]

@@ -46,7 +46,7 @@ Release signing reads an untracked `private/signing.properties`. See [signing](d
 
 - Open route and topo coverage is much smaller than commercial guides. Only 3 locations have a mapped aspect and none has a family-suitability tag in this snapshot; positive filters may return very few or no matches. No proprietary UKC, Rockfax, BMC or guidebook content is redistributed.
 - Solar exposure assumes a vertical face and its recorded aspect. Shadows, trees, overhangs and cloud effects can change actual sunshine.
-- Walking estimates require connected permitted paths and include explicitly labelled endpoint connections. The sparse contextual map is not a full navigation or terrain map.
+- Walking estimates require connected mapped paths, exclude recorded access restrictions, and include explicitly labelled endpoint connections. Untagged access remains unknown. The sparse contextual map is not a full navigation or terrain map.
 - Weather-based drying cannot detect seepage or assess rock damage. Access and nesting restrictions may change after a data snapshot.
 - The app has no hosted anonymous moderation API; users explicitly send a GitHub review form or export their pending proposal.
 
