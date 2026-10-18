@@ -1,0 +1,74 @@
+[
+  {
+    "file": "apache-2.0.txt",
+    "sourceUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "bytes": 11358,
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+    "file": "maplibre-android-13.7.1.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/maplibre/maplibre-native/android-v13.7.1/platform/android/LICENSE.md",
+    "bytes": 76774,
+    "sha256": "db3cc41e2c79f394a1dddd890c55c263426175029a898d5167820498ddebf152"
+  },
+  {
+    "file": "maplibre-gestures-0.0.4.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/maplibre/maplibre-gestures-android/0.0.4/LICENSE.md",
+    "bytes": 3503,
+    "sha256": "e82169bcba4d61ddb2d838aa154d153517e227efb07a60668efbcc472b18773f"
+  },
+  {
+    "file": "kotlin-notice-2.2.10.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/JetBrains/kotlin/v2.2.10/license/NOTICE.txt",
+    "bytes": 482,
+    "sha256": "0b09a83d3ef7795c7dec65e815866597c066c53898f2852a76599b8f5552941a"
+  },
+  {
+    "file": "coroutines-notice-1.10.2.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.10.2/license/NOTICE.txt",
+    "bytes": 452,
+    "sha256": "1ab6de67ef738bffae63f9aa6a8798a35e87341c83ea28d09c8dc8ca6993232a"
+  },
+  {
+    "file": "serialization-notice-1.7.3.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/Kotlin/kotlinx.serialization/v1.7.3/license/NOTICE.txt",
+    "bytes": 497,
+    "sha256": "ec77bba5c852830abfdefcdefbf4a22577ff4df79ec323a898d5100ca1d6f8d6"
+  },
+  {
+    "file": "psl-mpl-2.0.txt",
+    "sourceUrl": "https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt",
+    "bytes": 16726,
+    "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85"
+  },
+  {
+    "file": "software-inventory.txt",
+    "sourceUrl": "https://github.com/delegentai/craglight",
+    "bytes": 14039,
+    "sha256": "f962a442ccb4fa2b1dd725ca0bf3a847b7349b95740783e2b94a968f8acd3157"
+  },
+  {
+    "file": "artifact-notices.txt",
+    "sourceUrl": "",
+    "bytes": 15793,
+    "sha256": "82b9e11282dbd73787460e7ae5040654611f466b592fc497d8424faef877dd29"
+  },
+  {
+    "file": "os-open-names-licence.txt",
+    "sourceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "bytes": 441,
+    "sha256": "255615eac36ac85c289cfc46fc7e9472e1380b7af9a0ae8d7da78722540d7264"
+  },
+  {
+    "file": "photo-credits.txt",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia",
+    "bytes": 8817,
+    "sha256": "ee7eb2f57daca1cfc13a74462c6a1f9e39c8d7d5169a98cb2581296574337eed"
+  },
+  {
+    "file": "data-credits.txt",
+    "sourceUrl": "https://github.com/delegentai/craglight/blob/main/SOURCES.md",
+    "bytes": 1966,
+    "sha256": "cf71a097d6ef5e2964dbc11a24dd18a1c75f3f3e455de0c42982dea395ebdfab"
+  }
+]

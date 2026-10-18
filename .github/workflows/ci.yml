@@ -1,0 +1,45 @@
+name: CragLight checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: craglight-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ingestion dependencies
+        run: python -m pip install -r pipeline/requirements.txt
+      - name: Rebuild packs from committed snapshots
+        run: |
+          python -c "import shutil; shutil.copytree('app/src/main/assets/photos', 'data/packs/photos', dirs_exist_ok=True)"
+          python pipeline/build.py
+      - name: Bundle rebuilt pack checksums and maps
+        shell: pwsh
+        run: ./scripts/sync-assets.ps1
+      - name: Check ingestion and moderation
+        run: |
+          python -m unittest discover -s pipeline/tests -v
+          python -m unittest discover -s moderation -p 'test_*.py' -v
+      - name: Prepare Android SDK
+        run: sdkmanager 'platforms;android-36' 'build-tools;36.0.0' 'build-tools;35.0.0'
+      - name: Compile, unit-test and lint Android
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon testDebugUnitTest lintDebug assembleDebug
+# Standard GitHub-hosted runner in an independent public repository: no paid runner,
+# external credentials, remote deployment, scheduled fetch or release signing.

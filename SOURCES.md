@@ -1,0 +1,25 @@
+# Sources, licences and attribution
+
+## Distributed data
+
+- **OpenStreetMap contributors** — [copyright and licence](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Show **© OpenStreetMap contributors** on maps and in data details. CragLight's extracted/normalised OSM database and map features are available under ODbL 1.0. Reproduce them using `pipeline/`; retain the original OSM IDs, versions and timestamps. Each pack is a modified extraction, not an official OSM product. No endorsement is implied.
+- **Ordnance Survey OS Open Names**, July 2026 — [product](https://www.ordnancesurvey.co.uk/products/os-open-names), [public downloads API](https://api.os.uk/downloads/v1/products/OpenNames), [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). City, town and village labels are selected and transformed from EPSG:27700 to WGS84 for contextual mapping. Required supplied credits: **Contains OS data © Crown Copyright and database rights 2026; Contains Royal Mail data © Royal Mail copyright and database right 2026; Contains National Statistics data © Crown copyright and database right 2026**. Retained licence text is in `data/os-open-names-licence.txt`; place records retain OS identifiers and source URLs. This provides Great Britain labels, not Northern Ireland coverage or walking access evidence.
+- **Natural Earth**, 1:10 million country polygons — [public-domain terms](https://www.naturalearthdata.com/about/terms-of-use/), [official vector repository](https://github.com/nvkelso/natural-earth-vector). UK land geometry is intersected with OSM country administrative polygons, so territorial waters are not displayed as land. This is a low-detail contextual coast, not detailed navigation mapping. Acknowledgement: **Made with Natural Earth**. The selected input is retained in `data/uk-land.geojson`.
+- **Open-Meteo** — [data licence](https://open-meteo.com/en/licence), [API terms](https://open-meteo.com/en/terms). Forecast data is CC BY 4.0; show **Weather data by Open-Meteo.com** beside forecasts. Store retrieval time and distinguish derived drying estimates from model forecasts. The free endpoint permits non-commercial uses with fewer than 10,000 daily, 5,000 hourly and 600 minutely requests; this free ad-free app must cache requests and reevaluate terms if monetisation changes. No forecast is bundled as live weather.
+
+## Investigated, not automatically redistributed
+
+- **Other Ordnance Survey products** — [OpenData catalogue](https://www.ordnancesurvey.co.uk/products/open-data), [OS Open Zoomstack](https://www.ordnancesurvey.co.uk/products/os-open-zoomstack), [OS Terrain 50](https://www.ordnancesurvey.co.uk/products/os-terrain-50). No OS raster or Zoomstack basemap is included in these compact packs.
+- **OpenBeta** — [licence FAQ](https://github.com/OpenBeta/docs.openbeta.io/blob/develop/docs/faq.mdx), [official export tool](https://github.com/OpenBeta/parquet-exporter). Dataset licence is CC0; this excludes photos and source code. No historical third-party descriptions are imported without source review. See `DATA_AUDIT.md` and coverage report for actual adoption.
+- **OpenClimbing** — [export](https://openclimbing.org/export), an OSM-derived ODbL database. Investigated as an alternative to direct OSM, not combined as a duplicate source.
+- **Wikimedia Commons** — [reuse guidance](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia). Each image requires its individual author, licence, file page and change notice. A file linked from an OSM tag is not sufficient evidence by itself.
+
+## Technical references
+
+[OSM climbing schema](https://wiki.openstreetmap.org/wiki/Climbing), [grade tags](https://wiki.openstreetmap.org/wiki/Climbing/Grading), [Commons route-line schema](https://wiki.openstreetmap.org/wiki/Key:wikimedia_commons:path), [Private.coffee API policy](https://overpass.private.coffee/), [MBTiles specification](https://github.com/mapbox/mbtiles-spec), and [MVT specification](https://github.com/mapbox/vector-tile-spec) inform the independent implementation. Wiki prose is not copied into climbing records.
+
+UKC, Rockfax, BMC and guidebooks supply no redistributed content. UKC URLs are external references only. User proposals remain a separate moderation queue until provenance and licence review; they are not automatically merged into the OSM-derived database.
+
+## Licensed topo photographs
+
+`data/photos.json` is the per-image attribution ledger for the 16 redistributed Commons preview images in `data/packs/photos/`. It records each title/ref, creator, exact licence and licence URL, original file page, asset hash, metadata-page hash, dimensions and change notice. Images are CC BY-SA 4.0, CC BY-SA 2.0, or CC0 as specified individually; do not apply the OSM database licence to the photographs. Attribute the creator and link the original file page and licence beside each image. Displayed photo-plus-route-line adaptations retain the photo licence. The independently sourced OSM overlay coordinates remain ODbL data.

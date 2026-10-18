@@ -1,0 +1,6 @@
+osmium==4.2.0
+shapely==2.1.2
+mapbox-vector-tile==2.2.0
+pyproj==3.7.2
+pyshp==3.0.2.post1
+duckdb==1.4.1

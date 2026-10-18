@@ -1,0 +1,14 @@
+certifi==2026.10.18
+charset-normalizer==3.5.2
+duckdb==1.4.1
+idna==3.20
+mapbox-vector-tile==2.2.0
+numpy==2.5.4
+osmium==4.2.0
+protobuf==6.33.6
+pyclipper==1.4.0
+pyproj==3.7.2
+pyshp==3.0.2.post1
+requests==2.34.2
+shapely==2.1.2
+urllib3==2.8.0

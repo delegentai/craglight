@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.png binary
+*.sqlite binary
+*.mbtiles binary
+*.jar binary
+*.zip binary
+*.gz binary
+app/src/main/assets/packs/*.json -text
+app/src/main/assets/packs/*.geojson -text
+app/src/main/assets/licenses/*.txt -text

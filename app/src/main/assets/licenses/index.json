@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Data sources and attribution",
+    "file": "data-credits.txt",
+    "sourceUrl": "https://github.com/delegentai/craglight/blob/main/SOURCES.md"
+  },
+  {
+    "title": "All bundled photograph credits",
+    "file": "photo-credits.txt",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia"
+  },
+  {
+    "title": "Resolved software inventory",
+    "file": "software-inventory.txt",
+    "sourceUrl": "https://github.com/delegentai/craglight"
+  },
+  {
+    "title": "MapLibre Android 13.7.1 and native dependency notices",
+    "file": "maplibre-android-13.7.1.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/maplibre/maplibre-native/android-v13.7.1/platform/android/LICENSE.md"
+  },
+  {
+    "title": "MapLibre Gestures 0.0.4 — BSD notices",
+    "file": "maplibre-gestures-0.0.4.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/maplibre/maplibre-gestures-android/0.0.4/LICENSE.md"
+  },
+  {
+    "title": "Apache License 2.0",
+    "file": "apache-2.0.txt",
+    "sourceUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+  },
+  {
+    "title": "Original AAR and JAR notices",
+    "file": "artifact-notices.txt",
+    "sourceUrl": ""
+  },
+  {
+    "title": "Kotlin 2.2.10 copyright notice",
+    "file": "kotlin-notice-2.2.10.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/JetBrains/kotlin/v2.2.10/license/NOTICE.txt"
+  },
+  {
+    "title": "Kotlin coroutines 1.10.2 copyright notice",
+    "file": "coroutines-notice-1.10.2.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/1.10.2/license/NOTICE.txt"
+  },
+  {
+    "title": "Kotlin serialization 1.7.3 copyright notice",
+    "file": "serialization-notice-1.7.3.txt",
+    "sourceUrl": "https://raw.githubusercontent.com/Kotlin/kotlinx.serialization/v1.7.3/license/NOTICE.txt"
+  },
+  {
+    "title": "Mozilla Public License 2.0 — Public Suffix List",
+    "file": "psl-mpl-2.0.txt",
+    "sourceUrl": "https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt"
+  },
+  {
+    "title": "OS Open Names original three-credit notice",
+    "file": "os-open-names-licence.txt",
+    "sourceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  }
+]

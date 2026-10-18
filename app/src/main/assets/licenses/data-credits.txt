@@ -1,0 +1,27 @@
+CragLight data attribution
+
+© OpenStreetMap contributors
+https://www.openstreetmap.org/copyright
+The extracted and normalised OSM climbing database and vector map features are available under ODbL 1.0. They are modified extracts, not an official OSM product. Source IDs, versions and timestamps are retained per record. The reproducible pipeline and machine-readable packs are offered at https://github.com/delegentai/craglight and https://github.com/delegentai/craglight/releases/tag/data-v1 .
+Licence: https://opendatacommons.org/licenses/odbl/1-0/
+
+OS Open Names, July 2026, Ordnance Survey
+Contains OS data © Crown Copyright and database rights 2026.
+Contains Royal Mail data © Royal Mail copyright and database right 2026.
+Contains National Statistics data © Crown copyright and database right 2026.
+Selected city, town and village labels were transformed from EPSG:27700 to WGS84. Great Britain only. The supplied original notice is included separately.
+Licence: Open Government Licence v3.0
+https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+Source: https://www.ordnancesurvey.co.uk/products/os-open-names
+
+Made with Natural Earth
+https://www.naturalearthdata.com/about/terms-of-use/
+Natural Earth country polygons are public domain. Selected coarse land geometry is combined with OSM administrative boundaries for context; it is not detailed navigation mapping.
+
+Weather data by Open-Meteo.com
+https://open-meteo.com/
+Forecast data: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/
+Forecasts are fetched only when requested and cached with retrieval time. Drying suggestions are CragLight estimates, not forecasts supplied by Open-Meteo.
+
+Wikimedia Commons photographs
+Per-image authors, original file pages, licences and changes appear in the separate photo credits and beside each image. Images have individual CC BY-SA 4.0, CC BY-SA 2.0 or CC0 licences, not the OSM database licence. No attribution implies endorsement.
