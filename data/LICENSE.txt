@@ -24,10 +24,23 @@ Natural Earth's contextual land outline is public domain:
 https://www.naturalearthdata.com/about/terms-of-use/
 Made with Natural Earth.
 
-Photographs have their own individual licences, not the OSM database licence.
-See photos.json for each creator, CC BY-SA 4.0 / CC BY-SA 2.0 / CC0 licence,
-source page, hash and change notice. Photo-overlay adaptations retain the
-applicable photo licence. Source image files are in packs/photos/.
+The current curated climbing guide contains site-authored text and annotated
+images by Dan and Michel / Multi-pitch.com under CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/
+https://www.multi-pitch.com/
+Nine original photographs use CC BY-SA 4.0. The Dinorwig original image uses
+CC BY 4.0; its site-authored annotations and text use CC BY-SA 4.0.
+Images are unchanged. Selected prose has normalized whitespace; Diff/VDiff
+grade spelling aliases become D/VD, without converting grade systems.
+See curated/source-records.json and packs/photo-licences.json for exact source
+pages, original-photo licence evidence, author, hashes and change notices.
+Source images are in curated/photos/ and generated copies in packs/photos/.
+Credit the author/source/licence and retain the applicable share-alike terms.
+No site licence is inferred for third-party images or guidebook covers.
+
+The old photos.json Commons ledger is historical provenance. Those 16 preview
+images are not distributed by the curated builder. OSM database data and CC
+climbing content retain their distinct source licences and provenance.
 
 No OpenBeta climbing records, UKC text, Rockfax content, BMC descriptions,
 or proprietary guidebook photographs/topos are included. OSM-recorded external

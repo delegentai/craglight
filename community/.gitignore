@@ -1,0 +1,11 @@
+.venv/
+.state/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+*.sqlite*
+*.secret
+node_modules/
+.tools/
+test-results.xml

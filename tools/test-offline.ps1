@@ -15,7 +15,7 @@ try {
     if ($taskWifiDisabled -ne '0' -or $taskMobileDisabled -ne '0') { throw 'Emulator networking was not disabled.' }
     New-Item -ItemType Directory -Path 'evidence\ui-test' -Force | Out-Null
     & $taskAdb -P 5047 -s emulator-5580 shell dumpsys connectivity | Out-File -LiteralPath 'evidence\ui-test\offline-network.txt'
-    & "$env:CRAGLIGHT_TOOLS\gradle-8.11.1\bin\gradle.bat" --no-daemon :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=org.craglight.app.AppFlowTest' --console=plain
+    & "$env:CRAGLIGHT_TOOLS\gradle-8.11.1\bin\gradle.bat" --no-daemon :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=org.craglight.app.AppFlowTest,org.craglight.app.community.PhotoImportTest' --console=plain
     $taskExit = $LASTEXITCODE
     New-Item -ItemType Directory -Path 'evidence\ui-test' -Force | Out-Null
     # UTP collects additionalTestOutputDir before uninstalling the test APKs.

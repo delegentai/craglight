@@ -1,57 +1,47 @@
 # CragLight
 
-A free, native Android climbing guide for the United Kingdom. Kotlin, Jetpack Compose, Room and MapLibre. Android 8.0+; package `org.craglight.app`.
+A free native Android climbing guide for the UK. Kotlin, Jetpack Compose, Room and MapLibre; Android 8.0+, package `org.craglight.app`. No advertising, subscriptions or analytics.
 
-CragLight combines openly licensed climbing records with offline regional maps, a private logbook, grade/style/rock/region/walk-in filters, solar aspect calculations, cached Open-Meteo forecasts and a moderated contribution path. It has no ads, subscriptions, accounts or analytics.
+Version 1.1 starts with **10 crags, 10 selected routes/link-ups and 10 real annotated photo topos**. Every listed guide has a route description, authored approach, parking/start information and descent. Most cover one selected climb, not a whole crag. The former 828-location sparse catalogue is no longer published. See [DATA_AUDIT.md](DATA_AUDIT.md) and [SOURCES.md](SOURCES.md).
 
-**Coverage is incomplete.** This is an open-data guide, not a licensed guidebook catalogue. Missing grades, descriptions, restrictions and photographic topos stay visibly unknown. Nearby parking does not imply an approved approach. See [DATA_AUDIT.md](DATA_AUDIT.md) and [SOURCES.md](SOURCES.md).
+## Install and explore
 
-## Install
+Use the signed APK in [Releases](https://github.com/delegentai/craglight/releases), or the local `release/CragLight-1.1.0.apk`. The AAB is for Play Console, not direct installation.
 
-Download the signed APK from [Releases](https://github.com/delegentai/craglight/releases). Android may ask you to allow installation from the browser/file manager. The AAB is for Play Console submission, not direct installation.
+The app opens on an interactive map. Switch to List for photo cards, open a guide, pinch to zoom its annotated topo, and use Approach for written directions and descent. Each guide states its route coverage and links the source and author. Source inspection is not a recent field check or assurance of access.
 
-Open **Offline** and save a region. Downloads are checked against the bundled SHA-256 manifest; a bundled copy lets you save it without signal. Maps, catalogue, search, sun calculations, ticks and queued edits then work offline. Weather needs a connection to refresh and always retains its fetched time. You can also import a matching regional JSON downloaded from a data release.
+All ten guides and images are bundled. Save a regional pack in Offline for mapped paths and parking; matching bundled copies work without signal. Downloads/imports are verified against the bundled SHA-256 manifest. Version 1 packs are invalidated when upgrading so retired sparse pins cannot return. The map is contextual, not a complete terrain/navigation map.
 
-## Data and maps
+Ticks remain private on the device and export to CSV. Search, filters and solar estimates work offline. Open-Meteo weather needs a connection to refresh and displays its age. Unknown aspect/family/walk-in details do not count as confirmed filter matches.
 
-The release catalogue has **828 climbing locations, 2,093 routes, 16 licensed photos and 67 photo-route overlays**, derived from a dated Geofabrik UK OSM extract. It also includes OS Open Names populated-place labels and a Natural Earth/OSM contextual land outline. Six regional packs provide JSON, SQLite, GeoJSON and 15,179 genuine MVT tiles in MBTiles (source layer `craglight`). Android renders these vector tiles from read-only local files; it does not bulk-download public raster tiles.
+## Community contribution flow
 
-The ingestion manifest includes source dates, attribution, file sizes, counts and SHA-256 digests. Each climbing record retains its OSM ID, version, timestamp and licence. The compact source snapshots and reproducible pipeline are included. Large original national downloads are excluded from Git. See [pipeline/README.md](pipeline/README.md).
+Community supports original crag/climbing photo imports, normalized finger-drawn route lines, multiple route drafts, grades/descriptions, approaches, parking, access notes and descents. Partial contributions can be saved locally and exported without an account. Imported images are oriented, bounded and re-encoded without EXIF/GPS metadata.
 
-## Logbook and contributions
+The separate [community service](community/README.md) implements Google sign-in, private uploads, pending submissions, moderator-approved guides and galleries, contributor thanks, reports, account export/deletion and reuse of approved open photos with retained attribution. A photo alone does not make a crag public. Original contributions use CC BY-SA 4.0. Logbook entries never become public contributions automatically.
 
-Ticks are local, editable and exportable as spreadsheet-safe CSV. Back them up before uninstalling the app. A personal free-text ascent is not automatically published as route data.
+**Online community publishing is not live in the default build.** A dedicated Google OAuth client, durable HTTPS service and final private contact/operator details must be configured. Blank configuration clearly disables sign-in/upload; it never reports a simulated successful submission. The offline editor and exports work now. Existing legacy local text proposals remain accessible in About.
 
-Crag corrections are queued locally under an explicit original-work CC0 declaration. The app can open a browser review form or export the queue. It never claims a proposal was sent merely because it was saved. Moderation checks evidence and reuse rights before a later data release; [the review workflow](docs/MODERATION.md) includes an auditable command-line queue.
+## Data and rights
 
-## Build and test
+MultiPitch's openly licensed guides provide the seed topos and authored prose. Authors, original image licences, source URLs, changes and hashes are retained. OSM paths/parking and OS Open Names labels provide map context; Natural Earth provides land outlines. Six regional packs are reproducibly generated as JSON, SQLite, GeoJSON and actual MVT MBTiles.
 
-Use JDK 17, Android SDK API 36 and the checked-in Gradle wrapper. Set `ANDROID_HOME` or a local `sdk.dir`. No API keys are needed.
+UKC and Rockfax libraries are not imported. Normal browsing/linking does not grant a licence to republish their databases, descriptions, photos or topos. See [reuse assessment](docs/CONTENT_RIGHTS.md).
+
+## Build and verify
+
+Use JDK 17 and Android SDK 36. The offline build needs no API credentials.
 
 ```text
 gradlew.bat testDebugUnitTest lintDebug assembleDebug
 gradlew.bat connectedDebugAndroidTest
 python -m pip install -r pipeline/requirements.txt
-python -c "import shutil; shutil.copytree('app/src/main/assets/photos', 'data/packs/photos', dirs_exist_ok=True)"
 python pipeline/build.py
 python -m unittest discover -s pipeline/tests -v
-python -m unittest discover -s moderation -p test_*.py -v
+python -m pip install -r community/requirements.txt
+python -m pytest community/test_service.py
 ```
 
-The initial build machine uses isolated scripts under `tools/`; its machine-specific paths are not required by the app. `scripts/sync-assets.ps1` copies and verifies generated regional JSON packs before building. Keep assets and manifest from the same data revision.
+The machine-specific scripts in `tools/` isolate the build/emulator from other projects. Run `scripts/sync-assets.ps1` after rebuilding packs. Release signing uses untracked `private/signing.properties`; never commit signing keys or credentials. Configure a real service only through `-PcommunityBaseUrl=https://... -PgoogleWebClientId=...` after its setup and live acceptance tests.
 
-Release signing reads an untracked `private/signing.properties`. See [signing](docs/SIGNING.md). Do not publish the keystore, passwords, service credentials or local evidence manifests.
-
-## Limitations that matter
-
-- Open route and topo coverage is much smaller than commercial guides. Only 3 locations have a mapped aspect and none has a family-suitability tag in this snapshot; positive filters may return very few or no matches. No proprietary UKC, Rockfax, BMC or guidebook content is redistributed.
-- Solar exposure assumes a vertical face and its recorded aspect. Shadows, trees, overhangs and cloud effects can change actual sunshine.
-- Walking estimates require connected mapped paths, exclude recorded access restrictions, and include explicitly labelled endpoint connections. Untagged access remains unknown. The sparse contextual map is not a full navigation or terrain map.
-- Weather-based drying cannot detect seepage or assess rock damage. Access and nesting restrictions may change after a data snapshot.
-- The app has no hosted anonymous moderation API; users explicitly send a GitHub review form or export their pending proposal.
-
-## Publishing and privacy
-
-[Store listing and submission steps](docs/STORE_LISTING.md) · [Privacy draft](docs/PRIVACY.md) · [Architecture](docs/ARCHITECTURE.md) · [Decisions](DECISIONS.md).
-
-The software is Apache-2.0. Data retains its separate source licence and attribution in [SOURCES.md](SOURCES.md). The project is independent and does not share another app's signing identity, database, cloud project or user data.
+The software is Apache-2.0; data retains separate licences. [Privacy](docs/PRIVACY.md) · [Decisions](DECISIONS.md) · [Store submission](docs/STORE_LISTING.md). CragLight shares no signing identity, database, cloud project or user data with another app.

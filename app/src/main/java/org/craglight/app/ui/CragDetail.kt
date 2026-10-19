@@ -30,7 +30,7 @@ import java.time.format.DateTimeFormatter
 import org.json.JSONObject
 import org.json.JSONArray
 
-@Composable internal fun CragDetail(crag: Crag, state: AppState, vm: AppViewModel, onTick: (TickRecord) -> Unit) {
+@Composable internal fun CragDetail(crag: Crag, state: AppState, vm: AppViewModel, onContribute: () -> Unit, onTick: (TickRecord) -> Unit) {
     var tab by remember(crag.id) { mutableStateOf("Routes") }
     var tickRoute by remember { mutableStateOf<Route?>(null) }
     var tickOpen by remember { mutableStateOf(false) }
@@ -55,7 +55,7 @@ import org.json.JSONArray
                     Text(crag.region.replace('-', ' ').uppercase(), style = MaterialTheme.typography.labelMedium, color = Sage)
                     Text(crag.name, style = MaterialTheme.typography.headlineMedium, color = Color.White)
                     Text(crag.styles.joinToString(" · ").ifBlank { "Style not recorded" } + (crag.rock?.let { " · $it" } ?: ""), color = Sage)
-                    Text("${crag.routes.size} open route entries", color = Color.White, style = MaterialTheme.typography.bodyMedium)
+                    Text(crag.coverageScope ?: "${crag.routes.size} routes covered", color = Color.White, style = MaterialTheme.typography.bodyMedium)
                 }
             }
         }
@@ -76,6 +76,7 @@ import org.json.JSONArray
                 if (crag.routes.isEmpty()) item { SectionCard("Room for local knowledge") { Text("No openly licensed route list is mapped here yet. You can still record your own ascent and propose original observations for review.") } }
                 items(crag.routes, key = { it.id }) { route -> SectionCard(route.name) {
                     Text(gradeSummary(route), color = Clay)
+                    if (route.lengthM != null || route.pitches != null) Text(listOfNotNull(route.lengthM?.let { "${it.toInt()} m" }, route.pitches?.let { "$it pitches" }).joinToString(" · "))
                     if (route.styles.isNotEmpty()) Text(route.styles.joinToString(" · "), style = MaterialTheme.typography.bodySmall)
                     Text(route.description ?: "Description not recorded in the open source.")
                     if (route.geometry.size >= 2) { RouteDiagram(route); Text("Geographic plan from mapped route coordinates; not a face topo.", style = MaterialTheme.typography.bodySmall) }
@@ -85,7 +86,14 @@ import org.json.JSONArray
                 if (crag.photos.isEmpty()) item { SectionCard("Topo coverage") { Text("No licensed photographic face topo is available for this entry. Mapped route geometry, where present, is shown above. Contributions can identify an openly licensed image and its route lines.") } }
             }
             "Approach" -> {
+                item { SectionCard("Getting there") { Text(crag.parkingDescription.orEmpty()) } }
+                item { SectionCard("Written approach") {
+                    Text(crag.approachDescription.orEmpty(), modifier = Modifier.testTag("written-approach"))
+                    crag.approachSourceUrl?.let { url -> TextButton(onClick = { openUrl(context, url) }) { Text("Approach source") } }
+                } }
+                item { SectionCard("Descent") { Text(crag.descentDescription.orEmpty()) } }
                 item { SectionCard("Access & restrictions") {
+                    crag.accessNotes?.let { Text(it) }
                     Text("Access: ${crag.access ?: "Not recorded"}")
                     Text("Conditional access: ${crag.accessConditional ?: "Not recorded"}")
                     Text("Restrictions / nesting bans: ${crag.restriction ?: "Not recorded"}")
@@ -98,11 +106,12 @@ import org.json.JSONArray
                     Text("Start: ${state.originLabel ?: "No starting point selected"}")
                     if (state.routing) LinearProgressIndicator(Modifier.fillMaxWidth())
                     Text("Distance: ${distance(crag.walkInDistanceM)} · Time: ${crag.walkInTimeMin?.let { "${it.toInt()} min" } ?: "Not recorded"}")
+                    if (state.pathEstimates[crag.id] == null && (crag.walkInDistanceM != null || crag.walkInTimeMin != null)) Text("Estimate stated by the guide source; allow for conditions and your own pace.", style = MaterialTheme.typography.bodySmall)
                     state.pathEstimates[crag.id]?.let { estimate -> Text("Mapped-path estimate, including ${distance(estimate.snapDistanceM)} of endpoint connections. Terrain and path condition are not modelled.", style = MaterialTheme.typography.bodySmall) }
                     if (crag.walkInDistanceM == null) Text("Save this region and choose a starting point. If a permitted, connected mapped path cannot be found, the walk-in stays unknown.", style = MaterialTheme.typography.bodySmall)
                     Text("Family suitability: ${when(crag.familyFriendly) { true -> "Recorded as suitable"; false -> "Recorded as unsuitable"; null -> "Not recorded" }}")
                 } }
-                if (crag.parking.isEmpty()) item { Text("No nearby parking is mapped in this pack. Choose coordinates from Explore to set a starting point.") }
+                if (crag.parking.isEmpty()) item { Text("This guide supplies no parking coordinates. Follow the written start/parking information above; map context alone does not confirm suitable parking.") }
                 items(crag.parking, key = { it.id }) { parking -> SectionCard(parking.name.ifBlank { "Mapped parking" }) {
                     Text("${parking.association.replace('-', ' ')} · Access: ${parking.access ?: "not recorded"}")
                     parking.accessConditional?.let { Text("Conditional parking access: $it") }
@@ -145,15 +154,17 @@ import org.json.JSONArray
                     Text("Coordinates: %.5f, %.5f".format(crag.lat, crag.lon))
                 } }
                 item { SectionCard("Record provenance") {
+                    crag.contentCheckedAt?.let { Text("Source checked: $it. This is a desk review, not a recent field inspection.") }
                     Text("Source: ${crag.provenance.source} · ${crag.provenance.sourceId}")
                     Text("Version: ${crag.provenance.version ?: "not supplied"} · Updated: ${crag.provenance.timestamp ?: "not supplied"}")
                     Text("Licence: ${crag.provenance.license}")
+                    crag.sourceUrl?.let { url -> TextButton(onClick = { openUrl(context, url) }) { Text("Original guide & author") } }
                     crag.osmUrl?.let { url -> TextButton(onClick = { openUrl(context, url) }) { Text("View OpenStreetMap record") } }
                     crag.ukcUrl?.let { url -> TextButton(onClick = { openUrl(context, url) }) { Text("Open UKC crag page") } }
                 } }
             }
         }
-        item { OutlinedButton(onClick = { contribution = true }, modifier = Modifier.fillMaxWidth().testTag("improve-crag")) { Icon(Icons.Default.Edit, null); Spacer(Modifier.width(8.dp)); Text("Improve this crag") } }
+        item { OutlinedButton(onClick = onContribute, modifier = Modifier.fillMaxWidth().testTag("improve-crag")) { Icon(Icons.Default.Edit, null); Spacer(Modifier.width(8.dp)); Text("Add a photo or route") } }
     }
     if (tickOpen) TickDialog(crag, tickRoute, onDismiss = { tickOpen = false }) { onTick(it); tickOpen = false }
     if (contribution) ContributionDialog(crag, onDismiss = { contribution = false }) { vm.saveContribution(it); contribution = false }

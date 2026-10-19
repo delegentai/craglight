@@ -5,14 +5,9 @@
     "sourceUrl": "https://github.com/delegentai/craglight/blob/main/SOURCES.md"
   },
   {
-    "title": "All bundled photograph credits",
+    "title": "Curated topo photographs and climbing-text credits",
     "file": "photo-credits.txt",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia"
-  },
-  {
-    "title": "Resolved software inventory",
-    "file": "software-inventory.txt",
-    "sourceUrl": "https://github.com/delegentai/craglight"
+    "sourceUrl": "https://www.multi-pitch.com/"
   },
   {
     "title": "MapLibre Android 13.7.1 and native dependency notices",
@@ -28,11 +23,6 @@
     "title": "Apache License 2.0",
     "file": "apache-2.0.txt",
     "sourceUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
-  },
-  {
-    "title": "Original AAR and JAR notices",
-    "file": "artifact-notices.txt",
-    "sourceUrl": ""
   },
   {
     "title": "Kotlin 2.2.10 copyright notice",
@@ -58,5 +48,20 @@
     "title": "OS Open Names original three-credit notice",
     "file": "os-open-names-licence.txt",
     "sourceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+  {
+    "title": "Resolved software inventory",
+    "file": "software-inventory.txt",
+    "sourceUrl": "https://github.com/delegentai/craglight"
+  },
+  {
+    "title": "Original AAR and JAR notices",
+    "file": "artifact-notices.txt",
+    "sourceUrl": ""
+  },
+  {
+    "title": "Google SDK third-party notices and SDK terms",
+    "file": "google-sdk-third-party-notices.txt",
+    "sourceUrl": "https://developers.google.com/android/guides/opensource"
   }
 ]

@@ -28,6 +28,7 @@ data class TopoPhoto(
     val changes: String,
     val sha256: String? = null,
     val bytes: Long? = null,
+    val kind: String? = null,
 )
 
 fun commonsReferenceKey(ref: String): String = ref.trim().replace('_', ' ')
@@ -42,6 +43,9 @@ data class Route(
     val provenance: Provenance = Provenance(),
     val topoImageRef: String? = null,
     val topoPath: List<TopoPoint> = emptyList(),
+    val lengthM: Double? = null,
+    val pitches: Int? = null,
+    val sourceUrl: String? = null,
 )
 
 data class Parking(
@@ -94,4 +98,14 @@ data class Crag(
     val openingHours: String? = null,
     val photos: List<TopoPhoto> = emptyList(),
     val outdoorStatus: String? = null,
+    val publicationStatus: String? = null,
+    val qualityVersion: Int? = null,
+    val coverageScope: String? = null,
+    val approachDescription: String? = null,
+    val descentDescription: String? = null,
+    val parkingDescription: String? = null,
+    val approachSourceUrl: String? = null,
+    val sourceUrl: String? = null,
+    val contentCheckedAt: String? = null,
+    val accessNotes: String? = null,
 )

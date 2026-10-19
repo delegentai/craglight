@@ -195,7 +195,7 @@ def vector_tiles(path,features,bounds,name):
         if g.is_empty:continue
         low,high=(4,10) if kind=='land' else (7,12) if kind=='place' else (5,15) if kind=='crag' else (12,15)
         props={k:v for k,v in f['properties'].items() if isinstance(v,(str,int,float,bool))}
-        props['id']=f['id'];props['license']='OGL-UK-3.0' if kind=='place' else 'ODbL-1.0'
+        props['id']=f['id'];props['license']=f['properties'].get('provenance',{}).get('license','OGL-UK-3.0' if kind=='place' else 'ODbL-1.0')
         west,south,east,north=g.bounds
         for z in range(low,high+1):
             minx,maxy=tile_xy(west,south,z);maxx,miny=tile_xy(east,north,z)
@@ -213,7 +213,7 @@ def vector_tiles(path,features,bounds,name):
     metadata={'name':'CragLight '+name,'format':'pbf','type':'overlay','version':'1','description':'Licensed OSM climbing/context and OS Open Names labels; partial detailed path coverage around climbing features.','attribution':'© OpenStreetMap contributors; Contains OS data © Crown copyright and database right 2026','bounds':','.join(map(str,bounds)),'minzoom':'4','maxzoom':'15','json':compact({'vector_layers':[{'id':'craglight','description':'Climbing, land, paths, parking, cliffs, and places','minzoom':4,'maxzoom':15,'fields':{'kind':'String','name':'String','id':'String','license':'String'}}]})}
     db.executemany('INSERT INTO metadata VALUES(?,?)',sorted(metadata.items()));db.commit();count=len(buckets);db.close();return count
 
-def run(skip_tiles=False):
+def legacy_run(skip_tiles=False):
     PACKS.mkdir(parents=True,exist_ok=True)
     snapshot=json.loads(gzip.decompress((ROOT/'data/snapshot.json.gz').read_bytes()))
     crags,context=make_catalogue(snapshot);places=os_places()
@@ -245,6 +245,10 @@ def run(skip_tiles=False):
     write_json(PACKS/'basemap.geojson',{'type':'FeatureCollection','features':all_land})
     write_json(ROOT/'data/coverage.json',report)
     print('TOTAL',compact({k:v for k,v in report.items() if k not in {'regions','sourceSnapshot','gaps'}}),flush=True)
+
+def run(skip_tiles=False):
+    from curated import run as curated_run
+    curated_run(skip_tiles,PACKS)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--skip-tiles',action='store_true');run(p.parse_args().skip_tiles)

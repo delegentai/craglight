@@ -1,16 +1,26 @@
-# Rebuilding CragLight data
+# Rebuilding the curated CragLight guide
 
 Run from the independent CragLight project, using native Windows Python 3.12 or later. Dependencies are confined to the project virtual environment.
 
 ```powershell
 python -m venv .pipeline-venv
 .\.pipeline-venv\Scripts\python.exe -m pip install -r pipeline/requirements.txt
-.\.pipeline-venv\Scripts\python.exe -c "import shutil; shutil.copytree('app/src/main/assets/photos', 'data/packs/photos', dirs_exist_ok=True)"
 .\.pipeline-venv\Scripts\python.exe pipeline/build.py
 .\.pipeline-venv\Scripts\python.exe -m unittest discover -s pipeline/tests -v
+.\.pipeline-venv\Scripts\python.exe pipeline/verify_reproducible.py
 ```
 
-The normal rebuild uses `data/snapshot.json.gz`, `data/os-places.json.gz`, `data/uk-land.geojson` and `data/photos.json`; it requires no network. For a clean clone, copy the committed licensed photos from `app/src/main/assets/photos/` into ignored `data/packs/photos/` before building/testing, as shown above. CI performs this restoration, rebuilds packs and then synchronizes the Android assets without downloading national source files. Snapshot bytes, object provenance and deterministic gzip output are retained. SQLite and tile rows are written in a fixed order. `manifest.json` pins every output with SHA-256. `--skip-tiles` is a development option, not a complete release build. Use `pipeline/verify_reproducible.py` to rebuild into a separate temporary directory and compare all 27 catalogue/pack outputs byte-for-byte without changing the active packs. Evidence is written to `data/reproducibility.json`.
+The normal build uses reviewed `data/curated/source-records.json`, its ten source JPEGs, `data/snapshot.json.gz`, `data/os-places.json.gz` and `data/uk-land.geojson`. It requires no network, research directory or copy from Android assets. CI builds directly from these committed inputs. Generated photos are reconciled to the exact public set; obsolete generated images are removed. SQLite/tile ordering and gzip timestamps are deterministic, text uses UTF-8/LF and manifest hashes pin outputs. The reproducibility script compares all **38** catalogue/regional/ledger/image outputs in an isolated temporary directory and writes `data/reproducibility.json`. `--skip-tiles` omits stale MBTiles from the manifest and is not a complete release build.
+
+The current public seed has ten venues, with one named route or explicit link-up each. `curated.py` fails closed without reviewed useful licensed imagery, native grade and substantive route text, authored approach, named parking/start, separate descent, evidenced UK location, scope, source date and access notes. Missing/inconsistent candidates remain held; see `DATA_AUDIT.md`. Deliberate reviewed-source refresh uses `import_curated_research.py --research-dir <reviewed-research-directory>`; this is an importer of previously inspected open records, not a crawler. Neither incomplete community submissions nor raw OSM locations automatically become public crags.
+
+Container `schemaVersion` remains 1, adding `catalogueMode: curated` and `qualityVersion: 1`. Crag IDs are `curated:<stable-slug>`. Public fields include `publicationStatus: published`, `qualityVersion`, `coverageScope`, `approachDescription`, `descentDescription`, `parkingDescription`, `approachSourceUrl`, `sourceUrl`, `contentCheckedAt`, and `accessNotes`. `fieldProvenance` distinguishes geographic OSM data from CC climbing prose. Route descriptions and source URLs are retained, with optional `lengthM`/`pitches`; ambiguous totals are null. `photos[].kind: annotated-topo` means the JPEG already contains the lines/labels. `topoImageRef` matches that photo, `topoPath` is null, and no independent line is invented. `photo-licences.json` records the exact public media set.
+
+Only the ten eligible IDs become crag map features. Three venues have explicit authored parking coordinates; others retain named-start text without invented pins. `walkInTimeMin` is a source estimate with field provenance; distances/approach geometry stay unknown. Six region containers still exist, including empty public-catalogue regions. They contain contextual maps, never replacement sparse crag lists.
+
+## Historical geographic-source workflow
+
+The remaining extraction/schema notes describe the original OSM research snapshot and legacy transformation retained for audit/tests. The default `build.py` no longer exposes those sparse objects. The old `data/photos.json` ledger and Commons images are historical inputs, not current public media.
 
 To deliberately refresh the source snapshots, download the public files into a new raw directory or move the existing raw downloads aside, then run:
 

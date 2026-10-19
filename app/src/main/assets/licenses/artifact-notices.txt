@@ -1,56 +1,57 @@
-Original licence and NOTICE text carried in resolved public AAR/JAR files. Identical texts are reproduced once; all artifact associations are retained.
+Original licence and NOTICE text in resolved public AAR/JAR files. Identical bytes appear once; every artifact association is retained. Google SDK embedded third-party notices have a separate entry.
 
 
 ================================================================
-androidx.activity:activity-compose:1.10.1: META-INF/androidx/activity/activity-compose/LICENSE.txt
-androidx.activity:activity-ktx:1.10.1: META-INF/androidx/activity/activity-ktx/LICENSE.txt
-androidx.activity:activity:1.10.1: META-INF/androidx/activity/activity/LICENSE.txt
-androidx.annotation:annotation-jvm:1.9.1: META-INF/androidx/annotation/annotation/LICENSE.txt
-androidx.collection:collection-jvm:1.5.0: META-INF/androidx/collection/collection/LICENSE.txt
-androidx.collection:collection-ktx:1.5.0: META-INF/androidx/collection/collection-ktx/LICENSE.txt
-androidx.compose.animation:animation-android:1.8.3: META-INF/androidx/compose/animation/animation/LICENSE.txt
-androidx.compose.animation:animation-core-android:1.8.3: META-INF/androidx/compose/animation/animation-core/LICENSE.txt
-androidx.compose.foundation:foundation-android:1.8.3: META-INF/androidx/compose/foundation/foundation/LICENSE.txt
-androidx.compose.foundation:foundation-layout-android:1.8.3: META-INF/androidx/compose/foundation/foundation-layout/LICENSE.txt
-androidx.compose.material:material-android:1.8.3: META-INF/androidx/compose/material/material/LICENSE.txt
-androidx.compose.material:material-ripple-android:1.8.3: META-INF/androidx/compose/material/material-ripple/LICENSE.txt
-androidx.compose.runtime:runtime-android:1.8.3: META-INF/androidx/compose/runtime/runtime/LICENSE.txt
-androidx.compose.runtime:runtime-saveable-android:1.8.3: META-INF/androidx/compose/runtime/runtime-saveable/LICENSE.txt
-androidx.compose.ui:ui-android:1.8.3: META-INF/androidx/compose/ui/ui/LICENSE.txt
-androidx.compose.ui:ui-geometry-android:1.8.3: META-INF/androidx/compose/ui/ui-geometry/LICENSE.txt
-androidx.compose.ui:ui-graphics-android:1.8.3: META-INF/androidx/compose/ui/ui-graphics/LICENSE.txt
-androidx.compose.ui:ui-test-manifest:1.8.3: META-INF/androidx/compose/ui/ui-test-manifest/LICENSE.txt
-androidx.compose.ui:ui-text-android:1.8.3: META-INF/androidx/compose/ui/ui-text/LICENSE.txt
-androidx.compose.ui:ui-tooling-android:1.8.3: META-INF/androidx/compose/ui/ui-tooling/LICENSE.txt
-androidx.compose.ui:ui-tooling-data-android:1.8.3: META-INF/androidx/compose/ui/ui-tooling-data/LICENSE.txt
-androidx.compose.ui:ui-tooling-preview-android:1.8.3: META-INF/androidx/compose/ui/ui-tooling-preview/LICENSE.txt
-androidx.compose.ui:ui-unit-android:1.8.3: META-INF/androidx/compose/ui/ui-unit/LICENSE.txt
-androidx.compose.ui:ui-util-android:1.8.3: META-INF/androidx/compose/ui/ui-util/LICENSE.txt
-androidx.core:core-ktx:1.16.0: META-INF/androidx/core/core-ktx/LICENSE.txt
-androidx.core:core-viewtree:1.0.0: META-INF/androidx/core/core-viewtree/LICENSE.txt
-androidx.core:core:1.16.0: META-INF/androidx/core/core/LICENSE.txt
-androidx.lifecycle:lifecycle-common-java8:2.9.1: META-INF/androidx/lifecycle/lifecycle-common-java8/LICENSE.txt
-androidx.lifecycle:lifecycle-common-jvm:2.9.1: META-INF/androidx/lifecycle/lifecycle-common/LICENSE.txt
-androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.1: META-INF/androidx/lifecycle/lifecycle-livedata-core-ktx/LICENSE.txt
-androidx.lifecycle:lifecycle-livedata-core:2.9.1: META-INF/androidx/lifecycle/lifecycle-livedata-core/LICENSE.txt
-androidx.lifecycle:lifecycle-livedata:2.9.1: META-INF/androidx/lifecycle/lifecycle-livedata/LICENSE.txt
-androidx.lifecycle:lifecycle-process:2.9.1: META-INF/androidx/lifecycle/lifecycle-process/LICENSE.txt
-androidx.lifecycle:lifecycle-runtime-android:2.9.1: META-INF/androidx/lifecycle/lifecycle-runtime/LICENSE.txt
-androidx.lifecycle:lifecycle-runtime-compose-android:2.9.1: META-INF/androidx/lifecycle/lifecycle-runtime-compose/LICENSE.txt
-androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.1: META-INF/androidx/lifecycle/lifecycle-runtime-ktx/LICENSE.txt
-androidx.lifecycle:lifecycle-viewmodel-android:2.9.1: META-INF/androidx/lifecycle/lifecycle-viewmodel/LICENSE.txt
-androidx.lifecycle:lifecycle-viewmodel-compose-android:2.9.1: META-INF/androidx/lifecycle/lifecycle-viewmodel-compose/LICENSE.txt
-androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1: META-INF/androidx/lifecycle/lifecycle-viewmodel-ktx/LICENSE.txt
-androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.1: META-INF/androidx/lifecycle/lifecycle-viewmodel-savedstate/LICENSE.txt
-androidx.lifecycle:lifecycle-viewmodel:2.9.1: META-INF/androidx/lifecycle/lifecycle-viewmodel/LICENSE.txt
-androidx.profileinstaller:profileinstaller:1.4.0: META-INF/androidx/profileinstaller/profileinstaller/LICENSE.txt
-androidx.room:room-common-jvm:2.7.2: META-INF/androidx/room/room-common/LICENSE.txt
-androidx.room:room-ktx:2.7.2: META-INF/androidx/room/room-ktx/LICENSE.txt
-androidx.room:room-runtime-android:2.7.2: META-INF/androidx/room/room-runtime/LICENSE.txt
-androidx.savedstate:savedstate-android:1.3.0: META-INF/androidx/savedstate/savedstate/LICENSE.txt
-androidx.savedstate:savedstate-ktx:1.3.0: META-INF/androidx/savedstate/savedstate-ktx/LICENSE.txt
-androidx.sqlite:sqlite-android:2.5.1: META-INF/androidx/sqlite/sqlite/LICENSE.txt
-androidx.sqlite:sqlite-framework-android:2.5.1: META-INF/androidx/sqlite/sqlite-framework/LICENSE.txt
+androidx.activity:activity-compose:1.10.1: activity-compose-1.10.1.aar!/META-INF/androidx/activity/activity-compose/LICENSE.txt
+androidx.activity:activity-ktx:1.10.1: activity-ktx-1.10.1.aar!/META-INF/androidx/activity/activity-ktx/LICENSE.txt
+androidx.activity:activity:1.10.1: activity-1.10.1.aar!/META-INF/androidx/activity/activity/LICENSE.txt
+androidx.annotation:annotation-jvm:1.9.1: annotation-jvm-1.9.1.jar!/META-INF/androidx/annotation/annotation/LICENSE.txt
+androidx.collection:collection-jvm:1.5.0: collection-jvm-1.5.0.jar!/META-INF/androidx/collection/collection/LICENSE.txt
+androidx.collection:collection-ktx:1.5.0: collection-ktx-1.5.0.jar!/META-INF/androidx/collection/collection-ktx/LICENSE.txt
+androidx.compose.animation:animation-android:1.8.3: animation-release.aar!/META-INF/androidx/compose/animation/animation/LICENSE.txt
+androidx.compose.animation:animation-core-android:1.8.3: animation-core-release.aar!/META-INF/androidx/compose/animation/animation-core/LICENSE.txt
+androidx.compose.foundation:foundation-android:1.8.3: foundation-release.aar!/META-INF/androidx/compose/foundation/foundation/LICENSE.txt
+androidx.compose.foundation:foundation-layout-android:1.8.3: foundation-layout-release.aar!/META-INF/androidx/compose/foundation/foundation-layout/LICENSE.txt
+androidx.compose.material:material-android:1.8.3: material-release.aar!/META-INF/androidx/compose/material/material/LICENSE.txt
+androidx.compose.material:material-ripple-android:1.8.3: material-ripple-release.aar!/META-INF/androidx/compose/material/material-ripple/LICENSE.txt
+androidx.compose.runtime:runtime-android:1.8.3: runtime-release.aar!/META-INF/androidx/compose/runtime/runtime/LICENSE.txt
+androidx.compose.runtime:runtime-saveable-android:1.8.3: runtime-saveable-release.aar!/META-INF/androidx/compose/runtime/runtime-saveable/LICENSE.txt
+androidx.compose.ui:ui-android:1.8.3: ui-release.aar!/META-INF/androidx/compose/ui/ui/LICENSE.txt
+androidx.compose.ui:ui-geometry-android:1.8.3: ui-geometry-release.aar!/META-INF/androidx/compose/ui/ui-geometry/LICENSE.txt
+androidx.compose.ui:ui-graphics-android:1.8.3: ui-graphics-release.aar!/META-INF/androidx/compose/ui/ui-graphics/LICENSE.txt
+androidx.compose.ui:ui-test-manifest:1.8.3: ui-test-manifest-1.8.3.aar!/META-INF/androidx/compose/ui/ui-test-manifest/LICENSE.txt
+androidx.compose.ui:ui-text-android:1.8.3: ui-text-release.aar!/META-INF/androidx/compose/ui/ui-text/LICENSE.txt
+androidx.compose.ui:ui-tooling-android:1.8.3: ui-tooling-release.aar!/META-INF/androidx/compose/ui/ui-tooling/LICENSE.txt
+androidx.compose.ui:ui-tooling-data-android:1.8.3: ui-tooling-data-release.aar!/META-INF/androidx/compose/ui/ui-tooling-data/LICENSE.txt
+androidx.compose.ui:ui-tooling-preview-android:1.8.3: ui-tooling-preview-release.aar!/META-INF/androidx/compose/ui/ui-tooling-preview/LICENSE.txt
+androidx.compose.ui:ui-unit-android:1.8.3: ui-unit-release.aar!/META-INF/androidx/compose/ui/ui-unit/LICENSE.txt
+androidx.compose.ui:ui-util-android:1.8.3: ui-util-release.aar!/META-INF/androidx/compose/ui/ui-util/LICENSE.txt
+androidx.core:core-ktx:1.16.0: core-ktx-1.16.0.aar!/META-INF/androidx/core/core-ktx/LICENSE.txt
+androidx.core:core-viewtree:1.0.0: core-viewtree-1.0.0.aar!/META-INF/androidx/core/core-viewtree/LICENSE.txt
+androidx.core:core:1.16.0: core-1.16.0.aar!/META-INF/androidx/core/core/LICENSE.txt
+androidx.credentials:credentials-play-services-auth:1.6.0: credentials-play-services-auth-1.6.0.aar!/META-INF/androidx/credentials/credentials-play-services-auth/LICENSE.txt
+androidx.credentials:credentials:1.6.0: credentials-1.6.0.aar!/META-INF/androidx/credentials/credentials/LICENSE.txt
+androidx.exifinterface:exifinterface:1.4.2: exifinterface-1.4.2.aar!/META-INF/androidx/exifinterface/exifinterface/LICENSE.txt
+androidx.lifecycle:lifecycle-common-java8:2.9.1: lifecycle-common-java8-2.9.1.jar!/META-INF/androidx/lifecycle/lifecycle-common-java8/LICENSE.txt
+androidx.lifecycle:lifecycle-common-jvm:2.9.1: lifecycle-common-jvm-2.9.1.jar!/META-INF/androidx/lifecycle/lifecycle-common/LICENSE.txt
+androidx.lifecycle:lifecycle-livedata-core:2.9.1: lifecycle-livedata-core-2.9.1.aar!/META-INF/androidx/lifecycle/lifecycle-livedata-core/LICENSE.txt
+androidx.lifecycle:lifecycle-process:2.9.1: lifecycle-process-2.9.1.aar!/META-INF/androidx/lifecycle/lifecycle-process/LICENSE.txt
+androidx.lifecycle:lifecycle-runtime-android:2.9.1: lifecycle-runtime-release.aar!/META-INF/androidx/lifecycle/lifecycle-runtime/LICENSE.txt
+androidx.lifecycle:lifecycle-runtime-compose-android:2.9.1: lifecycle-runtime-compose-release.aar!/META-INF/androidx/lifecycle/lifecycle-runtime-compose/LICENSE.txt
+androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.1: lifecycle-runtime-ktx.aar!/META-INF/androidx/lifecycle/lifecycle-runtime-ktx/LICENSE.txt
+androidx.lifecycle:lifecycle-viewmodel-android:2.9.1: lifecycle-viewmodel-release.aar!/META-INF/androidx/lifecycle/lifecycle-viewmodel/LICENSE.txt
+androidx.lifecycle:lifecycle-viewmodel-compose-android:2.9.1: lifecycle-viewmodel-compose-release.aar!/META-INF/androidx/lifecycle/lifecycle-viewmodel-compose/LICENSE.txt
+androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1: lifecycle-viewmodel-ktx-2.9.1.aar!/META-INF/androidx/lifecycle/lifecycle-viewmodel-ktx/LICENSE.txt
+androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.1: lifecycle-viewmodel-savedstate-release.aar!/META-INF/androidx/lifecycle/lifecycle-viewmodel-savedstate/LICENSE.txt
+androidx.lifecycle:lifecycle-viewmodel:2.9.1: lifecycle-viewmodel-2.9.1.aar!/META-INF/androidx/lifecycle/lifecycle-viewmodel/LICENSE.txt
+androidx.profileinstaller:profileinstaller:1.4.0: profileinstaller-1.4.0.aar!/META-INF/androidx/profileinstaller/profileinstaller/LICENSE.txt
+androidx.room:room-common-jvm:2.7.2: room-common-jvm-2.7.2.jar!/META-INF/androidx/room/room-common/LICENSE.txt
+androidx.room:room-ktx:2.7.2: room-ktx-2.7.2.aar!/META-INF/androidx/room/room-ktx/LICENSE.txt
+androidx.room:room-runtime-android:2.7.2: room-runtime-release.aar!/META-INF/androidx/room/room-runtime/LICENSE.txt
+androidx.savedstate:savedstate-android:1.3.0: savedstate-release.aar!/META-INF/androidx/savedstate/savedstate/LICENSE.txt
+androidx.savedstate:savedstate-ktx:1.3.0: savedstate-ktx-1.3.0.aar!/META-INF/androidx/savedstate/savedstate-ktx/LICENSE.txt
+androidx.sqlite:sqlite-android:2.5.1: sqlite-release.aar!/META-INF/androidx/sqlite/sqlite/LICENSE.txt
+androidx.sqlite:sqlite-framework-android:2.5.1: sqlite-framework-release.aar!/META-INF/androidx/sqlite/sqlite-framework/LICENSE.txt
 
 
                                  Apache License
@@ -233,7 +234,7 @@ androidx.sqlite:sqlite-framework-android:2.5.1: META-INF/androidx/sqlite/sqlite-
 
 
 ================================================================
-com.squareup.okhttp3:okhttp:4.12.0: okhttp3/internal/publicsuffix/NOTICE
+com.squareup.okhttp3:okhttp:4.12.0: okhttp-4.12.0.jar!/okhttp3/internal/publicsuffix/NOTICE
 
 Note that publicsuffixes.gz is compiled from The Public Suffix List:
 https://publicsuffix.org/list/public_suffix_list.dat

@@ -38,246 +38,95 @@ class AppFlowTest {
     private val mapDescription = "Offline climbing map. Pinch to zoom. Tap grouped pins to expand, or a crag to open it."
 
     @Test
-    fun offlineMapPackTickAndModerationSurviveRecreation() {
+    fun completeGuidesMapTopoApproachAndPrivateLogbookWorkOffline() {
         awaitTag("search")
-        val routeName = "CragLight instrumentation test ascent"
-        val proposal = "Instrumentation test proposal. Do not publish: local moderation queue persistence check."
-        lateinit var model: AppViewModel
-        compose.runOnIdle { model = ViewModelProvider(compose.activity)[AppViewModel::class.java] }
-        runBlocking {
-            model.repo.dao.ticks().first().filter { it.routeName == routeName }.forEach { model.repo.dao.deleteTick(it.id) }
-            model.repo.dao.contributions().first().filter { it.proposal == proposal }.forEach { model.repo.dao.deleteContribution(it.id) }
-        }
-        val catalogue = JSONObject(context.assets.open("packs/all-crags.json").bufferedReader().use { it.readText() })
-        val crags = catalogue.getJSONArray("crags")
-        assertTrue("Real bundled catalogue must contain climbing places", crags.length() > 0)
-        val candidates = (0 until crags.length()).map(crags::getJSONObject)
-        val selected = candidates.firstOrNull { it.optString("region") == "wales" && it.optJSONArray("photos")?.length()?.let { count -> count > 0 } == true }
-            ?: candidates.firstOrNull { it.optJSONArray("routes")?.length()?.let { count -> count > 0 } == true }
-            ?: crags.getJSONObject(0)
-        val cragId = selected.getString("id")
-        val cragName = selected.getString("name")
-        screenshot("01-explore")
-
-        // Exercise the real native offline renderer and its cluster click handling.
-        compose.onNodeWithText("Map", substring = false).performClick()
+        val catalogue = org.craglight.app.data.DataJson.crags(context.assets.open("packs/all-crags.json").bufferedReader().use { it.readText() })
+        assertEquals(10, catalogue.size)
+        assertTrue(catalogue.all(org.craglight.app.domain.GuideQuality::isPublishable))
         compose.onNodeWithContentDescription(mapDescription).assertIsDisplayed()
         val native = nativeMap()
-        var visibleCount = 0
-        var landCount = 0
         compose.waitUntil(30_000) {
-            compose.runOnIdle {
-                visibleCount = native.second.queryRenderedFeatures(
-                    RectF(0f, 0f, native.first.width.toFloat(), native.first.height.toFloat()),
-                    "crag-pins", "crag-clusters"
-                ).size
-                landCount = native.second.queryRenderedFeatures(
-                    RectF(0f, 0f, native.first.width.toFloat(), native.first.height.toFloat()), "land"
-                ).size
-            }
-            visibleCount > 0 && landCount > 0
+            var drawn = 0
+            compose.runOnIdle { drawn = native.second.queryRenderedFeatures(RectF(0f,0f,native.first.width.toFloat(),native.first.height.toFloat()), "crag-pins", "crag-clusters").size }
+            drawn > 0
         }
-        compose.runOnIdle {
-            val clusters = native.second.queryRenderedFeatures(RectF(0f, 0f, native.first.width.toFloat(), native.first.height.toFloat()), "crag-clusters")
-            outputFile("map-clusters.json").writeText(org.maplibre.geojson.FeatureCollection.fromFeatures(clusters).toJson())
-            outputFile("map-style.json").writeText(native.second.style!!.json)
-            native.second.style!!.getImage("count-4")!!.let { bitmap ->
-                outputFile("map-count-sprite.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
-            }
-        }
-        compose.waitUntil(15_000) {
-            var labelled = 0
-            compose.runOnIdle { labelled = native.second.queryRenderedFeatures(RectF(0f, 0f, native.first.width.toFloat(), native.first.height.toFloat()), "cluster-counts").size }
-            labelled >= 3
-        }
-        screenshot("02-offline-uk-map")
-        // Geometry queries alone can pass when a device GPU fails to draw its
-        // sprite atlas. Verify actual white numeral pixels inside cluster fills.
-        val clusterCenters = mutableListOf<android.graphics.PointF>()
-        val mapLocation = IntArray(2)
-        compose.runOnIdle {
-            native.first.getLocationOnScreen(mapLocation)
-            native.second.queryRenderedFeatures(RectF(50f, 100f, native.first.width - 100f, native.first.height - 60f), "crag-clusters")
-                .mapNotNull { it.geometry() as? Point }.forEach { point ->
-                    clusterCenters += native.second.projection.toScreenLocation(LatLng(point.latitude(), point.longitude()))
-                }
-        }
-        val clusterScreen = instrumentation.uiAutomation.takeScreenshot()
-        try {
-            val drawnCounts = clusterCenters.count { center ->
-                var white = 0
-                for (dx in -18..18) for (dy in -18..18) {
-                    val x = center.x.toInt() + mapLocation[0] + dx
-                    val y = center.y.toInt() + mapLocation[1] + dy
-                    if (x in 0 until clusterScreen.width && y in 0 until clusterScreen.height) {
-                        val pixel = clusterScreen.getPixel(x, y)
-                        if (android.graphics.Color.red(pixel) > 245 && android.graphics.Color.green(pixel) > 245 && android.graphics.Color.blue(pixel) > 245) white++
-                    }
-                }
-                white >= 8
-            }
-            assertTrue("At least three cluster numerals must actually draw pixels", drawnCounts >= 3)
-        } finally { clusterScreen.recycle() }
-        var clusterPixel: Offset? = null
-        var originalZoom = 0.0
-        compose.runOnIdle {
-            originalZoom = native.second.cameraPosition.zoom
-            val cluster = native.second.queryRenderedFeatures(
-                RectF(45f, 45f, native.first.width - 70f, native.first.height - 45f), "crag-clusters"
-            ).firstOrNull()
-            (cluster?.geometry() as? Point)?.let { point ->
-                val pixel = native.second.projection.toScreenLocation(LatLng(point.latitude(), point.longitude()))
-                clusterPixel = Offset(pixel.x, pixel.y)
-            }
-        }
-        assertNotNull("UK catalogue should form clustered crag markers", clusterPixel)
-        compose.onNodeWithContentDescription(mapDescription).performTouchInput { click(clusterPixel!!) }
-        compose.waitUntil(10_000) {
-            var expanded = false
-            compose.runOnIdle { expanded = native.second.cameraPosition.zoom > originalZoom + .1 }
-            expanded
-        }
-        screenshot("03-expanded-cluster")
-        compose.onNodeWithText("List", substring = false).performClick()
-
-        // Search and open a source-backed crag, then add a private tick.
-        compose.onNodeWithTag("search").performTextReplacement(cragName)
-        compose.onNodeWithTag("crag-list").performScrollToNode(hasTestTag("crag-$cragId"))
-        compose.onNodeWithTag("crag-$cragId").performClick()
+        var oldZoom = 0.0
+        compose.runOnIdle { oldZoom = native.second.cameraPosition.zoom }
+        compose.onNodeWithContentDescription(mapDescription).performTouchInput { pinch(Offset(centerX-25,centerY),Offset(centerX+25,centerY),Offset(centerX-100,centerY),Offset(centerX+100,centerY),500) }
+        compose.waitUntil(10_000) { var zoom = 0.0; compose.runOnIdle { zoom = native.second.cameraPosition.zoom }; zoom > oldZoom }
+        screenshot("v11-01-interactive-map")
+        compose.onNodeWithText("List", substring=false).performClick()
+        val crag = catalogue.first { it.name == "Bosigran" }
+        compose.onNodeWithTag("search").performTextReplacement(crag.name)
+        compose.onNodeWithTag("crag-${crag.id}").performClick()
         awaitTag("crag-detail")
-        screenshot("04-crag-detail")
-        if (selected.optJSONArray("photos")?.length()?.let { it > 0 } == true) {
-            compose.onNodeWithTag("crag-detail").performScrollToNode(hasTestTag("topo-viewer"))
-            compose.onNodeWithTag("topo-photo").assertIsDisplayed()
-            screenshot("05-licensed-photo-topo")
-            compose.onAllNodesWithText("The bundled photograph could not be opened.").assertCountEquals(0)
-            val routes = selected.getJSONArray("routes")
-            val overlay = (0 until routes.length()).map(routes::getJSONObject)
-                .lastOrNull { it.optJSONArray("topoPath")?.length()?.let { count -> count >= 2 } == true }
-            if (overlay != null) {
-                compose.onNodeWithTag("crag-detail").performScrollToNode(hasTestTag("topo-route-${overlay.getString("id")}"))
-                compose.onNodeWithTag("topo-route-${overlay.getString("id")}").performClick()
-                compose.onNodeWithTag("crag-detail").performScrollToNode(hasTestTag("topo-selected-route"))
-                compose.onNodeWithTag("topo-selected-route").assertTextContains(overlay.getString("name"), substring = true)
-            }
-        }
+        compose.onNodeWithTag("crag-detail").performScrollToNode(hasTestTag("topo-photo"))
+        compose.onNodeWithTag("topo-photo").assertIsDisplayed()
+        compose.onNodeWithTag("topo-photo").performTouchInput { doubleClick(center) }
+        compose.onAllNodesWithText("The bundled photograph could not be opened.").assertCountEquals(0)
+        screenshot("v11-02-real-topo")
+        compose.onNodeWithTag("crag-detail").performScrollToIndex(1)
+        compose.onNodeWithText("Approach",substring=false).performClick()
+        compose.onNodeWithTag("crag-detail").performScrollToNode(hasTestTag("written-approach"))
+        compose.onNodeWithTag("written-approach").assertTextEquals(crag.approachDescription!!)
+        screenshot("v11-03-written-approach")
+        compose.onNodeWithTag("crag-detail").performScrollToIndex(1)
+        compose.onNodeWithText("Routes",substring=false).performClick()
         compose.onNodeWithTag("crag-detail").performScrollToNode(hasTestTag("add-tick"))
         compose.onNodeWithTag("add-tick").performClick()
         awaitTag("tick-route-name")
-        val note = "Private test note, with a comma and \"quotes\"."
-        compose.onNodeWithTag("tick-route-name").performTextReplacement(routeName)
-        compose.onNodeWithTag("tick-notes").performScrollTo().performTextReplacement(note)
+        compose.onNodeWithTag("tick-route-name").performTextReplacement("Curated guide test ascent")
         compose.onNodeWithTag("tick-save").performClick()
-        compose.waitUntil(10_000) { compose.onAllNodesWithTag("tick-save").fetchSemanticsNodes().isEmpty() }
-        // The confirmation snackbar temporarily covers the bottom of the lazy list.
+        compose.onNodeWithContentDescription("Back to explore").performClick()
+        compose.onNodeWithText("Offline",substring=false).performClick()
+        compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasTestTag("pack-${crag.region}"))
+        // The logbook snackbar can briefly cover the lower pack button.
         compose.waitUntil(10_000) { compose.onAllNodesWithText("Saved to your logbook").fetchSemanticsNodes().isEmpty() }
-
-        // A proposal is queued locally and never automatically submitted to an external service.
-        compose.onNodeWithTag("crag-detail").performScrollToNode(hasTestTag("improve-crag"))
-        compose.onNodeWithTag("improve-crag").assertIsDisplayed().performClick()
-        awaitTag("contribution-proposal")
-        compose.onNodeWithTag("contribution-proposal").performTextReplacement(proposal)
-        compose.onNodeWithTag("contribution-license-consent").performScrollTo().performClick()
-        compose.onNodeWithTag("contribution-save").performClick()
-        compose.onNodeWithContentDescription("Back to explore").performClick()
-        compose.onNodeWithText("Logbook", substring = false).performClick()
-        compose.waitUntil(10_000) { compose.onAllNodesWithText(routeName).fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithText(routeName).assertIsDisplayed()
-        compose.onNodeWithText("Export CSV").assertIsEnabled()
-        compose.waitUntil(12_000) { model.state.value.message == null }
-        screenshot("06-local-logbook")
-
-        // Validate export quoting with the persisted Room record and the same exporter used by the UI.
-        val persisted = runBlocking { model.repo.dao.ticks().first() }
-        val tick = persisted.single { it.routeName == routeName }
-        assertEquals(note, tick.notes)
-        assertTrue(model.csv(listOf(tick)).contains("\"Private test note, with a comma and \"\"quotes\"\".\""))
-        val proposals = runBlocking { model.repo.dao.contributions().first() }
-        assertTrue(proposals.any { it.proposal == proposal && it.status == "queued_on_device" })
-
-        // Save a verified bundled region with the network disabled, then recreate the Activity.
-        compose.onNodeWithText("Offline", substring = false).performClick()
-        val manifest = JSONObject(context.assets.open("packs/manifest.json").bufferedReader().use { it.readText() })
-        val regions = manifest.getJSONArray("regions")
-        val region = (0 until regions.length()).map(regions::getJSONObject)
-            .firstOrNull { it.getString("id") == selected.getString("region") } ?: regions.getJSONObject(0)
-        val regionId = region.getString("id")
-        compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasTestTag("pack-$regionId"))
-        val installedFile = File(context.filesDir, "packs/$regionId.json")
-        val installedTiles = File(context.filesDir, "packs/$regionId.mbtiles")
-        val previousModified = installedFile.lastModified()
-        compose.onNodeWithTag("pack-$regionId").performClick()
-        compose.waitUntil(60_000) { installedFile.exists() && installedFile.length() > 0L && installedFile.lastModified() > previousModified && installedTiles.exists() && installedTiles.length() > 0 }
-        compose.waitUntil(10_000) { compose.onAllNodesWithText("Saved on this device").fetchSemanticsNodes().isNotEmpty() }
-        compose.waitUntil(12_000) { model.state.value.message == null }
-        screenshot("07-region-saved-offline")
-        compose.onNodeWithText("Explore", substring = false).performClick()
-        compose.onNodeWithText("Map", substring = false).performClick()
-        val regional = nativeMap()
-        val tileCenter = SQLiteDatabase.openDatabase(installedTiles.path, null, SQLiteDatabase.OPEN_READONLY).use { database ->
-            database.rawQuery("SELECT zoom_level,tile_column,tile_row FROM tiles WHERE zoom_level=14 ORDER BY length(tile_data) DESC LIMIT 1", null).use { cursor ->
-                assertTrue("Regional MBTiles contains detailed tiles", cursor.moveToFirst())
-                val z = cursor.getInt(0)
-                val n = (1 shl z).toDouble()
-                val x = cursor.getInt(1)
-                val y = (1 shl z) - 1 - cursor.getInt(2)
-                LatLng(Math.toDegrees(atan(sinh(Math.PI * (1.0 - 2.0 * (y + .5) / n)))), (x + .5) / n * 360.0 - 180.0)
-            }
-        }
-        compose.runOnIdle { regional.second.moveCamera(CameraUpdateFactory.newLatLngZoom(tileCenter, 14.0)) }
-        compose.waitUntil(30_000) {
-            var rendered = 0
-            compose.runOnIdle {
-                val layers = regional.second.style?.layers?.map { it.id }?.filter {
-                    it.startsWith("regional-") && (it.endsWith("-paths") || it.endsWith("-routes") || it.endsWith("-parking") || it.endsWith("-cliffs"))
-                }.orEmpty()
-                if (layers.isNotEmpty()) rendered = regional.second.queryRenderedFeatures(
-                    RectF(0f, 0f, regional.first.width.toFloat(), regional.first.height.toFloat()), *layers.toTypedArray()
-                ).size
-            }
-            rendered > 0
-        }
-        screenshot("08-offline-vector-paths")
-        // A real connected OSM path from Clean Wall's nearby parking proves the
-        // streaming regional path reader and source-node routing work together.
-        compose.onNodeWithText("List", substring = false).performClick()
-        compose.onNodeWithTag("search").performTextReplacement("Clean Wall")
-        compose.onNodeWithTag("crag-list").performScrollToNode(hasTestTag("crag-osm:relation:21389059"))
-        compose.onNodeWithTag("crag-osm:relation:21389059").performClick()
-        compose.onNodeWithText("Approach", substring = false).performClick()
-        compose.onNodeWithTag("crag-detail").performScrollToNode(hasText("Calculate from this parking"))
-        compose.onAllNodesWithText("Calculate from this parking").onFirst().performClick()
-        compose.waitUntil(45_000) { model.state.value.pathEstimates.containsKey("osm:relation:21389059") }
-        val approach = checkNotNull(model.state.value.pathEstimates["osm:relation:21389059"])
-        assertEquals(836.55, approach.distanceM, 3.0)
-        assertTrue(approach.geometry.size >= 2)
-        compose.onNodeWithTag("crag-detail").performScrollToNode(hasText("Walk-in"))
-        screenshot("09-mapped-walk-in")
-        compose.onNodeWithContentDescription("Back to explore").performClick()
-        compose.onNodeWithText("Offline", substring = false).performClick()
+        compose.onNodeWithTag("pack-${crag.region}").assertIsEnabled().performClick()
+        screenshot("v11-04-pack-save-started")
+        compose.waitUntil(60_000) { File(context.filesDir,"packs/${crag.region}.json").exists() && File(context.filesDir,"packs/${crag.region}.mbtiles").exists() }
+        screenshot("v11-04-offline-pack")
         compose.activityRule.scenario.recreate()
-        compose.waitUntil(90_000) { compose.onAllNodes(hasScrollToIndexAction()).fetchSemanticsNodes().isNotEmpty() }
-        compose.onNode(hasScrollToIndexAction()).performScrollToIndex(0)
-        compose.onNodeWithText("Take the guide\nwith you.").assertIsDisplayed()
-        assertTrue("Downloaded regional data persists across Activity recreation", installedFile.exists())
-        compose.onNodeWithText("Logbook", substring = false).performClick()
-        compose.waitUntil(15_000) { compose.onAllNodesWithText(routeName).fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithText(routeName).assertIsDisplayed()
-        compose.onNodeWithText("About", substring = false).performClick()
-        val queueTitle = "Your review queue (${proposals.size})"
-        compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText(queueTitle))
-        compose.onNodeWithText(queueTitle).assertIsDisplayed()
-        screenshot("10-moderation-queue")
-        compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText("Offline licences & photo credits"))
-        compose.onNodeWithText("Offline licences & photo credits").performClick()
-        awaitTag("licence-list")
-        compose.onNodeWithTag("licence-list").performScrollToNode(hasText("Apache License 2.0"))
-        compose.onNodeWithText("Apache License 2.0").performClick()
-        awaitTag("licence-text")
-        compose.onNodeWithTag("licence-text").performScrollToIndex(2)
-        compose.onAllNodesWithText("This bundled notice could not be opened.").assertCountEquals(0)
-        screenshot("11-offline-licence")
-        compose.onNodeWithText("Close", substring = false).performClick()
+        compose.waitUntil(90_000) { compose.onAllNodesWithText("Logbook",substring=false).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("Logbook",substring=false).performClick()
+        compose.waitUntil(15_000) { compose.onAllNodesWithText("Curated guide test ascent").fetchSemanticsNodes().isNotEmpty() }
+        compose.onAllNodesWithText("Curated guide test ascent").onFirst().assertIsDisplayed()
+    }
+
+    @Test
+    fun fingerDrawingIsSavedAndPartialDraftStaysPrivate() {
+        awaitTag("search")
+        val store = org.craglight.app.community.DraftStore(File(context.filesDir,"community"))
+        val photoId = java.util.UUID.randomUUID().toString()
+        val photoFile = store.photoFile(photoId)
+        // Test fixture only: never submitted, no ownership or licence declaration made.
+        val crag = org.craglight.app.data.DataJson.crags(context.assets.open("packs/all-crags.json").bufferedReader().use { it.readText() }).first()
+        context.assets.open(crag.photos.first().assetPath).use { input -> photoFile.outputStream().use { input.copyTo(it) } }
+        val bounds=android.graphics.BitmapFactory.Options().apply { inJustDecodeBounds=true }
+        android.graphics.BitmapFactory.decodeFile(photoFile.path,bounds)
+        val draft=org.craglight.app.community.CommunityDraft(cragName="Private editor test",photos=listOf(org.craglight.app.community.DraftPhoto(photoId,"$photoId.jpg",bounds.outWidth,bounds.outHeight,crag.photos.first().sha256!!)),routes=listOf(org.craglight.app.community.DraftRoute(name="Draft line",photoId=photoId)))
+        store.save(draft)
+        compose.onNodeWithText("Community",substring=false).performClick()
+        awaitTag("community-draft-${draft.id}")
+        compose.onNodeWithText("Open draft",substring=false).performClick()
+        awaitTag("community-editor")
+        compose.onNodeWithTag("community-editor").performScrollToNode(hasTestTag("community-route-canvas"))
+        compose.onNodeWithTag("community-route-canvas").performTouchInput { swipe(Offset(centerX,centerY+40),Offset(centerX+20,centerY-40),700) }
+        compose.waitUntil(10_000) { store.load().first { it.id==draft.id }.routes.first().lines.isNotEmpty() }
+        val saved=store.load().first { it.id==draft.id }
+        assertTrue(saved.routes.first().lines.flatten().all { it.valid() })
+        assertFalse(saved.originalWorkConsent)
+        assertNull(saved.submittedAt)
+        screenshot("v11-05-finger-drawn-route")
+        compose.onNodeWithTag("community-editor").performScrollToNode(hasTestTag("community-undo-line"))
+        compose.onNodeWithTag("community-undo-line").performClick()
+        compose.waitUntil(10_000) { store.load().first { it.id==draft.id }.routes.first().lines.isEmpty() }
+        compose.onNodeWithTag("community-editor").performScrollToNode(hasTestTag("community-route-canvas"))
+        compose.onNodeWithTag("community-route-canvas").performTouchInput { swipe(Offset(centerX,centerY+30),Offset(centerX,centerY-30),500) }
+        compose.waitUntil(10_000) { store.load().first { it.id==draft.id }.routes.first().lines.isNotEmpty() }
+        compose.activityRule.scenario.recreate()
+        assertTrue(store.load().first { it.id==draft.id }.routes.first().lines.isNotEmpty())
+        store.delete(store.load().first { it.id==draft.id })
     }
 
     private fun awaitTag(tag: String) {

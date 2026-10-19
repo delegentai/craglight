@@ -1,147 +1,126 @@
-CragLight bundled photo credits
+CragLight curated photo and climbing-text credits
 
-Each photograph retains the licence below. Source-authored OSM route-line overlays are separate ODbL data. Displayed photo-plus-overlay adaptations retain the photo licence. These licences do not apply to the whole app.
+10 annotated photographs; one licensed source photo per curated venue.
+Photos and annotations are unchanged source JPEGs. Selected route, approach and descent prose has normalized whitespace. Native grade spelling aliases are normalized without converting grade systems.
+Dan and Michel / Multi-pitch.com authored the imported climbing prose and annotated topos. No attribution implies endorsement.
+Source content is partial and dated. It has not been field-checked for present access, equipment or conditions.
 
-File:Crag_(2).jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Crag_%282%29.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/16ef5f756f12fb09b9b8.jpg
-SHA-256: b4cca8a643d68d781081fbc9b5af13355a1375f7e2450d5b8961fa798ef19c7a
+Bosigran — Doorpost
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/doorpost-on-bosigran/
+Image: https://www.multi-pitch.com/img/topos/bosigran/bosigran-doorpost-climb-cornwall.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-bosigran.jpg
+SHA-256: a9d7aaf6aaf6d5ba66828b4a5775b9ea69dfa74bc08f2a257f13779800c40651
+Scope: One named route: Doorpost. Other routes at this crag are not covered.
 
-File:Elder Tree Boulder.jpg
-Author: Fabables
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Elder_Tree_Boulder.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/e0e2609cb19e34691016.jpg
-SHA-256: 802ae27cd5cb32ce092f7dd7c95b937409b66f9c984b82eef43035ef046f8315
+Wintour's Leap — Right Hand Route
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/right-hand-route-on-wintours-leap/
+Image: https://www.multi-pitch.com/img/topos/wye-valley/wye-valley-wintours-leap-right-hand-route.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-wintour-s-leap.jpg
+SHA-256: 85e1e365f5bd5a4a3a35b1a0fd53cf57ae50f06af5bbb34e74f708de0a78ae8a
+Scope: One named route: Right Hand Route. Other routes at this crag are not covered.
 
-File:Filey Brigg from Brigg End - geograph.org.uk - 2090054.jpg
-Author: Filey Brigg from Brigg End by John Fielding
-Licence: CC BY-SA 2.0
-Licence URL: https://creativecommons.org/licenses/by-sa/2.0
-Original: https://commons.wikimedia.org/wiki/File:Filey_Brigg_from_Brigg_End_-_geograph.org.uk_-_2090054.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/7d41a1ef1d43672075ac.jpg
-SHA-256: 9ffae8af48e26c7b6de1fc56dc241ea9a69600a02b1a4e64eb0b1bb5ff3dbda1
+Buzzards Roost — The Sheugh
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/the-sheugh-on-buzzards-roost/
+Image: https://www.multi-pitch.com/img/topos/buzzards/the-sheugh-climb-on-buzzards-roost.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-buzzards-roost.jpg
+SHA-256: a4fc1640a5a515c85da1d581f1cd88fec3fe665221d45418ce9fa16d085b07f7
+Scope: One named route: The Sheugh. Other routes at this crag are not covered.
 
-File:Fox Cliff from Cleveland Way - geograph.org.uk - 2100335.jpg
-Author: Fox Cliff from Cleveland Way by Alex McGregor
-Licence: CC BY-SA 2.0
-Licence URL: https://creativecommons.org/licenses/by-sa/2.0
-Original: https://commons.wikimedia.org/wiki/File:Fox_Cliff_from_Cleveland_Way_-_geograph.org.uk_-_2100335.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/bc423a27e2f46698df42.jpg
-SHA-256: a725a5c76d158a87e2427a5717a1bb78d196f410502bd8b0ef34999e3b61b2fb
+Eagle Mountain — Sammy Higgins
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/sammy-higgins-on-eagle-mountain/
+Image: https://www.multi-pitch.com/img/topos/eagle/sammy-higgins-climb-topo-eagle-mountain.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-eagle-mountain.jpg
+SHA-256: c3719c6dbddc3acb19e769c97ebd6eedfda33ff1efe60a438cfaf3c36e5d3166
+Scope: One named route: Sammy Higgins. Other routes at this crag are not covered.
 
-File:Halkyn Mountain Crags - Cobra Wall.jpeg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags_-_Cobra_Wall.jpeg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/f8ba025f78fdbcd2a29e.jpg
-SHA-256: c5be99f8828ea11d196d89252a1801749872097e137634f804de2db05da7e57f
+Pigeon Rock — Virgo
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/virgo-on-pigeon-rock/
+Image: https://www.multi-pitch.com/img/topos/pigeon/virgo-climb-on-pigeon-rock-mournes.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-pigeon-rock.jpg
+SHA-256: 101db512fbbe639eb498ff3c27db24d8a3ec2c2678f9ce5e2dfba615c54d3fe2
+Scope: One named route: Virgo. Other routes at this crag are not covered.
 
-File:Halkyn Mountain Crags - Far Left Wall.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags_-_Far_Left_Wall.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/b13ba9f744af44bc4efb.jpg
-SHA-256: bc533ea7c2429c7b74debca186b573388f5b8d40fa52af4dc100a056928dcd2b
+Slieve Lamagan — FM
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/fm-on-slieve-lamagan/
+Image: https://www.multi-pitch.com/img/topos/lamagan/slieve-lamagan-fm-climb-in-the-mournes.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-slieve-lamagan.jpg
+SHA-256: 06c3ec0bd1359443366e9c564a39e3fa95ccee31e16a94265e285ca2c528d413
+Scope: One named route: FM. Other routes at this crag are not covered.
 
-File:Halkyn Mountain Crags - Left Wall.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags_-_Left_Wall.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/8ab0de07640296b49048.jpg
-SHA-256: 1f12b7688e15db2b92c8cbd46787b6be63afece883b3778cf21d84ad9f848c9e
+Cneifion Arete — Cneifion Arete
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/cneifion-arete-on-cwm-cneifion/
+Image: https://www.multi-pitch.com/img/topos/cneifion/cneifion-arete-climb-north-wales.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-cneifion-arete.jpg
+SHA-256: 6ee8f15b1bede17da43646b084fdb6207c7c794d6e597021487825a22f4f4858
+Scope: One named route: Cneifion Arete. Other routes at this crag are not covered.
 
-File:Halkyn Mountain Crags - Tree Wall.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags_-_Tree_Wall.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/973aee0a1a03c5c5aae6.jpg
-SHA-256: 00969b51519801e2068b0842a1ebd3fa7f6e9ffdc2eb798b56c09a0f8ea7ee0a
+Dinorwig Quarry — Australia West Face link-up
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/australia-west-face-on-dinorwic-quarry/
+Image: https://www.multi-pitch.com/img/topos/dinorwic-quarry/dinorwic-quarry.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-dinorwig-quarry.jpg
+SHA-256: 510cbcde21dc992d6c8c8c0d6e3800926cbd8873ab79b69e4f6ba512662e2784
+Scope: Six-pitch link-up in the Garret/Australia area; other quarry routes are not covered.
 
-File:Halkyn Mountain Crags - Trivial Pursuits.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags_-_Trivial_Pursuits.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/d5dc2c50bdf7443e6767.jpg
-SHA-256: d4ee69fc8e12e0a92ec4ede497fb3fa6842739d41b3a92a074bcf3e8b6645154
+Great Tor — East Ridge
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/east-ridge-on-great-tor/
+Image: https://www.multi-pitch.com/img/topos/gower/east-buttress-climb-on-high-tor-gower.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-great-tor.jpg
+SHA-256: 26c9d134f73c723d32ae9dc2b7cdbdce8ed8fdb0388be7a28a2184fd9a4f5d2b
+Scope: One named route: East Ridge. Other routes at this crag are not covered.
 
-File:Halkyn Mountain Crags - Tug Boat Wall.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags_-_Tug_Boat_Wall.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/6bbc0dcfb2e2cee8a625.jpg
-SHA-256: 82a9a2a48d6da7356af6a88173265503f45db25e5cea58aa513d290474aa736b
-
-File:Halkyn Mountain Crags - Ultra Left Wing.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags_-_Ultra_Left_Wing.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/a396fc5779d18e24e616.jpg
-SHA-256: 3442b873b899deef1fd7a61bfa306de1943ba1cc1e480b9978485e24b5f8636b
-
-File:Halkyn Mountain Crags.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Halkyn_Mountain_Crags.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/30c421bada690eba493c.jpg
-SHA-256: 808780e1bceb512e55b8ef542ed71aceb16bf67888781130072085e30a1eb73a
-
-File:Harmers Wood - Classroom Quarry.jpg
-Author: Professorlamp
-Licence: CC BY-SA 4.0
-Licence URL: https://creativecommons.org/licenses/by-sa/4.0
-Original: https://commons.wikimedia.org/wiki/File:Harmers_Wood_-_Classroom_Quarry.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/f444aea5487f67771b22.jpg
-SHA-256: 52cd8324d803b6972c417656c7d34a0fe7c9b4522954c08dbe6a631b0238c591
-
-File:Jesmond Dene Pathside Climbing Crag (right).jpg
-Author: Tonytriesstuff
-Licence: CC0
-Licence URL: http://creativecommons.org/publicdomain/zero/1.0/deed.en
-Original: https://commons.wikimedia.org/wiki/File:Jesmond_Dene_Pathside_Climbing_Crag_%28right%29.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/850a8944a0cb8bfd29a6.jpg
-SHA-256: 3aea10092dc49b3ca529f560d056d210f5f9bfdf9e46c54d4e75d5082a763acb
-
-File:Stoupe Brow disused quarry ^3 - geograph.org.uk - 4109764.jpg
-Author: Stoupe Brow disused quarry #3 by Mike Kirby
-Licence: CC BY-SA 2.0
-Licence URL: https://creativecommons.org/licenses/by-sa/2.0
-Original: https://commons.wikimedia.org/wiki/File:Stoupe_Brow_disused_quarry_%5E3_-_geograph.org.uk_-_4109764.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/aa20bfaeee81e248ea09.jpg
-SHA-256: 984c5a711696a29ce3172ca33e6720cfeccb7f9bcbad95d10abf1977b8695e5a
-
-File:The_Cracks_-_Halkyn_Mountain_Crags.jpg
-Author: Professorlamp
-Licence: CC0
-Licence URL: http://creativecommons.org/publicdomain/zero/1.0/deed.en
-Original: https://commons.wikimedia.org/wiki/File:The_Cracks_-_Halkyn_Mountain_Crags.jpg
-Changes: Commons preview image, with separately rendered OSM route-line overlay when available. Photo and rendered photo-overlay adaptations retain the stated image licence.
-Asset: photos/910cb43cf4fea10a6069.jpg
-SHA-256: 5d05c78cd9207c95444c5fde93834185251b5e1e0e2663e735556993949c65b9
+Idwal Slabs — Ordinary Route
+Author: Dan and Michel / Multi-pitch.com
+Source: https://www.multi-pitch.com/climbs/ordinary-route-on-cwm-idwal/
+Image: https://www.multi-pitch.com/img/topos/idwal/idwal-slabs-multi-pitch-climbing-ordinary-route-topo.jpg
+Text and annotated image licence: CC-BY-SA-4.0
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+Original photograph licence: CC BY-SA 4.0
+Changes: Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.
+Bundled file: photos/curated-idwal-slabs.jpg
+SHA-256: d938e9fac8e36fabe40749393be2918cb12208c3624bb156523c31565e40dca2
+Scope: One named route: Ordinary Route. Other routes at this crag are not covered.

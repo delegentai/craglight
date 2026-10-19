@@ -5,8 +5,8 @@ $ErrorActionPreference = 'Stop'
 $releasePath = Join-Path $projectPath 'release'
 $evidencePath = Join-Path $projectPath 'evidence/release'
 New-Item -ItemType Directory -Path $releasePath,$evidencePath -Force | Out-Null
-$apk = Join-Path $releasePath 'CragLight-1.0.0.apk'
-$bundle = Join-Path $releasePath 'CragLight-1.0.0.aab'
+$apk = Join-Path $releasePath 'CragLight-1.1.0.apk'
+$bundle = Join-Path $releasePath 'CragLight-1.1.0.aab'
 Copy-Item -LiteralPath (Join-Path $projectPath 'app/build/outputs/apk/release/app-release.apk') -Destination $apk -Force
 Copy-Item -LiteralPath (Join-Path $projectPath 'app/build/outputs/bundle/release/app-release.aab') -Destination $bundle -Force
 $signer = Join-Path $env:ANDROID_HOME 'build-tools/36.0.0/apksigner.bat'

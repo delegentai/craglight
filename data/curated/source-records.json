@@ -1,0 +1,779 @@
+{
+  "checkedAt": "2026-10-19",
+  "excludedCandidates": [
+    {
+      "name": "Chair Ladder",
+      "reason": "Useful topo and pitch text, but source approach describes descending to the start and does not establish a post-climb return route."
+    },
+    {
+      "name": "Cornakey Cliff",
+      "reason": "Useful topo and pitch text, but source approach describes descending to the start and does not establish a post-climb return route; fixed-rope and tidal uncertainties remain."
+    },
+    {
+      "name": "Avon Gorge",
+      "reason": "Morpheus image and page disagree on grade and length."
+    },
+    {
+      "name": "Old Man of Stoer",
+      "reason": "Headline says five pitches but the retained pitch-by-pitch text stops after pitch four; complete route description is not established."
+    },
+    {
+      "name": "Old Man of Hoy",
+      "reason": "Useful topo and approach, but no complete pitch-by-pitch route text in the retained source."
+    },
+    {
+      "name": "Slieve Beg",
+      "reason": "Conflicting route length and pitch summaries need reconciliation before publication."
+    },
+    {
+      "name": "Smugglers Terrace",
+      "reason": "Useful partial topo; route descriptions and dated fixed-rope approach require a complete integrated editorial record."
+    },
+    {
+      "name": "Halkyn Mountain Crags",
+      "reason": "Licensed imagery and route overlays, but no reliable source-authored approach in current records."
+    },
+    {
+      "name": "Elder Tree Boulder",
+      "reason": "Licensed imagery and route overlays, but no reliable source-authored approach in current records."
+    },
+    {
+      "name": "Creag Meagaidh / Coire Ardair Post Face",
+      "reason": "Winter-only content; excluded from this rock-climbing seed."
+    }
+  ],
+  "qualityVersion": 1,
+  "records": [
+    {
+      "accessNotes": "The source notes first-pitch seepage; current conditions and parking charges have not been field-checked.",
+      "approachDescription": "Park in the National Trust Carpark by Carn Galver ruined tin mine building. This is a free car park with a donation box to support the national trust. Follow the path out towards the sea for less than 10 minutes. As you reach the first part of the top of Bosigran cliff you will be able to find a steep but good path down. Take this to the base of the crag then walk along another good path to the Bow Wall area. The black “coal face” wall makes an obvious feature to find the route.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 50.175784,
+        "lon": -5.620379,
+        "precision": "source route-location pin"
+      },
+      "country": "england",
+      "coverageScope": "One named route: Doorpost. Other routes at this crag are not covered.",
+      "descentDescription": "From the top you can follow a path back to parking.",
+      "id": "curated:bosigran",
+      "intro": "Doorpost is a classic climb on the justifiably popular Bow Wall area of Bosigran. It has an easy approach and accessible grade. The climbing is interesting and varied but easy to protect. The route is on a part of the cliff surrounded by both harder and easier climbs. Check out the incredible Ledge Climb if you want easier or Little Brown Jug if you want to go harder. That said the crux of Ledge climb is arguably as hard as the crux of Doorpost. The granite here is solid and happily takes cams throughout the route. The route dries quickly after rain but the first pitch suffers some minor seepage.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Bosigran",
+      "omitNumericSummary": false,
+      "parkingCoordinates": null,
+      "parkingDescription": "National Trust car park by Carn Galver ruined tin mine.",
+      "photo": {
+        "assetPath": "photos/curated-bosigran.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 1561228,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 2616,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:bosigran",
+        "sha256": "a9d7aaf6aaf6d5ba66828b4a5775b9ea69dfa74bc08f2a257f13779800c40651",
+        "sourceFile": "photos/bosigran.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/doorpost-on-bosigran/",
+        "url": "https://www.multi-pitch.com/img/topos/bosigran/bosigran-doorpost-climb-cornwall.jpg",
+        "width": 4000
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/doorpost-on-bosigran/"
+      },
+      "routeDescription": "Doorpost is a classic Bosigran route and one of the best Hard Severe multi-pitch climbs in the south of England. It’s easy to approach and offers interesting but easy to protect climbing on solid granite. Although it dries quickly after rain, part of the first pitch suffers some seepage in the middle. All things considered it’s one of the best climbs in it’s category.\nPitch 1 –27m 4a\nThe first pitch starts with easy holds up into a corner before following the striking crack line across and up. There is some delicate footwork required but the hand holds are good and the crack will happily take one to two finger width cams. As the crack ends the climber can climb good holds to a ledge with an option for a sitting belay on the left hand side of the ledge (back to the sea) or you can move further right (back to the sea) for a standing belay that is shared with the first pitch of the popular little brown jug.\nPitch 2 –15m 4b\nThis is a short and interesting pitch. The goal is to climb the twin cracks to a ledge above. The pitch starts with moves out to the left crack. This is climbed up to the crux of the route which sits at the point where the climber has to move from the left crack, to the right crack. Once in the right crack move up to a good ledge with a belay in the corner.\nPitch 3 –25m 4a\nA glorious and easy part of the climb with good protection and incredible exposure as the climb moves onto one of the highest points of the cliff at Bosigran. Follow a reasonably obvious path up good holds to the top, where a belay can be made by slinging a boulder and backed up by large gear if desired.",
+      "routeName": "Doorpost",
+      "sourcePageSha256": "64c6daa22b02e561038fb7028e7f4228100e521b2385a35a0138ac1a37fd12cf",
+      "sourceStats": {
+        "approach_time": "10min",
+        "aspect": "W",
+        "grade": "HS 4b",
+        "length": "67m",
+        "pitches": "3",
+        "rock_and_flags": "Granite"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/doorpost-on-bosigran/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Boggy ground and steep descent. Source parking price is dated 2025, not a current price. Chimney climbing and head-torch advice are preserved in the route description.",
+      "approachDescription": "Park in the Carrick Little top car park (£3 in 2025). There is a small free car park on the corner as you turn onto the gravel road about half a mile before the paid one, this will add 12 mins walk each way.  From the top car park, take the path North into the Mourne Mountains. Follow the path past the Annalong woods on the right, then past the small lake called Blue lough on the right and Buzzards Roost should be visible on the hillside to the left. At an appropriate point cross directly towards Buzzards Roost and hike up to the crag. The ground is boggy when off the path. It's best to leave the bags a little further back from the crag to save some time on the descent.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 54.156849423,
+        "lon": -5.97937236724,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "northern-ireland",
+      "coverageScope": "One named route: The Sheugh. Other routes at this crag are not covered.",
+      "descentDescription": "To descend from the crag, walk South towards Sleive Binnian before scrambling down the steep gully (grass and rock etc) until you reach your bags, likely in front of Buzzards Roost. From here reverse the approach by walking to and following the path back to the carpark.",
+      "id": "curated:buzzards-roost",
+      "intro": "The Sheugh, pronounced shuck, is the only climb in the Mourne Mountains guidebook to be given 4 stars. The route has a fearsome reputation, described in the guidebook as being on the humorous side of character building. It was first climbed in 1954, and is full of old school climbing moves including quite a lot of whole body chimney jamming. It offers a unique adventure, with quality climbing almost all the way, with just a few caveats. Firstly it needs an extended dry period, no easy ask in the Mournes, or the route will be wet and considerably harder. Protection is mostly okay with a full rack, but you will need a head torch to help find placements. The rock is also mossy and slightly crumbly in places. It’s fair to assume the 4th star acts as a kind of Siren call, to draw in unsuspecting climbers, who may well end up stuck on the rocks. It is nevertheless a very worthwhile route when in condition, offering a truly unique adventure in an amazing atmosphere that would be hard to find anywhere else. The Sheugh is a memorable climb though the central chimney of Buzzards Roost. Sheugh means a furrow, but can be colloquially used (as it is here) to mean the space between the buttocks. Buzzards Roost is named after the shape of the rock formation as seen in the image below.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Buzzards Roost",
+      "omitNumericSummary": false,
+      "parkingCoordinates": null,
+      "parkingDescription": "Carrick Little top car park; the source also describes the lower alternative.",
+      "photo": {
+        "assetPath": "photos/curated-buzzards-roost.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 2834142,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 2397,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:buzzards-roost",
+        "sha256": "a4fc1640a5a515c85da1d581f1cd88fec3fe665221d45418ce9fa16d085b07f7",
+        "sourceFile": "photos/buzzards-roost.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/the-sheugh-on-buzzards-roost/",
+        "url": "https://www.multi-pitch.com/img/topos/buzzards/the-sheugh-climb-on-buzzards-roost.jpg",
+        "width": 2852
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/the-sheugh-on-buzzards-roost/"
+      },
+      "routeDescription": "This is a unique adventure climbing though the dark, often dank, depths of Buzzards Roost crag in the Mourne Mountains. The climber's back will get almost as much use as the hands on the first pitch, so removing rucksacks and gear from the back of the harness will make life easier. A head torch will help find holds and in particular gear placements on pitch 1 and 2. \n Pitch 1 –28m 3c:\nMove into the chimney and onto the first obvious chockstone (wedged block). From this, move up and deeper onto the next chockstone, with some difficulty. From here the route moves up and slightly left, before moving back towards the entrance; up and right, onto another group of wedged blocks (some loose). The belay is above these on an obvious large slanting wedged block. See picture of first belay ledge, taken from the second.\nVS Variation: It's possible to climb up directly from the end of pitch one to the top of the crag at the harder grade of very severe. \n Pitch 2 –25m 3c:\nMake an improbable looking traverse horizontally back into the depths of Buzzards Roost to the next ledge system. A head torch may make finding protection easier. There are cracks on both the left and right walls in places.\n Pitch 3 –18m 3c:\n Move to the back of the ledge and climb a short groove on the right wall (when facing into the chimney) before traversing up and right across a mossy bulge. From here move up and then turn onto the other wall where a long reach to a jug will give access to a ledge followed by a grassy slope against the rock, which leads to the summit. Large boulders further back can be used to build the anchor.",
+      "routeName": "The Sheugh",
+      "sourcePageSha256": "250b2022c291b4713ff55a00bb2b0816446ce9125e09c2832600bd63f3cd3568",
+      "sourceStats": {
+        "approach_time": "75min",
+        "aspect": "SE",
+        "grade": "S 3c",
+        "length": "71m",
+        "pitches": "3",
+        "rock_and_flags": "Granite"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/the-sheugh-on-buzzards-roost/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Source describes a Diff climb / grade 3 scramble and variable belay spacing. Conflicting total length and variable pitch count are omitted.",
+      "approachDescription": "Whilst the route can be approached directly as described here, it is common to link onto another multi-pitch climb. Either starting with the original route on the Sub Cneifion Rib or a route on the Idwal Slabs.\nDirect Approach: There is free parking in the lay-bys next to Lynn Ogwen (Lake Ogwen). From these bays, walk to Ogwen cottage (which has limited paid parking available). From here, follow the path to the left side of visitor buildings and cafe. Take a right fork towards Lynn Idwal (Lake Idwal). After passing a gate in dry stone wall, the path folks into 3. The left path follows the wall and the right most follows the lake towards the Idwal Slabs. The middle path moves up towards the Sub Cneifion Rib. Either climb a route on the rib (the original is the easiest) and then take the path right at the top, or move around this crag on the right side to join a path right (south) at the top. The path will go to a point below the now clearly visible Cneifion Arete, with a short scramble up some scree needed to reach the base of the climb.\nSub Cneifion Rib: This is a logical link up, more or less on the way to the Cneifion Arete. It is described as a 125-meter, 3-star route, graded VDiff. Arguably the route is neither 125m nor worthy of 3 stars. Pitch one is solid climbing, probably at the upper end of what is quite a variable grade. Pitch two has little in the way of climbing. Pitch 3 is walking along a path. Thankfully the final pitch is enjoyable, well protected, VDiff climb up the Arete with a fun move around the corner to reach the arete. There is a photo topo of the Sub Cneifion Rib here. The Idwal Slabs therefore, offer a much more enjoyable, if more circuitous, set of climbs to get to the Cneifion arete.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 53.108676163,
+        "lon": -4.0200664,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "wales",
+      "coverageScope": "One named route: Cneifion Arete. Other routes at this crag are not covered.",
+      "descentDescription": "From the top of the route, a path leading north offers wonderful views, with Glyder Fatch and Tryfan to the right (east) and Cwm Idwal and Y Garin to the left (west). Follow this path on flat at first before descending for a while to where there is a rough T junction. The left offers a path then scree slope back down to the approach path which can be reversed to reach Ogwen cottage. The right fork at the T junction offers an alternative path down to Lynn Bochlwyd (the lake on the right). At the north of this lake (its outflow) is a major path back to Ogwen cottage. In both scenarios the decent is longer than the approach.",
+      "id": "curated:cneifion-arete",
+      "intro": "The Cneifion Arete is an imposing looking ridge sat high on mountainside of Cwm Cneifion, overlooking the lake of Lynn Idwal. Despite its looks, this route is actually at the intersection between scrambling and rock climbing, a sort of gateway into the world of multi-pitch mountaineering. With a few proper climbing moves to get off the ground, a long and easy climb / grade 3 scramble follows. The route takes the right side of the arete (edge) for around 120 meters to the top. From the ground it looks like challenging terrain, but once past the first 20 or so meters, the ridge itself offers big holds and a gentle angle with the ability to rest at more or less any point. That said the exposure is fantastic and the route offers enjoyable moves along the way. Protection is also plentiful and the route happily takes large slings and nuts throughout. The only downside is the routes popularity, which can leave climbing parties queuing and has led to significant polish in places.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Cneifion Arete",
+      "omitNumericSummary": true,
+      "parkingCoordinates": null,
+      "parkingDescription": "Lay-bys beside Llyn Ogwen, or limited paid parking at Ogwen Cottage, as described by the source.",
+      "photo": {
+        "assetPath": "photos/curated-cneifion-arete.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 741948,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 2937,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:cneifion-arete",
+        "sha256": "6ee8f15b1bede17da43646b084fdb6207c7c794d6e597021487825a22f4f4858",
+        "sourceFile": "photos/cneifion-arete.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/cneifion-arete-on-cwm-cneifion/",
+        "url": "https://www.multi-pitch.com/img/topos/cneifion/cneifion-arete-climb-north-wales.jpg",
+        "width": 2203
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/cneifion-arete-on-cwm-cneifion/"
+      },
+      "routeDescription": "First climbed in 1905, the Cneifion Arete is sometimes described a grade 3 scramble and sometimes a Diff graded climb. Either way, it is popular, polished, pretty easy to protect and full of character and exposure.\nPitch 1 –20m Diff\n Starting just right of the base, climb up a short steep wall on good but polished holds. A belay can be created on the small ledge or the next pitch can be done as well in a link up, this would lead to a bigger belay ledge. \nPitch 2 –10m Diff\nClimb up a short gully, sometimes generously referred to as a chimney, to a larger belay ledge/area. Whilst the slab to the left of the gully is easier, the goal when climbing the Cneifion Arete should be to find harder moves and sections, not easier ones. It's possible to keep going after this short pitch to find a belay higher on the ridge.  \nPitch 3 & 4 (and maybe 5) –100m \n Follow the ridge to the top, with multiple options for belay as needed. The right side offers more dramatic positions and exposure. The climbing is easy and long slings make the spikes easy to protect. There are some loose parts, but it's not usually a major concern.",
+      "routeName": "Cneifion Arete",
+      "sourcePageSha256": "585b0088d70bad2988368aee02161af08c5e79b7062e52758c2d737a5b7c5e6a",
+      "sourceStats": {
+        "approach_time": "50min",
+        "aspect": "SW",
+        "grade": "Diff 3a",
+        "length": "120m",
+        "pitches": "4",
+        "rock_and_flags": "Rhyolite"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/cneifion-arete-on-cwm-cneifion/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Six named pitches form a link-up, not one continuous route. Source describes a locked gate and bold climbing; this is not confirmation of present access permission. Alternative published grades are preserved in the route text.",
+      "approachDescription": "The approach is simple and takes around 15 to 20mins. Free roadside parking is plentiful before and around the bus stop turning circle at 53.12830201, -4.10817526 but it may be busy during the peak of summer. The footpath starts at the turning circle. From here it’s a short walk into the quarry. Cross a locked gate into the quarry proper and walk uphill and through a tall rock arch to the Looning the Tube area.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": "osm:way:237115051",
+      "coordinates": {
+        "lat": 53.12830201,
+        "lon": -4.10817526,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "wales",
+      "coverageScope": "Six-pitch link-up in the Garret/Australia area; other quarry routes are not covered.",
+      "descentDescription": "From the top of the skyline buttress, an additional climb (Goblin Party) can be completed at the Alice Springs level to the East or climbers can descend to the West either by the main quarry path (recommended) or a more direct route down the slate scree slopes.",
+      "id": "curated:dinorwig-quarry",
+      "intro": "The west face of the Garret Pit, in Dinorwic Quarry is more multiple pitches than true multi-pitch rock climbing. Nevertheless, it makes for an exceptional adventure offering over 100 meters of climbing on immaculate slate with a variety of grades to choose from. The trad climbs in the quarry are skewed towards the mid to higher end of the traditional climbing scale, with HVS & E1 needed to get the most out of the routes. The sequence described here links up a number of popular high-quality routes, starting with Looning the Tube and finishing with Act Naturally on the Skyline Buttress. The Garret area is commonly misnamed Australia by climbers. In terms of climbing style, there is some technical variety in the routes, but small edges, crimps and precise footwork are a regular theme on most of the terraces. There are two good sport routes included in the link up. The trad lines are all easy to protect with the exception of the M.I.L. Arete on pitch 4, which is short but very bold. Parking is good and offers easy and quick access making this a viable option to do in less than half a day.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Dinorwig Quarry",
+      "omitNumericSummary": false,
+      "parkingCoordinates": {
+        "lat": 53.12830201,
+        "lon": -4.10817526
+      },
+      "parkingDescription": "Roadside parking around the bus stop turning circle at the source coordinates.",
+      "photo": {
+        "assetPath": "photos/curated-dinorwig-quarry.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 1463280,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 1398,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY 4.0",
+        "ref": "multipitch:dinorwig-quarry",
+        "sha256": "510cbcde21dc992d6c8c8c0d6e3800926cbd8873ab79b69e4f6ba512662e2784",
+        "sourceFile": "photos/dinorwig-quarry.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/australia-west-face-on-dinorwic-quarry/",
+        "url": "https://www.multi-pitch.com/img/topos/dinorwic-quarry/dinorwic-quarry.jpg",
+        "width": 2600
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/australia-west-face-on-dinorwic-quarry/"
+      },
+      "routeDescription": "There are some rough gear recommendations for the various pitches below, but in general a light rack should cover the climbs here. \n1. Looning the Tube –20m E1 5b:\n The belayer can anchor to the large rusted hooks on the left side of the slab. The leader starts with a rising traverse out to the right above the rusted tube to the first bolt. The leader continues on to the rusted chain, again clipping this before moving into the left leaning crack. The crack is followed to the top. Using a medium two finger width cam can protect the crack before the final bolt where there crux is. \n2. Steps of Glory –15m f5b:\n A simple but enjoyable sport climb that takes an obvious line on the left side of the largest slab. Making an anchor on the ledge above is tricky for this pitch but the large precarious block could be used. Access the risks and if in doubt use the lower-off or walk around. This is graded f5c in other guidebooks. \n3. Sodor –11m f5c:\n Graded f6a in some guides, this short sport route starts at the obvious graffiti face and climbs the hair line crack to the top. An anchor can be made using the low bolts in the wall behind. There are other alternative routes on this slab at similar grades.\n4. M.I.L. Arete –11m E1 5b:\n The climbing on this pitch is no harder than earlier sections but the protection is very poor. To find the line, look for a rusted metal bar, roughly the length of a person’s forearm, that hangs downwards, on the left side of the short slab. The slab can be climbed on the left to the obvious break. There are a couple of small slots for protection up to and on the break. From the break, climb to the bar, sling this with difficulty. - knowing the correct knots and how they hold is important because the bar slopes down. The route then climbs past this bar to the top with the crux on the upper half of the wall. An anchor can be made using the boulder above the climb. \n5. Razorback –13m HVS 5a:\n Razorback follows the obvious left leaning line not far back from the top of the last pitch. The protection is much better than it looks, taking small wires early, with better gear higher up. The crack offers very enjoyable HVS climbing. Once again, an anchor can be made using a boulder at the top of the pitch. \n6. Act Naturally –43m VS 4b:\n  This pitch climbs the obvious natural line up the tallest part of the skyline buttress for a comparatively easy last pitch. Follow the groove and ledge system up to a single bolt, move right then climb up the crack and grooves to the top where an anchor can be built using a pair of bolts.",
+      "routeName": "Australia West Face link-up",
+      "sourcePageSha256": "64fdb9b3c0f0157f74d8877932e722ce5079433b8e76066bbe255b380c9486f1",
+      "sourceStats": {
+        "approach_time": "15min",
+        "aspect": "SE",
+        "grade": "E1 5b",
+        "length": "113m",
+        "pitches": "6",
+        "rock_and_flags": "Slate"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/australia-west-face-on-dinorwic-quarry/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Very steep grass at the start. Source reports a failed peg and equipment observations from 2026; no current equipment inspection is implied.",
+      "approachDescription": "Allow 70 mins. Park by the fence on the left before the ford at Sandy Brae farm. 54.118412, -6.068513. Cross over the ford on the footbridge and follow the path for about 30 mins until the route is clearly visible on the left. Then try to pick the best path up towards the base of the climb. The grass leading up to the start of the route is very steep and there is only a small ledge to belay from. Climbers may prefer to rack up on the larger (but still small), ledge below the gully / chimney. The approach to the start of the climb is steep grass. It's possible to build a belay anchor a few meters before the grass ends and the granite of the route is underfoot. It may also be preferable to abseil in from above.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 54.134806,
+        "lon": -6.089447,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "northern-ireland",
+      "coverageScope": "One named route: Sammy Higgins. Other routes at this crag are not covered.",
+      "descentDescription": "It's possible to scramble up and hike back over the top of eagle mountain to the car, or abseil off one of the larger spiked blocks. The abseil can take the climbers back to the 'racking up' point. We left a sling and maillon to do this in May 2026.",
+      "id": "curated:eagle-mountain",
+      "intro": "Some brilliant climbing over 3 pitches, set high on eagle mountain, this old 1964 route is undeservingly neglected. The route has delicate slabs, steep moves to pass bulges, incredible exposure, a great corner crack (off width in places), and mostly good protection (the second pitch needs a big cam early on). The route is graded VS, but from the 1960’s. It's probably more like HVS compared to other Mournes climbs. There are some caveats with the route which means it isn’t as accessible as other Mourne multi-pitch. The final part of the walk-in is very steep, and the terrain is tricky. The second and third pitches require a longer dry period (perhaps a week) or they will be wet (still climbable though).",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Eagle Mountain",
+      "omitNumericSummary": false,
+      "parkingCoordinates": {
+        "lat": 54.118412,
+        "lon": -6.068513
+      },
+      "parkingDescription": "Parking by the fence before the ford at Sandy Brae farm, at the source coordinates.",
+      "photo": {
+        "assetPath": "photos/curated-eagle-mountain.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 1782300,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 3072,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:eagle-mountain",
+        "sha256": "c3719c6dbddc3acb19e769c97ebd6eedfda33ff1efe60a438cfaf3c36e5d3166",
+        "sourceFile": "photos/eagle-mountain.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/sammy-higgins-on-eagle-mountain/",
+        "url": "https://www.multi-pitch.com/img/topos/eagle/sammy-higgins-climb-topo-eagle-mountain.jpg",
+        "width": 2304
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/sammy-higgins-on-eagle-mountain/"
+      },
+      "routeDescription": "Pitch 1 –28m 4c Follow the corner (dihedral), before moving out right towards the right hand edge (arête) under a short bulge / roof. The rusted peg is now gone. Pass through the gap in the bulge with difficulty (crux) using the main vertical crack. From here proceed up the delicate slab, to exit via steeper rock, onto the large grassy belay ledge.\nPitch 2 –18m 4b Another fantastic pitch with incredible views (although suffers seepage after rain). Climb the gradually widening corner crack to finish on a large block belay at the top on the left wall. \nPitch 3 –10m 4a A short corner wall, offers a few interesting moves to reach the grass ledges and easier ground at the top.\nProtection Notes: The peg below the crux, on pitch 1, was well rusted in 2026 and disintegrated on touch, like something you would see in a cartoon leaving just a rusty smear there now. Otherwise the gear is good. At least one large cam (big silver DMM number 6 or bigger), may be helpful for the start of the second pitch.",
+      "routeName": "Sammy Higgins",
+      "sourcePageSha256": "f8db5ddb9bb4b5ea11a0e9e1a7e7c8c9603529871a8e05db3842dc086a12212a",
+      "sourceStats": {
+        "approach_time": "70min",
+        "aspect": "NE",
+        "grade": "VS 4c",
+        "length": "56m",
+        "pitches": "3",
+        "rock_and_flags": "Granite Abseil Required"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/sammy-higgins-on-eagle-mountain/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Source gives low-tide beach access or scrambling/abseiling alternatives; these are not ordinary walking paths.",
+      "approachDescription": "From the National Trust Car Park at Penmaen (postcode: SA3 2HH), head back to the main road, turn right up the hill, then cross over to the smaller parking area and bus stop. Through the gate, follow the path towards Three Cliffs Bay. \nOption A – Abseil & Scramble Down:\nTake the first right at the fork in the path, then at the next fork take the left. Follow the path west along the coast until it heads out towards Great Tor. Before scrambling up onto the Tor proper (tor = rocky peak), there is a large block, that at the time of writing, was suitable for a gearless & retrievable abseil. This may be the most appropriate option if the grass is wet and the tide is in. 50m of abseil reaches the rocky ledges. From there, it’s possible to scramble across to the base of the climb.\nOption B –  Low Tide Beach Approach:\nTake the left at the first fork in the path and head down, all the way down to Three Cliffs Bay beach.  Keep to the right side of the beach, following it all the way to the base of Great Tor and scramble up to the non-tidal start of the route. The tide has to be at it's lowest for this option.\nOption C –  Scramble Down:\nFollow the instructions of option A, but carry on over the first outcrop until the gully between the two peaks. From here it’s possible to scramble down carefully to the base of the climb. Not recommended un-roped in wet conditions.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 51.568422,
+        "lon": -4.122578,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "wales",
+      "coverageScope": "One named route: East Ridge. Other routes at this crag are not covered.",
+      "descentDescription": "Scramble off the Tor to the North, following the worn path down into the gully then back up and out, onto the foot path. Take care on the polished limestone.",
+      "id": "curated:great-tor",
+      "intro": "The East Ridge of Great Tor offers easy climbing right above the beach of Three Cliffs Bay. The route is non-tidal, but approaching from the beach is only possible at low tide. A not so straightforward scramble down or abseil from a nearby block are alternative options for reaching the base of the climb. The route is broken up by 3 significant ledges. Although it’s set as 4 pitches, linking pitch 2 and 3 or even 3 and 4 makes the pitches a bit more significant. There are also some variations that up the difficulty to Very Severe, although the variations avoids the dramatic south east edge overlooking the beaches and sea. Although Great Tor is the most significant multi-pitch climb in the area, the nearby 3 cliffs bay has a multitude of shorter trad climbs.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Great Tor",
+      "omitNumericSummary": false,
+      "parkingCoordinates": null,
+      "parkingDescription": "National Trust car park at Penmaen, SA3 2HH.",
+      "photo": {
+        "assetPath": "photos/curated-great-tor.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 1651781,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 3000,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:great-tor",
+        "sha256": "26c9d134f73c723d32ae9dc2b7cdbdce8ed8fdb0388be7a28a2184fd9a4f5d2b",
+        "sourceFile": "photos/great-tor.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/east-ridge-on-great-tor/",
+        "url": "https://www.multi-pitch.com/img/topos/gower/east-buttress-climb-on-high-tor-gower.jpg",
+        "width": 4000
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/east-ridge-on-great-tor/"
+      },
+      "routeDescription": "Great Tor is a limestone tower that divides Three Cliffs Bay to the East from Oxwich Bay to the West. The Tor rises out of the sand between these beaches and can be climbed on all faces. While steep in places, the holds are usually plentiful and solid. Protection is also mostly easy to come by. \nPitch 1 –18m 3c\nThe first pitch follows a crack surrounded by good holds. Upon reaching the bulge before the ledge, this can be tackled  directly using good handholds or the climber can pass it on the right. An anchor can be built in the wall at the back of the large ledge. \nPitch 2 –16m 3a\nStep out from the ledge to the south east ridge, where a groove will take the climber up the arête (edge) to another large ledge. The climber can build an anchor here which offers more protection, or continue up pitch 3 to the next ledge.\nPitch 3 –13m 3a\nA short pitch on its own, that once again takes the arête (edge / ridge) up to the next ledge. The climbing is easy and the views and are incredible. An anchor can be made before the final steep pitch. Alternatively pitch 3 & 4 can be linked. \nPitch 4 –24m 3c\nThe final pitch offers a short steep wall before giving way to much easier climbing up the ledges to the summit of Great Tor. An anchor can be built on the top with creative use of various protection and slinging one of the larger summit blocks.",
+      "routeName": "East Ridge",
+      "sourcePageSha256": "40601ecdd75d9268985301ca031ebf267c02857b55babaef1146ba45d8390c06",
+      "sourceStats": {
+        "approach_time": "25min",
+        "aspect": "SE",
+        "grade": "S 3c",
+        "length": "71m",
+        "pitches": "4",
+        "rock_and_flags": "Limestone"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/east-ridge-on-great-tor/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Descent includes steep scrambling or an abseil/down-climb; read the full source descent.",
+      "approachDescription": "Take the main path from Ogwen Cottage to Llyn Idwal and continue around the left-hand side of the lake towards the slabs which are straight ahead of you. Any attempt at a shortcut off the path will likely slow you down.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 53.11047,
+        "lon": -4.02601,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "wales",
+      "coverageScope": "One named route: Ordinary Route. Other routes at this crag are not covered.",
+      "descentDescription": "Getting off the mountain can prove tricky. From the last pitch, scramble across the crag moving up and left, consider staying roped if with beginners. As the party moves back there is the option to down-climb or abseil off the back corner of the cliff. This section is steeper than the climbing on the route albeit with better holds and much shorter. Less confident parties may wish to abseil or get a belay from above while down climbing. Once the steep part has been navigated the scree path will take climbers back to the base of the Idwal Slabs.",
+      "id": "curated:idwal-slabs",
+      "intro": "The Ordinary Route is the easiest route on Idwal Slabs or Rhiwiau Caws as is the propper Welsh name. This climb represents an ideal introduction to trad multi-pitch climbing, as such it's common to see groups of 3 people climbing, led by a guide. The descent can prove tricky, especially in or after wet conditions.The down climbing part of the descent is on a shaded corner of the mountain so typically won't dry as quickly as the slabs. Expect some polish on the route as well. The views are stunning and get better as the route progresses. The route is typically climbed over 4 pitches with more scrambling after the 4th pitch. Route finding higher on the slabs can be a little tricky. It's fair to say stamina is more important than any great technical climbing skill to get up the Ordinary Route.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Idwal Slabs",
+      "omitNumericSummary": false,
+      "parkingCoordinates": null,
+      "parkingDescription": "Named approach start: Ogwen Cottage. No parking location is asserted by this source extract.",
+      "photo": {
+        "assetPath": "photos/curated-idwal-slabs.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 1392571,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 2000,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:idwal-slabs",
+        "sha256": "d938e9fac8e36fabe40749393be2918cb12208c3624bb156523c31565e40dca2",
+        "sourceFile": "photos/idwal-slabs.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/ordinary-route-on-cwm-idwal/",
+        "url": "https://www.multi-pitch.com/img/topos/idwal/idwal-slabs-multi-pitch-climbing-ordinary-route-topo.jpg",
+        "width": 4012
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/ordinary-route-on-cwm-idwal/"
+      },
+      "routeDescription": "First climbed in 1897 the Ordinary Route is the easiest climb up the Idwal slabs. That said the route Hope is not much more challenging (and a better climb). The Ordinary Route offers a good introduction to multi-pitch climbing, and as such it's often a busy climb and used by guides quite a lot. Unless it’s raining the slabs at Cwm Idwal can be busy. Climbers can ascend this route in bad weather if they are brave.\nPitch 1 –45m \nFollow the obvious crack to a wedged block and either belay there or on a better ledge above. \nPitch 2 –45m \nAfter the belay, take the left hand groove working up and left slightly before following a long rightwards leaning line of weakness up to some ledges where another belay can be made. \nPitch 3 –25m \nFollow the crack up towards a ledge, the route becomes much less clear here with multiple options for creating an anchor. Ideally take the easiest climbing.\nPitch 4 –25m \nThe final official pitch goes left for about 8m then up and right towards a much larger ledge system. A shorter, slightly harder and more direct line can be taken. After this there is a reasonable amount of scrambling left and then up to get to the downclimb or abseil. Instead of the scramble, climbers can continue up on the harder continuation wall. This will add more length to this route at a higher grade. Lazarus to the far right is the easiest and arguably best way up if you want to continue with harder climbing.",
+      "routeName": "Ordinary Route",
+      "sourcePageSha256": "523a031d47766a8ff8de8968070bcbaa4f0c13df8cce31d449fff03b85584904",
+      "sourceStats": {
+        "approach_time": "30min",
+        "aspect": "NW",
+        "grade": "D 3a",
+        "length": "140m",
+        "pitches": "4",
+        "rock_and_flags": "Rhyolite"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/ordinary-route-on-cwm-idwal/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Source descent crosses a wire fence and steep ground; current access is not confirmed. Existing abseil equipment may require replacement.",
+      "approachDescription": "Park in the Pigeon rock car park behind a farm gate (make sure to close it). Then walk up and left, skirting the left side of the boulder field. The route starts on a ledge at the base of an obvious vertical crack.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 54.14471186,
+        "lon": -6.06284104561,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "northern-ireland",
+      "coverageScope": "One named route: Virgo. Other routes at this crag are not covered.",
+      "descentDescription": "Descent is by crossing a wire fence and walking off steeply to the south / left side of the crag (when facing it from below). This is particularly steep so care should be taken. An abseil descent is also possible but the abseil points (boulders / spikes with tat) likely need re-equipping.",
+      "id": "curated:pigeon-rock",
+      "intro": "Virgo is a brilliant 3 star Mourne multi-pitch classic. It has a short walk in and offers varied but quite consistent climbing at around VS grade all the way. There are some technical moves early on and some steep climbing on the last pitch. It has decent belay ledges at all points. Protection is mostly very good, with a slightly runout rising traverse in the middle on Pitch 3 (as described below). Pigeon Rock is a popular destination by Moune standards, but the route doesn't get much traffic in absolute terms so can need cleaning. Descent is by crossing a fence and walking off steeply to the south / left side of the crag (when facing it from below). Overall a very worthwhile route.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Pigeon Rock",
+      "omitNumericSummary": false,
+      "parkingCoordinates": null,
+      "parkingDescription": "Pigeon Rock car park behind the farm gate; close the gate.",
+      "photo": {
+        "assetPath": "photos/curated-pigeon-rock.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 2985507,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 4382,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:pigeon-rock",
+        "sha256": "101db512fbbe639eb498ff3c27db24d8a3ec2c2678f9ce5e2dfba615c54d3fe2",
+        "sourceFile": "photos/pigeon-rock.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/virgo-on-pigeon-rock/",
+        "url": "https://www.multi-pitch.com/img/topos/pigeon/virgo-climb-on-pigeon-rock-mournes.jpg",
+        "width": 4000
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/virgo-on-pigeon-rock/"
+      },
+      "routeDescription": "Virgo is a brilliant route and the line and pitches described here are how it is commonly ascended, but it would be possible to connect pitch one and two here as per the Mourne mountain guidebook, but this can lead to rope drag.\nPitch 1 –10m 4a: From the starting ledge climb up to a crack to reach a large triangular block. Climb directly over this to create a belay just behind.\nPitch 2 –20m 4c: Climb directly above the belay to a good ledge under a slightly bulging rock / overhang. Pass under this to the left, then move diagonally up and left before eventually mantling onto a decent long ledge. A belay can be made on the far left side (wedged wire at the time of writing). \nPitch 3 –30m 4b:  An exposed pitch with less strenuous, but still technical climbing. The pitch has little gear in the middle. The route goes up from the belay to the break (gear placement), before traversing right on small ledges with good footholds and acceptable handholds but no gear. The route then moves up the ledge system, back to the corner above and onto the grassy ledge. Move up this and belay below the corner of the final pitch. \nPitch 4 –30m 4c:Climb directly up this corner. Pass the first small block staying in the corner and keep moving up. Move onto the ledge to the left and under the large overhanging block / nose. Another ledge then takes climbers to the end of the technical difficulty where a long low crack line leads left. Follow this and move around it back right to belay above the corner (see topo).",
+      "routeName": "Virgo",
+      "sourcePageSha256": "1289ece21bafea735c9c223510fcd09a7cda85c5a5f1e9c515eb4120854a6d2f",
+      "sourceStats": {
+        "approach_time": "15min",
+        "aspect": "E",
+        "grade": "VS 4c",
+        "length": "90m",
+        "pitches": "4",
+        "rock_and_flags": "Granite"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/virgo-on-pigeon-rock/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "Long, steep descent with potentially overgrown path. Source describes alternative finishes; headline length and pitch count are omitted because they differ from the described finish.",
+      "approachDescription": "Park in the Carrick Little car park. Take the path into the Mourne Mountains. On approach the Annalong woods will be on the right and Slieve Lamagan will be clearly visible, more or less directly ahead. Keep following the path over a run off stream then a more significant stream / river. Take the right fork  after the river and follow the path until it weaves around close to the slabs. This will be the second right after the Annalong woods end. Once close to the slabs, leave the path and head directly up the heathery slopes to the start of the continuous granite slabs of Slieve Lamagan.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 54.160649,
+        "lon": -5.961364,
+        "precision": "source climb pin; not a surveyed route line"
+      },
+      "country": "northern-ireland",
+      "coverageScope": "One named route: FM. Other routes at this crag are not covered.",
+      "descentDescription": "The decent should not be underestimated. It’s long and the ground is steep. A Mourne Mountain Map will help show the mountain contours and the least steep path off which is round to the West. After climbing FM, scrambling up north-west then contouring around to the west should bring the party to a steep path that leads down towards the dam. This may take the best part of an hour. There is a chance the path is overgrown. There is also an optional additional 100+m VDiff climb called Upper FM. This sits 60m north east of the finish of FM and will bring the party closer to the summit. After this the party can contour west until the steep decent path is reached.",
+      "id": "curated:slieve-lamagan",
+      "intro": "Slieve Lamagan offers a great range of multi-pitch climbs that are typically lower difficulty. Route finding is not that easy once on the slab. Fortunately, there are many options for variation on or around the same grade, therefore getting lost isn’t a disaster. The Route FM takes a reasonably direct line up the slabs and exits the steeper n shaped headwall on the east side (right). The granite is mostly immaculate and solid, although run out in places, especially off route. It will dry quickly thanks to its exposure to sun and wind. Variations take a slightly harder exit out of the final steep headwall. The crux of the route is one hard move on the first steep section around half way up.",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Slieve Lamagan",
+      "omitNumericSummary": true,
+      "parkingCoordinates": null,
+      "parkingDescription": "Carrick Little car park.",
+      "photo": {
+        "assetPath": "photos/curated-slieve-lamagan.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 2410451,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 4009,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:slieve-lamagan",
+        "sha256": "06c3ec0bd1359443366e9c564a39e3fa95ccee31e16a94265e285ca2c528d413",
+        "sourceFile": "photos/slieve-lamagan.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/fm-on-slieve-lamagan/",
+        "url": "https://www.multi-pitch.com/img/topos/lamagan/slieve-lamagan-fm-climb-in-the-mournes.jpg",
+        "width": 4000
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/fm-on-slieve-lamagan/"
+      },
+      "routeDescription": "Slieve Lamagan slabs offer over 150m, variations and extensions can take this up to 300m of quality granite climbing at mostly easy grades. \nPitch 1 –35m 3b\nClimb the white granite slab all the way up to the edge on the right for around 35m. Making sure to not stop short. A belay can be created at the small ledge. \nPitch 2 –45m 3b\n Move up and slightly left to reach a small overlap. Cross this in the middle.  From there move directly up towards the where the wall steepens. A belay can be created below what looks like some giant left facing steps.  \nPitch 3 –25m 3c\nWhat looked like some giant steps in the steep wall below represents a significant step up in technical difficulty and a clear crux for the route. Good and somewhat hidden handholds on the right can help the climber get up onto the first large and downward sloping ledge. From here good holds can be used to pass the steep section. If the second is not a strong VDiff / Severe grade climber, then leaving a cam with a long sling to help the second (or third) aid this section might be a sensible move. A Metolius number 1 ultralight TCU works a treat. Creating a belay just above the steep section is an option if desired, otherwise carry on up to a good belay ledge.\nPitch 4 –20m 3b\nFor the finish described in the photo topo, head up and right performing a delicate traverse on good footholds to a decent sized ledge below the bottom right of the n shaped steep headwall. \nPitch 5 –25m 3c\n The finish described here offers good climbing on slightly brittle and quite steep granite. Whist not perfect, it does offer nice moves in the 3b to 3c range and ends with a wonderful finish on a prominent ridge.\nOriginal Finish 45m 3b\nFrom the end of the 3rd belay the original finish takes 2 pitches, first moving diagonally up and right over the slab to below the broken section of the headwall. Then a final pitch up the broken rock to a jug handled crack. \nVariation Finish 35m 4a\nA high quality but harder, Severe graded finish, takes a route up and slightly left on the final slab to the headwall. Then a final pitch moves up the steep corner on good holds.",
+      "routeName": "FM",
+      "sourcePageSha256": "0ed7722fe941b22189416c32369fb4fb05ab4c1249812e87e5193eeec8453f81",
+      "sourceStats": {
+        "approach_time": "70min",
+        "aspect": "SE",
+        "grade": "VDiff 3c",
+        "length": "160m",
+        "pitches": "6",
+        "rock_and_flags": "Granite"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/fm-on-slieve-lamagan/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    },
+    {
+      "accessNotes": "North Wall top-outs are prohibited in this source. Abseil below the crag top; preserve the detailed descent restrictions below.",
+      "approachDescription": "There is a grassy parking space for several cars above the outcrop at 51.666565, -2.665006. From there, continue on the road you came in on and take the first obvious path left not long after leaving the parking area. Follow the path and take the next obvious left after the old stone arches. After following this path until you come to the old chapel near the river. Pass it and turn left at h the river. Follow this path for a short distance until you near the outcrop then take a left up a climbers path to the base of the cliff.",
+      "author": "Dan and Michel / Multi-pitch.com",
+      "checkedAt": "2026-10-19",
+      "coordinateOverrideOsmId": null,
+      "coordinates": {
+        "lat": 51.664827,
+        "lon": -2.664312,
+        "precision": "source route-location pin"
+      },
+      "country": "england",
+      "coverageScope": "One named route: Right Hand Route. Other routes at this crag are not covered.",
+      "descentDescription": "Following a change of ownership of the house above this section of crag, the previous arrangement to exit through its garden is not longer possible. Do not top out on any North Wall routes - only abseil descent from below the top of the crag is allowed. Trees and some abseil 'tat' allow climbers to return to the Great Ledge from the top of this climb. An abseil descent can then be made from one of the two bolted abseil stations above The Tap or Joe’s Route on the Great ledge. Climbers have reported being able to reach the base of the climb using a 50m rope abseil from the great ledge (maybe rope strech dependent). A 60m rope will allow a single abseil. There is an intermidate abseil point around halfway down the North wall. As always take care when abseiling and follow best practice (stopper knots, backup prussic and know how to ascend a rope if needed).",
+      "id": "curated:wintour-s-leap",
+      "intro": "The right hand route is in many ways the opposite twin to the left hand route (also a Hard Severe climb). It has better pitches at the top where the left-hand route has better pitches at the bottom. While the right hand route looks heavily vegetated from the bottom it’s surprisingly clean. That’s not to say its perfect, just better than it looks. It has good variety and is more sustained in grade when compared to the left-hand route, which has a hard start and then eases off. It’s a classic limestone route with a small crack section, and exposed thin ledge system and a steeper juggy section at the end. Check the BMC RAD Database for route exit information (see references), but at the time of writing abseiling off is required (see descent info).",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "name": "Wintour's Leap",
+      "omitNumericSummary": false,
+      "parkingCoordinates": {
+        "lat": 51.666565,
+        "lon": -2.665006
+      },
+      "parkingDescription": "Grassy parking above the outcrop at the source coordinates.",
+      "photo": {
+        "assetPath": "photos/curated-wintour-s-leap.jpg",
+        "author": "Dan and Michel / Multi-pitch.com",
+        "bytes": 1414102,
+        "changes": "Unchanged source annotated JPEG. Route lines, labels and belays are part of the source image.",
+        "height": 2350,
+        "kind": "annotated-topo",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "originalLicense": "CC BY-SA 4.0",
+        "ref": "multipitch:wintour-s-leap",
+        "sha256": "85e1e365f5bd5a4a3a35b1a0fd53cf57ae50f06af5bbb34e74f708de0a78ae8a",
+        "sourceFile": "photos/wintour-s-leap.jpg",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/right-hand-route-on-wintours-leap/",
+        "url": "https://www.multi-pitch.com/img/topos/wye-valley/wye-valley-wintours-leap-right-hand-route.jpg",
+        "width": 2600
+      },
+      "review": {
+        "approach": true,
+        "imagery": true,
+        "location": true,
+        "rights": true,
+        "route": true,
+        "status": "published"
+      },
+      "rightsEvidence": {
+        "originalImageCaption": "our own image",
+        "originalImageLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "Original image explicitly credited as site-owned; site-authored prose and annotations only. Guidebook covers, external content and third-party photographs excluded.",
+        "siteAuthoredTextAndAnnotationsLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://www.multi-pitch.com/climbs/right-hand-route-on-wintours-leap/"
+      },
+      "routeDescription": "The Right Hand Route takes a line up good rock, weaving around trees and foliage and makes good use of ledges for belay points.\nPitch 1 –18m 3c\nClimb the cracked gully diagonally right to get around some bushes then cut back left above them. There is a small stance and a decent tree belay just above the main ledge. The tree can be backed up with some protection in the rock.\nPitch 2 –21m 4b\nThe second pitch ups the grade after an easy start. Climb straight up behind the belay past some vegetation. Keep moving up until you’re below a left leaning thin crack that leads to another small ledge with a tree belay (again back it up with the rock). The crack offers good holds and protection but can feel a bit exposed and is a slight step up in the grade, especially if you can’t find the good holds.\nPitch 3 –17m 4b\nClimb up and slightly right onto some ledges. Take the left of two grooves, this should have a peg you could use for additional protection. After that there should be a short neat slab and easier ground up onto the great ledge where there is a peg and tree belay at the back. Traversing left on a thin finger ledge before the great ledge offers a lovely if exposed climb with a big mantle move up.\nPitch 4 –30m 4a\nA brilliant and rewarding pitch with great protection. Essentially you are looking to head though the broken V shape in the headwall above the ledge. The route has good holds, making it easer than it looks. After the broken V, climb the short wall above and then keep heading up to slings and an abseil ring set up on a tree. You can climb the chimney or the wall directly below the abseil and anchor point. Both are short but fun.",
+      "routeName": "Right Hand Route",
+      "sourcePageSha256": "5c038f3576c218444d6037f861334993f014eb7adf1c78a0855495ad35ab20e7",
+      "sourceStats": {
+        "approach_time": "20min",
+        "aspect": "",
+        "grade": "HS 4b",
+        "length": "87m",
+        "pitches": "4",
+        "rock_and_flags": "Limestone"
+      },
+      "sourceUrl": "https://www.multi-pitch.com/climbs/right-hand-route-on-wintours-leap/",
+      "transformations": [
+        "Selected site-authored route, approach and descent sections; excluded guidebook and weather sections.",
+        "Whitespace normalized; source spelling and source equipment observations retained.",
+        "Diff and VDiff normalized to D and VD only; no grade-system conversion."
+      ]
+    }
+  ],
+  "reviewScope": "Desk review of primary source content, image usefulness, internal consistency and licensing; not field inspection or confirmation of current access.",
+  "schemaVersion": 1
+}

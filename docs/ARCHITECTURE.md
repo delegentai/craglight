@@ -6,8 +6,8 @@ CragLight is a native Android application, Kotlin + Jetpack Compose, min SDK 26.
 
 - Reproducible Python ingestion turns licensed source snapshots into versioned regional JSON, SQLite and vector MBTiles. Manifest includes licence, counts, bytes and SHA-256 per file.
 - Each crag and route retains source IDs, source URLs, version/timestamp where supplied and licence. Missing fields remain null, visibly labelled as not recorded.
-- A bundled national index supports initial browse. Regional packs supply offline map geometry and detailed data, and can be installed/removed independently. Installed pack state and checksums are persisted.
-- Room stores personal ticks, contributions awaiting review and forecast cache. There are no login credentials or analytics identifiers.
+- A strict publication gate filters the bundled index to ten curated complete guides; old mismatched pack caches are invalidated. A bundled national index supports initial browse. Regional packs supply offline map geometry and detailed data, and can be installed/removed independently. Installed pack state and checksums are persisted.
+- Room stores personal ticks, contributions awaiting review and forecast cache. Optional community sessions are revocable and kept in memory; private drafts/photos use atomic app-private files. There are no analytics identifiers.
 - MapLibre renders regional MVT from read-only MBTiles using a device-loopback-only tile transport. Only 127.0.0.1 may use cleartext; external requests require HTTPS. Large map JSON is streamed for local path calculations to avoid holding every region's geometry in memory. OSM node IDs prevent visually overlapping, disconnected paths from becoming junctions.
 - A contribution is a separate proposed edit with licence attestation. It never mutates public climbing records before moderation.
 
@@ -29,3 +29,7 @@ Choose location only on explicit user action; request Android location permissio
 - Ingestion tests: UK-only boundary, indoor exclusion, provenance, deterministic output, source-derived attributes and missing values, vector tile validity.
 - Android instrumented tests: browse/search/detail, filters, persistent tick + export, pack installation and persistence, queued contribution. Run with network disabled after pack install and verify map rendering and no crash.
 - Release: separate freshly generated signing key; signed release APK and AAB; installation of release APK; launcher and app screenshots; licence/privacy/store drafts; final reference-state comparison.
+
+## Community service
+
+See [API contract](../community/API.md) and [service documentation](../community/README.md). The Android editor is offline-first and saves partial drafts atomically. Normalized image-space route coordinates share a transform with touch input, so zooming never changes saved positions. Google sign-in requires a dedicated OAuth project; server code verifies audience, expiry and a single-use nonce before issuing a revocable opaque session. Photos are decoded and re-encoded both on device and server. Private uploads, review and public publication are separate states. No service is declared live without a durable HTTPS deployment and real sign-in acceptance test.

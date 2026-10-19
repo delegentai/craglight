@@ -16,7 +16,7 @@ Browse mapped crags and routes, search by name, and filter by climbing style, gr
 
 Save regional packs for offline maps, paths and parking. Choose a starting location or a mapped car park to estimate a walk-in where a connected path is available. Plan for sunlight using crag aspect and solar position, and check Open-Meteo weather and a clearly labelled drying estimate. Saved forecasts retain their timestamp when you go offline.
 
-Open data is incomplete. Some crags have no route list, grades, access information or photographic topo. Unknown details stay clearly marked. Contribute your own observations through a moderated review process to help improve coverage.
+Start with ten selected climbs at ten crags. Every listed guide includes a photo topo, route description, written approach and descent. Each page clearly states its coverage. Create your own photo and route drafts, draw lines with your finger and export contributions for review. Online community sign-in and publishing require service setup and are not live in this release.
 
 CragLight is UK-only, with no ads, subscriptions, paywalls or required account. Your logbook stays on your device. Location is optional.
 
@@ -31,11 +31,11 @@ Contains OpenStreetMap data under ODbL, OS Open Names under the Open Government 
 - No login is required to browse, install packs, log ticks or queue a contribution. Sending a public GitHub issue may require a separate browser login and is optional.
 - App access instructions: unrestricted, no credentials required.
 - Publisher: use the existing developer account only by creating a new app entry. Existing legal publisher identity may be displayed by Play; do not add that identity to the app's branding unless the store legally requires it.
-- Content rating and target audience: complete the Play questionnaire accurately for an outdoor sport reference tool; no user messaging or auto-published user content exists inside the app.
+- Content rating and target audience: complete the Play questionnaire accurately for an outdoor sport reference tool; no user messaging exists. The configured community service includes moderated user photos, profiles and guides, reporting and account deletion; declare these accurately before activating it.
 
 ## Data safety review draft
 
-Review these answers against the exact release and current Play form before submitting. The app has no analytics or advertising SDK. Logbook/notes/contributions and device location stay local unless the user explicitly exports or submits a proposal. Android backup is disabled. Network services receive IP/technical request data; weather requests contain the selected public crag coordinate. GitHub contributions are an optional, user-directed browser submission, not an in-app account.
+Review these answers against the exact release and current Play form before submitting. The app has no analytics or advertising SDK. Logbook/notes/contributions and device location stay local unless the user explicitly exports or submits a proposal. Android backup is disabled. Network services receive IP/technical request data; weather requests contain the selected public crag coordinate. GitHub contributions are an optional, user-directed browser submission, not an in-app account. Optional community account and photo upload features are implemented but disabled until an isolated service is configured. If enabled, revise declarations for identifiers, profiles, uploaded photos/content, hosting and account deletion; do not submit the offline answers unchanged.
 
 Do not simply claim “no data collected” without evaluating Play's definitions and these third-party transfers. Optional foreground location is used only for app functionality on-device. The app requests no background location, contacts, broad storage or advertising ID permissions.
 

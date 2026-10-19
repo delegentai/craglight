@@ -3,7 +3,7 @@
 $taskAdb = "$env:ANDROID_HOME\platform-tools\adb.exe"
 $taskProject = Split-Path $PSScriptRoot -Parent
 $taskEvidence = Join-Path $taskProject 'evidence\release'
-$taskApk = Join-Path $taskProject 'release\CragLight-1.0.0.apk'
+$taskApk = Join-Path $taskProject 'release\CragLight-1.1.0.apk'
 if ((& $taskAdb -P 5047 -s emulator-5580 emu avd name) -notcontains 'CragLight_API36') { throw 'Wrong emulator.' }
 if (-not (Test-Path -LiteralPath $taskApk)) { throw 'Build and verify the signed release APK first.' }
 New-Item -ItemType Directory -Path $taskEvidence -Force | Out-Null
@@ -23,17 +23,12 @@ try {
     & $taskAdb -P 5047 -s emulator-5580 shell uiautomator dump /sdcard/craglight-release.xml | Out-Null
     & $taskAdb -P 5047 -s emulator-5580 pull /sdcard/craglight-release.xml (Join-Path $taskEvidence 'release-ui.xml') | Out-Null
     [xml]$taskUi = Get-Content -LiteralPath (Join-Path $taskEvidence 'release-ui.xml')
-    if ($taskUi.OuterXml -notmatch '828 mapped climbing places') { throw 'Release catalogue did not load offline.' }
+    if ($taskUi.OuterXml -notmatch '10 crag guides') { throw 'Release catalogue did not load offline.' }
     & $taskAdb -P 5047 -s emulator-5580 shell screencap -p /sdcard/craglight-release.png
     & $taskAdb -P 5047 -s emulator-5580 pull /sdcard/craglight-release.png (Join-Path $taskEvidence 'release-explore.png') | Out-Null
-    $taskMapNode = $taskUi.SelectSingleNode('//node[@text="Map"]')
-    if ($null -eq $taskMapNode -or $taskMapNode.bounds -notmatch '\[(\d+),(\d+)\]\[(\d+),(\d+)\]') { throw 'Release map action missing.' }
-    $taskMapX = [int](([int]$Matches[1] + [int]$Matches[3]) / 2)
-    $taskMapY = [int](([int]$Matches[2] + [int]$Matches[4]) / 2)
-    & $taskAdb -P 5047 -s emulator-5580 shell input tap $taskMapX $taskMapY
-    Start-Sleep -Seconds 3
-    & $taskAdb -P 5047 -s emulator-5580 shell screencap -p /sdcard/craglight-release.png
-    & $taskAdb -P 5047 -s emulator-5580 pull /sdcard/craglight-release.png (Join-Path $taskEvidence 'release-map.png') | Out-Null
+    # Explore opens directly on the native map in version 1.1.
+    if ($taskUi.OuterXml -notmatch 'Map created with MapLibre') { throw 'Native map is missing from release Explore.' }
+    Copy-Item -LiteralPath (Join-Path $taskEvidence 'release-explore.png') -Destination (Join-Path $taskEvidence 'release-map.png') -Force
     $taskProcess = (& $taskAdb -P 5047 -s emulator-5580 shell pidof org.craglight.app).Trim()
     if (-not $taskProcess) { throw 'Release process ended during map launch.' }
     $taskPackage = & $taskAdb -P 5047 -s emulator-5580 shell dumpsys package org.craglight.app
@@ -42,7 +37,7 @@ try {
     $taskCrashes = & $taskAdb -P 5047 -s emulator-5580 logcat -d -b crash
     $taskCrashes | Set-Content -LiteralPath (Join-Path $taskEvidence 'emulator-crash-log.txt')
     if (($taskCrashes -join "`n") -match 'org.craglight.app') { throw 'Release crash detected.' }
-    [pscustomobject]@{ apkSha256=(Get-FileHash -LiteralPath $taskApk -Algorithm SHA256).Hash.ToLowerInvariant(); device='CragLight_API36'; api=36; releaseInstalled=$true; launch='ok'; offlineCatalogueCount=828; mapOpened=$true; debuggable=$false; processAlive=$true } |
+    [pscustomobject]@{ apkSha256=(Get-FileHash -LiteralPath $taskApk -Algorithm SHA256).Hash.ToLowerInvariant(); device='CragLight_API36'; api=36; releaseInstalled=$true; launch='ok'; offlineCatalogueCount=10; mapOpened=$true; debuggable=$false; processAlive=$true } |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskEvidence 'emulator-result.json')
     Write-Output 'Signed release installed and launched offline; catalogue and native map opened without a crash.'
 } finally {

@@ -26,7 +26,6 @@ jobs:
         run: python -m pip install -r pipeline/requirements.txt
       - name: Rebuild packs from committed snapshots
         run: |
-          python -c "import shutil; shutil.copytree('app/src/main/assets/photos', 'data/packs/photos', dirs_exist_ok=True)"
           python pipeline/build.py
       - name: Bundle rebuilt pack checksums and maps
         shell: pwsh
@@ -35,6 +34,11 @@ jobs:
         run: |
           python -m unittest discover -s pipeline/tests -v
           python -m unittest discover -s moderation -p 'test_*.py' -v
+      - name: Check community moderation and privacy controls
+        run: |
+          python -m venv /tmp/craglight-community-ci
+          /tmp/craglight-community-ci/bin/python -m pip install -r community/requirements.txt
+          /tmp/craglight-community-ci/bin/python -m pytest community/test_service.py -q
       - name: Initialize Android command-line tools
         uses: android-actions/setup-android@v4
         with:

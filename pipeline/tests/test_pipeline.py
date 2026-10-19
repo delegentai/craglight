@@ -97,20 +97,21 @@ class RealDataTests(unittest.TestCase):
         for p in [(-5.93,54.60),(-3.19,55.95),(-3.18,51.48),(-0.12,51.5)]:self.assertTrue(inside(*p),p)
         for p in [(-6.26,53.35),(-4.48,54.15),(-2.12,49.19),(2.35,48.86)]:self.assertFalse(inside(*p),p)
 
-    def test_nontrivial_all_four_country_coverage_and_no_invented_walkins(self):
-        crags=self.catalogue['crags'];self.assertGreater(len(crags),500)
-        self.assertEqual({'england','scotland','wales','northern-ireland'},{c['country'] for c in crags})
+    def test_curated_source_coverage_and_no_invented_walkins(self):
+        crags=self.catalogue['crags'];self.assertEqual(10,len(crags))
+        self.assertEqual({'england','wales','northern-ireland'},{c['country'] for c in crags})
         for c in crags:
-            self.assertIsNone(c['walkInDistanceM']);self.assertIsNone(c['walkInTimeMin'])
-            self.assertEqual('ODbL-1.0',c['provenance']['license']);self.assertGreater(c['provenance']['version'],0)
-            self.assertTrue(c['provenance']['timestamp']);self.assertEqual(c['id'],c['provenance']['sourceId'])
+            self.assertIsNone(c['walkInDistanceM']);self.assertGreater(c['walkInTimeMin'],0)
+            self.assertEqual('CC-BY-SA-4.0',c['provenance']['license']);self.assertGreater(c['provenance']['version'],0)
+            self.assertEqual('source estimate, not measured',c['fieldProvenance']['walkInTimeMin']['basis'])
+            self.assertTrue(c['provenance']['timestamp']);self.assertEqual(c['sourceUrl'],c['provenance']['sourceId'])
 
     def test_real_route_ids_unique_per_location_and_explicit_noncrags_excluded(self):
         for c in self.catalogue['crags']:
             self.assertEqual(len(c['routes']),len({r['id'] for r in c['routes']}),c['id'])
             self.assertNotIn(c['rawTags'].get('leisure'),{'climbing_hall','high_ropes_course'})
-        down_tor=next(c for c in self.catalogue['crags'] if c['id']=='osm:relation:21457705')
-        self.assertEqual(230,len(down_tor['routes']))
+        self.assertTrue(all(c['id'].startswith('curated:') for c in self.catalogue['crags']))
+        self.assertNotIn('Down Tor',{c['name'] for c in self.catalogue['crags']})
 
     def test_publishable_metadata_has_no_signed_redirects_and_pack_newlines_are_lf(self):
         for p in (ROOT/'data').rglob('*'):
@@ -140,18 +141,16 @@ class RealDataTests(unittest.TestCase):
                 decoded=mapbox_vector_tile.decode(gzip.decompress(blob));self.assertIn('craglight',decoded);self.assertGreater(len(decoded['craglight']['features']),0)
 
     def test_licensed_images_and_topo_paths(self):
-        photos=json.loads((ROOT/'data/photos.json').read_text(encoding='utf8'))['photos']
-        self.assertGreaterEqual(len(photos),10)
-        for p in photos.values():
+        photos=[p for c in self.catalogue['crags'] for p in c['photos']]
+        self.assertEqual(10,len(photos))
+        for p in photos:
             self.assertTrue(p['author']);self.assertNotIn('<',p['author']);self.assertTrue(p['license']);self.assertIn('creativecommons.org',p['licenseUrl'])
-            self.assertTrue(p['sourceUrl'].startswith('https://commons.wikimedia.org/wiki/File:'))
+            self.assertTrue(p['sourceUrl'].startswith('https://www.multi-pitch.com/climbs/'))
+            self.assertEqual('annotated-topo',p['kind'])
             asset=ROOT/'data/packs'/p['assetPath'];self.assertEqual(p['sha256'],hashlib.sha256(asset.read_bytes()).hexdigest());self.assertEqual(p['bytes'],asset.stat().st_size)
-        paths=0
         for c in self.catalogue['crags']:
             for r in c['routes']:
-                if r['topoPath']:
-                    paths+=1
-                    for pt in r['topoPath']:self.assertTrue(0<=pt['x']<=1 and 0<=pt['y']<=1)
-        self.assertGreaterEqual(paths,60)
+                self.assertIsNone(r['topoPath'])
+                self.assertIn(r['topoImageRef'],{p['ref'] for p in c['photos']})
 
 if __name__=='__main__':unittest.main()

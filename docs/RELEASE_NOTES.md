@@ -1,16 +1,11 @@
-# CragLight 1.0.0
+# CragLight 1.1.0
 
-CragLight is a free, native UK climbing guide for Android 8.0 and later. It has no ads, subscriptions, app accounts or analytics.
+The guide now lists only **10 crags with 10 selected routes/link-ups and 10 real licensed photo topos**, each with written approach, parking/start information and descent. Sparse catalogue entries are removed, and every page states its actual route coverage.
 
-- Browse climbing locations and route lists on an interactive map, with search and filters for native grades, climbing style, rock, region, walk-in and known family suitability.
-- Save any of six regional packs for offline maps and climbing data. Packs are checked against SHA-256 digests, and bundled copies support saving without signal. See the [data-v1 release](https://github.com/delegentai/craglight/releases/tag/data-v1).
-- View licensed photographs with source-authored route overlays, available access notes and parking candidates. Compare sun exposure at a chosen time, cached Open-Meteo forecasts and clearly labelled drying estimates.
-- Keep a private local logbook, edit ticks and export spreadsheet-safe CSV. Queue original observations locally, then explicitly send a browser review form or export them for moderation.
+Explore opens on the interactive offline map. List cards show topo thumbnails. Photo topos pinch to zoom, and approach/descent prose is prominent. Old regional packs are invalidated so withdrawn pins cannot return; private logbook ticks are retained.
 
-The dated open-data catalogue includes **828 climbing locations, 2,093 routes, 16 licensed photographs and 67 photo-route overlays**. Regional maps contain **15,179 vector tiles**, with OS Open Names place labels and a coarse Natural Earth/OSM land outline. Every climbing record retains source provenance; photograph and software credits are available offline.
+The Community editor saves original photo and route drafts, supports finger-drawn lines, multiple routes, grades, approaches, access notes, credits, undo, and export. Imported photos lose EXIF/GPS metadata. Partial drafts are private.
 
-Coverage is incomplete. Only 184 locations have individual route records, three have a mapped aspect, and none has a family-suitability tag in this snapshot. Nearby parking is a candidate, not an approved approach; no explicit verified approach relations were found. Source descriptions, restrictions and nesting information may be missing or outdated. Sun and drying suggestions are estimates, and the contextual map is not a complete navigation or terrain map. No UKC, Rockfax, BMC or guidebook content is redistributed. See the [data audit](https://github.com/delegentai/craglight/blob/main/DATA_AUDIT.md) and [source credits](https://github.com/delegentai/craglight/blob/main/SOURCES.md).
+A separate moderated community backend and Google sign-in client are included, with public galleries, accepted-contribution thanks, reports, account export/deletion and attribution-preserving reuse of approved photos. **The online service is not live in this build**: dedicated Google OAuth/HTTPS deployment and operator contact details are pending. Sign-in/uploads are disabled honestly until configured; offline drafting works.
 
-The APK is for direct Android installation. The AAB is a Play Console upload artifact and cannot be installed directly. This release does **not** mean the app has been published on Google Play. Before Play submission, the publisher must complete the store declarations and supply a dedicated private support/privacy contact; the included [privacy policy](https://github.com/delegentai/craglight/blob/main/docs/PRIVACY.md) remains a draft until that contact is added.
-
-See [QA evidence](https://github.com/delegentai/craglight/blob/main/docs/QA.md) for observed test and emulator results, and [store submission notes](https://github.com/delegentai/craglight/blob/main/docs/STORE_LISTING.md) for the remaining publishing steps. Export your logbook before uninstalling: local data is not uploaded or backed up to a CragLight account.
+No UKC or Rockfax content is imported. Their reading access is not a redistribution licence. Source authors and open licences are retained in each guide.

@@ -78,7 +78,7 @@ import kotlin.math.*
         Box(Modifier.fillMaxWidth().height(320.dp).clip(RoundedCornerShape(14.dp)).background(Color(0xFF1C231E))
             .onSizeChanged { viewport = it }
             .testTag("topo-photo")
-            .semantics { contentDescription = "Climbing photograph with ${routes.size} mapped route overlays. Select routes using the list below. Pinch to zoom." }
+            .semantics { contentDescription = if (photo.kind == "annotated-topo") "Photo topo with source-drawn route lines. Pinch to zoom and read the annotations." else "Climbing photograph with ${routes.size} mapped route overlays. Select routes using the list below. Pinch to zoom." }
             .pointerInput(photo.ref) {
                 detectTransformGestures { centroid, pan, factor, _ ->
                     val newZoom = (zoom * factor).coerceIn(1f, 6f)
@@ -140,20 +140,20 @@ import kotlin.math.*
             imageState.error?.let { Text(it, Modifier.align(Alignment.Center).padding(16.dp), color = Color.White) }
         }
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Text("Pinch to zoom · drag to pan · tap a route", style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
+            Text(if (routes.isEmpty()) "Pinch to zoom · drag to pan" else "Pinch to zoom · drag to pan · tap a route", style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
             TextButton(onClick = { zoom = 1f; offset = Offset.Zero }) { Text("Reset view") }
         }
         active?.let { route -> Text("Selected: ${route.name} · ${gradeSummary(route)}", color = Clay, style = MaterialTheme.typography.titleSmall, modifier = Modifier.testTag("topo-selected-route")) }
-        if (routes.isEmpty()) Text("No source-mapped route lines are available for this photograph.", style = MaterialTheme.typography.bodySmall)
+        if (photo.kind == "annotated-topo") Text("Route lines and labels are drawn into this source photo. Zoom in to read them; individual lines are not selectable.", style = MaterialTheme.typography.bodySmall)
         routes.forEachIndexed { index, route ->
             TextButton(onClick = { select(route) }, modifier = Modifier.fillMaxWidth().testTag("topo-route-${route.id}"), colors = ButtonDefaults.textButtonColors(contentColor = if (route.id == selectedId) Clay else Forest)) {
                 Text("${index + 1}. ${route.name} · ${gradeSummary(route)}", Modifier.weight(1f))
                 if (route.id == selectedId) Text("Selected", style = MaterialTheme.typography.labelSmall)
             }
         }
-        Text("Mapped symbols: B bolt, A anchor, P piton, S sling, U unfinished. Dashed segments follow the source annotation. Lines and fixed equipment may be incomplete or out of date.", style = MaterialTheme.typography.bodySmall)
+        if (routes.isNotEmpty()) Text("Mapped symbols: B bolt, A anchor, P piton, S sling, U unfinished. Dashed segments follow the source annotation.", style = MaterialTheme.typography.bodySmall)
         Text("Photo: ${photo.author} · ${photo.license}", style = MaterialTheme.typography.bodySmall)
-        Text("${photo.changes}. Route overlays are drawn from OpenStreetMap contributors (ODbL 1.0). Photo-and-overlay display retains the photograph's stated licence.", style = MaterialTheme.typography.bodySmall)
+        Text(photo.changes + if (routes.isNotEmpty()) ". Route overlays: OpenStreetMap contributors (ODbL 1.0)." else "", style = MaterialTheme.typography.bodySmall)
         Row {
             TextButton(onClick = { openUrl(context, photo.sourceUrl) }) { Text("Photo source & author") }
             TextButton(onClick = { openUrl(context, photo.licenseUrl) }) { Text("Photo licence") }

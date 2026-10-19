@@ -48,6 +48,7 @@ class OnlineServicesTest {
         assertEquals(region.sha256, hash(packFile))
         assertEquals(region.tilesSha256, hash(tilesFile))
 
+        compose.onNodeWithText("List", substring = false).performClick()
         compose.onNodeWithTag("search").performTextReplacement(crag.name)
         compose.onNodeWithTag("crag-list").performScrollToNode(hasTestTag("crag-${crag.id}"))
         compose.onNodeWithTag("crag-${crag.id}").performClick()

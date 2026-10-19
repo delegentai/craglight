@@ -1,27 +1,56 @@
-CragLight data attribution
+CragLight data licensing notice
 
-© OpenStreetMap contributors
+The extracted and normalised OpenStreetMap database, country boundaries,
+parking/path/cliff features and OSM route-line coordinates are distributed under
+the Open Data Commons Open Database License (ODbL) 1.0:
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Copyright OpenStreetMap contributors. Attribution and source information:
 https://www.openstreetmap.org/copyright
-The extracted and normalised OSM climbing database and vector map features are available under ODbL 1.0. They are modified extracts, not an official OSM product. Source IDs, versions and timestamps are retained per record. The reproducible pipeline and machine-readable packs are offered at https://github.com/delegentai/craglight and https://github.com/delegentai/craglight/releases/tag/data-v1 .
-Licence: https://opendatacommons.org/licenses/odbl/1-0/
 
-OS Open Names, July 2026, Ordnance Survey
-Contains OS data © Crown Copyright and database rights 2026.
-Contains Royal Mail data © Royal Mail copyright and database right 2026.
-Contains National Statistics data © Crown copyright and database right 2026.
-Selected city, town and village labels were transformed from EPSG:27700 to WGS84. Great Britain only. The supplied original notice is included separately.
-Licence: Open Government Licence v3.0
+CragLight has selected UK records, normalised fields and constructed regional
+packs and vector tiles. The compact source snapshot and reproducible pipeline
+are provided with the project. Original object IDs, versions and timestamps
+remain in the records. Unknown data is not replaced with invented values.
+
+Ordnance Survey OS Open Names place labels use the Open Government Licence:
 https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
-Source: https://www.ordnancesurvey.co.uk/products/os-open-names
+Contains OS data (C) Crown Copyright and database rights 2026.
+Contains Royal Mail data (C) Royal Mail copyright and database right 2026.
+Contains National Statistics data (C) Crown copyright and database right 2026.
+The supplied original acknowledgement is in os-open-names-licence.txt.
 
-Made with Natural Earth
+Natural Earth's contextual land outline is public domain:
 https://www.naturalearthdata.com/about/terms-of-use/
-Natural Earth country polygons are public domain. Selected coarse land geometry is combined with OSM administrative boundaries for context; it is not detailed navigation mapping.
+Made with Natural Earth.
 
-Weather data by Open-Meteo.com
-https://open-meteo.com/
-Forecast data: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/
-Forecasts are fetched only when requested and cached with retrieval time. Drying suggestions are CragLight estimates, not forecasts supplied by Open-Meteo.
+The current curated climbing guide contains site-authored text and annotated
+images by Dan and Michel / Multi-pitch.com under CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/
+https://www.multi-pitch.com/
+Nine original photographs use CC BY-SA 4.0. The Dinorwig original image uses
+CC BY 4.0; its site-authored annotations and text use CC BY-SA 4.0.
+Images are unchanged. Selected prose has normalized whitespace; Diff/VDiff
+grade spelling aliases become D/VD, without converting grade systems.
+See curated/source-records.json and packs/photo-licences.json for exact source
+pages, original-photo licence evidence, author, hashes and change notices.
+Source images are in curated/photos/ and generated copies in packs/photos/.
+Credit the author/source/licence and retain the applicable share-alike terms.
+No site licence is inferred for third-party images or guidebook covers.
 
-Wikimedia Commons photographs
-Per-image authors, original file pages, licences and changes appear in the separate photo credits and beside each image. Images have individual CC BY-SA 4.0, CC BY-SA 2.0 or CC0 licences, not the OSM database licence. No attribution implies endorsement.
+The old photos.json Commons ledger is historical provenance. Those 16 preview
+images are not distributed by the curated builder. OSM database data and CC
+climbing content retain their distinct source licences and provenance.
+
+No OpenBeta climbing records, UKC text, Rockfax content, BMC descriptions,
+or proprietary guidebook photographs/topos are included. OSM-recorded external
+URLs are references only and do not confer redistribution rights.
+
+For complete source details, see ../SOURCES.md and ../DATA_AUDIT.md.
+
+Current guide: 10 venues, 10 named route guides/link-ups, 10 annotated JPEGs and authored approaches with separate descent descriptions.
+Source and reproducible data: https://github.com/delegentai/craglight
+Weather data by Open-Meteo.com: https://open-meteo.com/
+Forecast data CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+Forecasts are cached with retrieval time; drying suggestions are CragLight estimates.
+No attribution implies endorsement.

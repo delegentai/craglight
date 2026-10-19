@@ -1,155 +1,156 @@
 {
-  "verifiedAt": "2026-10-18T20:21:05.750328+00:00",
-  "method": "Network-free rebuild from committed compact snapshots in isolated temporary output directory. All JSON, SQLite, GeoJSON and MBTiles compared byte-for-byte using SHA-256.",
+  "verifiedAt": "2026-10-19T12:27:45.658601+00:00",
+  "method": "Network-free rebuild from committed curated source records, licensed JPEGs and compact geographic snapshots in isolated temporary output directory. JSON, SQLite, GeoJSON, MBTiles, media ledger and images compared byte-for-byte using SHA-256.",
   "snapshotSha256": "69c3b066727bae1c16348d913d6f2a85da40fc295ed61e17d16155319a4a59c1",
+  "curatedSourceSha256": "680de860e5ec9bbfcc1122457e521068eab70055641bb030e0b7fa78266557fb",
   "checks": [
     {
       "region": "scotland",
       "format": "geojson",
-      "sha256": "0ab92e4223f850e778d0706036bffd6fc14094f6d0ecc1308920af07943c5fbd",
+      "sha256": "15869c69f8e8380d1e1b9a41e0c847e59631310fb99a28c7e3d32844f4a06293",
       "identical": true
     },
     {
       "region": "scotland",
       "format": "json",
-      "sha256": "cde7f2f3c85225fcb2b75c27f10a2368c01b03bad87905218f8d1ff960b30605",
+      "sha256": "08095a97785fd6168fc34f9f136a7193c52db3413285c4e5ac5cbfcd8c07e9dd",
       "identical": true
     },
     {
       "region": "scotland",
       "format": "mbtiles",
-      "sha256": "8f1740a04458dfdcd0e542f7e6557c44a0b99863e02c17f13e413e6a872209b6",
+      "sha256": "639f04907db2e97d70e12612da7ef61d5bd872b459d407cc2cbcf26573a8b533",
       "identical": true
     },
     {
       "region": "scotland",
       "format": "sqlite",
-      "sha256": "3628a46ce1c2d6c910d43cff84a36741da343c3ffcc8380ae7320f31e4fd65c7",
+      "sha256": "a03fdbb4e7813794818385e41dc8245c1abf2c9e537b1c2dc597281234eb7ae1",
       "identical": true
     },
     {
       "region": "wales",
       "format": "geojson",
-      "sha256": "350d562ecbfd5809ec6c672dc66639a752dcf1b88478966c25a56b9b2021dfba",
+      "sha256": "4223db5ddc967a3d0760a969e9324453cc0b410d84d67c65ac5c234cd0195744",
       "identical": true
     },
     {
       "region": "wales",
       "format": "json",
-      "sha256": "529b60d4e8f0d77ca93fea17dbecdf0784f1a210deeea5d1dbd0d1b8cbd19795",
+      "sha256": "0e927b3f4a7a36a2ea3903af91e6657c5b47c82a3a3df5ed64971c48e00b4b4a",
       "identical": true
     },
     {
       "region": "wales",
       "format": "mbtiles",
-      "sha256": "1e337290461cdb1fece0da3ae8c52611bec216f392576e86d91d8e90a369caba",
+      "sha256": "cea5869745af033b0c92b8eb96794fa750f5d2d27b94a384ceef4a0515a7c05f",
       "identical": true
     },
     {
       "region": "wales",
       "format": "sqlite",
-      "sha256": "f0d5714804723c873473c94a40edb64b3b0a124bbb41f425da1912edc4606359",
+      "sha256": "bf62a857c9c4039385b0e66376d3744fb27b60fd147f95ffa97be0cbc2d487b0",
       "identical": true
     },
     {
       "region": "northern-ireland",
       "format": "geojson",
-      "sha256": "d1c86469021664bebd9b83a8eb246983f1fdaf2fa8a5052d1b61a176f15f102f",
+      "sha256": "1d9d8e0912ccf4b603cc53aafbac7ea3ed1fc163a37f1da2328aee656ffaca75",
       "identical": true
     },
     {
       "region": "northern-ireland",
       "format": "json",
-      "sha256": "10e6da8511384cebda1c48b9aac6651c97d944adfc595f79e776ba6f74348e0a",
+      "sha256": "1b55197287f24158e3f23d4a1d0c2be74ffb4701ea87e933db937ce5c5709a8b",
       "identical": true
     },
     {
       "region": "northern-ireland",
       "format": "mbtiles",
-      "sha256": "1902ee1f5d11abd0e41aaa4704c7092de238f75f47c7b51d913fe215cbf1aa96",
+      "sha256": "acecc14055f975432180cf971909d425ec05673ae65cebf0598f1d2b45d45071",
       "identical": true
     },
     {
       "region": "northern-ireland",
       "format": "sqlite",
-      "sha256": "1154711cb582f858e634170e7f60c3c61169609a00603c78a14d91c82ce98922",
+      "sha256": "4cf1b73d3013fcfe11bb9c513f1d904f9ce35f66b88d700c21c2d0243da29e97",
       "identical": true
     },
     {
       "region": "england-north",
       "format": "geojson",
-      "sha256": "dbe0f24b42b4c7284335c76a7a29d367a5abee252d7758de5081845bdcf5650e",
+      "sha256": "94820bf67d7c5ea0ba69cd899c7f71cf7706b0c878079c8d4b320fe854eb1c2d",
       "identical": true
     },
     {
       "region": "england-north",
       "format": "json",
-      "sha256": "016e3b925b5c36c1bc0f65e707aa8b328807f0e80d7a66b6371cb790f508d68b",
+      "sha256": "442d63bb985ab500f7dc727fd007bd8e656c649ce935e5212ad527eaeafcc70a",
       "identical": true
     },
     {
       "region": "england-north",
       "format": "mbtiles",
-      "sha256": "e0d8f69b409b6a6cb3829a48114918c773b3c5b23907219df5e8636302db35cc",
+      "sha256": "56ad13069aea5e96e39a782afe728c869bc34ecb40bec76e98879aabc84d7397",
       "identical": true
     },
     {
       "region": "england-north",
       "format": "sqlite",
-      "sha256": "9089175f85e0019ca840e5f310ccc763481be8608957af33040a94bb9856f4f0",
+      "sha256": "2cf83b7fb2a3134f2b977d6d89d8ade35c953d2b2389e3a4c712db83de4b82b3",
       "identical": true
     },
     {
       "region": "england-midlands",
       "format": "geojson",
-      "sha256": "53c0b91579aa4c83b2f7ba1cd4afec50610e6b73cce1e0b1c41bca02a0518491",
+      "sha256": "95c36f61fe9089d3f9e9bf1342b98d7bf669b089afb5a700a45a1e0dc8a30419",
       "identical": true
     },
     {
       "region": "england-midlands",
       "format": "json",
-      "sha256": "187409168cca63ade450d63211663453f9a5fc78179b8eed629fd7d495c0c285",
+      "sha256": "dd6def652b4aca41549964ca6c8c1e14c8eaf7d388bd21c78ae51c1ef79eeccd",
       "identical": true
     },
     {
       "region": "england-midlands",
       "format": "mbtiles",
-      "sha256": "8f5ba4774ccb1d661315ca182408f7867ec8ebe1ef402452b95c4d83b0fc5d92",
+      "sha256": "6d9ede11db2206775d093d8a439bd9000601f4a81fe2ded0c31cc27a011c654f",
       "identical": true
     },
     {
       "region": "england-midlands",
       "format": "sqlite",
-      "sha256": "caed73fea2c7a89ed401900061edc8f3a52cc712b5c4212304fbac47409ae86a",
+      "sha256": "8d7d4d68b60d3d24aca59ae78ae92d7332c90b7cb280fad9c45162956f72f23d",
       "identical": true
     },
     {
       "region": "england-south",
       "format": "geojson",
-      "sha256": "9e58495993d92b29a0b1d6435a4e228349faee0a4c3e57d54bad67f19915949b",
+      "sha256": "0a14feaa69ff532d68e95136b9a6536f20b2fd935ef41dcdfa4d2e3ba3459380",
       "identical": true
     },
     {
       "region": "england-south",
       "format": "json",
-      "sha256": "a389f0d27866a98e64a20ff5af19c24619cabd6840aaafeb44a18cae51dfa02f",
+      "sha256": "e086dae394cae5457950a4234e52ab2ac863c42350848ed62accd5f764c3ad12",
       "identical": true
     },
     {
       "region": "england-south",
       "format": "mbtiles",
-      "sha256": "310fe00903007ce03a3c918fe851d6ec249b39fd07e16cdcfcc90646b030fae4",
+      "sha256": "a5dd682df1601fc71af46f3634ac1dd9029dbcaac2491a9173cdfdcfabff8af5",
       "identical": true
     },
     {
       "region": "england-south",
       "format": "sqlite",
-      "sha256": "76859789601722bf415913bd43bb7fd01370d5e9752a54fd9720d98027f23777",
+      "sha256": "6fecd56aedfcbc63260fec298348c6354278766398fadad3309e89f16f89f427",
       "identical": true
     },
     {
       "file": "all-crags.json",
-      "sha256": "5b2ee8bc1614f8d0abe4ec855a8b9bb4d52e9f74025a42c978d0e5291ad63b4b",
+      "sha256": "0681b82c9fe1c21b39b8dec3e26a39594c17f573e4b9a14d9f49ae6dc6c43fea",
       "identical": true
     },
     {
@@ -159,7 +160,62 @@
     },
     {
       "file": "manifest.json",
-      "sha256": "02b4d482849d943d15dc54849d0e6b86023e676e6ec4a5d75c82134d341ea80b",
+      "sha256": "69eda9f65e8398e1b2efd88984eaf35e17190afe6cf83a3eec2ea6490bb06563",
+      "identical": true
+    },
+    {
+      "file": "photo-licences.json",
+      "sha256": "9d6e040e3eaaf55ce3f1cf0844bceb1122448e993df417f9c54c18349529b31f",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-bosigran.jpg",
+      "sha256": "a9d7aaf6aaf6d5ba66828b4a5775b9ea69dfa74bc08f2a257f13779800c40651",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-buzzards-roost.jpg",
+      "sha256": "a4fc1640a5a515c85da1d581f1cd88fec3fe665221d45418ce9fa16d085b07f7",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-cneifion-arete.jpg",
+      "sha256": "6ee8f15b1bede17da43646b084fdb6207c7c794d6e597021487825a22f4f4858",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-dinorwig-quarry.jpg",
+      "sha256": "510cbcde21dc992d6c8c8c0d6e3800926cbd8873ab79b69e4f6ba512662e2784",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-eagle-mountain.jpg",
+      "sha256": "c3719c6dbddc3acb19e769c97ebd6eedfda33ff1efe60a438cfaf3c36e5d3166",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-great-tor.jpg",
+      "sha256": "26c9d134f73c723d32ae9dc2b7cdbdce8ed8fdb0388be7a28a2184fd9a4f5d2b",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-idwal-slabs.jpg",
+      "sha256": "d938e9fac8e36fabe40749393be2918cb12208c3624bb156523c31565e40dca2",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-pigeon-rock.jpg",
+      "sha256": "101db512fbbe639eb498ff3c27db24d8a3ec2c2678f9ce5e2dfba615c54d3fe2",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-slieve-lamagan.jpg",
+      "sha256": "06c3ec0bd1359443366e9c564a39e3fa95ccee31e16a94265e285ca2c528d413",
+      "identical": true
+    },
+    {
+      "file": "photos/curated-wintour-s-leap.jpg",
+      "sha256": "85e1e365f5bd5a4a3a35b1a0fd53cf57ae50f06af5bbb34e74f708de0a78ae8a",
       "identical": true
     }
   ],

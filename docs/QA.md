@@ -1,69 +1,67 @@
-# Quality evidence
+# CragLight 1.1.0 quality evidence
 
-## Verified automated checks
+Updated 19 October 2026. This report describes the curated 1.1.0 guide and community implementation. Earlier release checks and catalogue counts are not evidence of the current build.
 
-The following results were observed on 18 October 2026. They do not by themselves establish emulator or release behaviour.
+## Verified checks
 
-| Check | Result | Coverage |
+| Check | Observed result | Evidence and scope |
 | --- | --- | --- |
-| Android JVM unit tests, debug Kotlin compilation and lint | 51 tests passed; no failures, errors or skips; lint passed | 15 data parser, 13 geography, 6 filtering, 9 grade, 5 sun, 3 CSV tests |
-| Ingestion pipeline tests | 18 tests passed | Source filtering, geographic boundaries, pack integrity and provenance, deterministic output, vector data and licensed photo handling |
-| Reproducible data build | 27 of 27 outputs byte-identical | Rebuilt from the retained input snapshots; no network-dependent differences |
-| Moderation queue tests | 14 tests passed | Input validation, transaction rollback, duplicate/conflicting identifiers, explicit rights review, immutable decisions, approved-only export and output-path boundaries |
+| Android JVM tests | **63 passed**, zero failures, errors or skips | `app/build/test-results/testDebugUnitTest/*.xml`: 10 community draft, 15 parser, 13 geography, 6 filtering, 9 grade, 5 sun, 3 CSV and 2 guide-quality tests |
+| Final Android build and lint | Debug unit tests, debug lint, release APK and release AAB tasks passed | Release operator confirmed the final combined Gradle run; lint reported zero errors and 22 warnings |
+| Android offline instrumentation | **4 passed**, zero failures, errors or skips; suite time **19.913 seconds** | `evidence/ui-test/result.xml`; dedicated Android 16 / API 36 emulator |
+| Community API tests | **31 passed**, zero failures, errors or skips; suite time **7.636 seconds** | `evidence/community-test-results.xml`; isolated local databases and signed authentication fixtures |
+| Ingestion and guide-quality tests | **26 passed** | Validated by the pipeline maintainer; current dataset validation is recorded in [DATA_AUDIT.md](../DATA_AUDIT.md) |
+| Reproducible data build | **38 of 38 outputs byte-identical** | `data/reproducibility.json`, verified at 12:27:45 UTC; network-free rebuild from retained curated records, licensed JPEGs and compact geographic snapshots |
 
-Commands include `tools/gradle.ps1 testDebugUnitTest compileDebugKotlin --console=plain`, `python -m unittest discover -s pipeline/tests -v` and `python -m unittest moderation.test_queue -v`. The final Android count was checked directly against its JUnit XML reports; local machine-readable evidence is retained in `evidence/android-unit-tests.json` and `evidence/moderation-tests.json`. The pipeline maintainer confirmed 18 passing tests and 27 identical rebuilt files. Runtime and release checks are recorded separately below.
+The reproducibility check compares catalogue and regional JSON, SQLite, GeoJSON, genuine vector MBTiles, the media ledger and images by SHA-256. It demonstrates deterministic output from those inputs, not current on-ground access or climbing conditions.
 
-The public clean Ubuntu [CI run 39164557383](https://github.com/delegentai/craglight/actions/runs/39164557383) also completed successfully for production and test source commit `14224d195638a02108d20616dc0cd4f76c70d803`. This CI check is separate from the Windows emulator and signed artifact verification below.
+The 22 lint warnings comprise ten dependency-version notices, one Android Gradle Plugin notice, one modifier-parameter warning, one obsolete-SDK-check warning, one Kapt warning, one monochrome-icon warning and seven Kotlin-extension suggestions. A successful lint run is not a claim that it emitted no warnings.
 
-## Independent implementation review
+## Current guide coverage and provenance
 
-Review covered `DataJson`, `AppRepository`, `Weather`, `AppViewModel`, domain algorithms, photo overlays and the moderation importer. The following defects were corrected and protected by regression tests:
+The public catalogue contains **10 physical venues, 10 selected routes or explicitly labelled link-ups and 10 licensed annotated photo topos**. All ten records have source-authored approach and separate descent/return information. Coverage is four venues in Wales, four in Northern Ireland and two in Southern England. There is no current Scottish seed record meeting the same publication gate, and these are selected climbs rather than complete crag inventories.
 
-- Relation approaches now preserve source access and conditional restrictions. Private, prohibited and conditional paths are excluded from suggested approaches.
-- Exact source grades on standalone boulders become a grade band without inventing routes. Grade and style filters must refer to the same route. Unknown values do not silently pass an active known-only filter.
-- Parking access conditions, nesting-restriction descriptions and opening hours survive parsing. The UI can display their original wording and disable restricted parking choices.
-- Original OSM node identities survive parsing and graph construction; coincident bridge coordinates with different node IDs do not create a false junction. Endpoint snapping is bounded and explicitly estimated.
-- A malformed photo-overlay vertex rejects the whole line, preventing a fabricated segment across a gap. Missing source geometry stays missing. Photos require local asset paths, dimensions and complete attribution. Commons references tolerate source underscore/space variants.
-- CSV output escapes quotes/newlines and neutralises spreadsheet formula prefixes.
-- Native V modifiers, explicit adjacent V/French ranges, French low grades and broad technical grade 3 are handled without cross-system conversion. Interval filters preserve both source endpoints. Duplicate relation memberships do not duplicate route IDs.
+Three venues have explicit source parking coordinates; the remaining seven retain named parking/start descriptions without an asserted parking pin. There are no source-authored approach polylines. Mapped OSM paths are contextual data and can support a labelled estimate only where the graph connects after recorded restrictions are excluded. Unknown access remains unknown; a mapped path does not establish permission.
 
-Additional reviewed safeguards: regional data and MBTiles are checked against the bundled SHA-256 manifest; HTTP response sizes and timeouts are bounded; pack and local database files use app-private storage; external forecast requests use HTTPS with a 30-minute per-crag cache; source weather timestamps remain separate from derived drying suggestions. The moderation CLI makes no network requests, cannot auto-approve an import, and exports reviewed proposals separately from public packs.
+The retained primary-source records include page URLs and hashes, original image rights evidence, image hashes, native grades, source/check dates and editorial decisions. Nine original photographs use CC BY-SA 4.0; Dinorwig's original uses CC BY 4.0, with its annotations/text under CC BY-SA 4.0. Individual licences and authors remain visible in the app and media ledger. Current details are in [DATA_AUDIT.md](../DATA_AUDIT.md), [SOURCES.md](../SOURCES.md), `data/coverage.json` and `data/curated/source-records.json`.
 
-Runtime parking selection exposed repeated graph construction for every nearby crag. The revised routing API builds one mapped graph after excluding recorded restrictions and runs Dijkstra once per origin, then reconstructs destination estimates from their nearest segment endpoints. Paths with unknown access remain included; their presence does not establish permission. Destination projections never become graph junctions. CPU loops check cancellation, and a superseded request cannot overwrite a newer origin or leave the loading indicator stuck. Five added tests cover batch connectivity, bridge separation, direct same-segment paths, snap limits and cancellation; all passed within the 51-test JVM result above.
+This was a desk review, not a field inspection. Source discrepancies and incomplete candidates are held outside the public catalogue. Access, tides, nesting restrictions, parking charges, fixed equipment and descent conditions require current independent assessment.
 
-Weather and approach calculations remain estimates. Unknown aspect is never reported as shade or sun; geometric solar position does not model nearby terrain or trees. Route tests establish graph behaviour, not legal access or on-ground path safety. Photo-line tests establish source preservation and parser rejection, not surveying accuracy.
+## Offline Android behavior exercised
 
-## Offline legal notices
+The four passing instrumentation tests exercised:
 
-Bundled software notices are copied from official versioned upstream sources and resolved public artifacts. MapLibre's complete Android notice already incorporates its native dependency notice collection. Apache 2.0, MapLibre/gesture BSD notices, JetBrains notices and the Public Suffix List's MPL 2.0 are readable offline. Actual AAR/JAR notice files are preserved with artifact associations. The software inventory includes optional debug tools as a clearly labelled superset.
+- Loading exactly ten publishable guides; showing native map features and changing zoom through a pinch gesture.
+- Searching for Bosigran, opening its actual licensed photo topo, interacting with the photo and verifying the displayed authored approach text.
+- Saving a private logbook tick, installing a bundled regional JSON/vector pack while offline, recreating the activity and finding the saved tick.
+- Drawing a route line with a finger gesture, checking bounded normalized coordinates, undoing it, drawing again and retaining the draft across activity recreation. The partial draft had neither ownership consent nor a submission timestamp.
+- Rotated-photo import with correct pixels/dimensions, removal of GPS/artist metadata and preservation of the original source file.
+- Mirrored-photo normalization before route coordinates are drawn.
 
-The original OS Open Names notice contains all three supplied credits. All 16 bundled photographs retain author, original file URL, licence URL and modification notice in the offline photo ledger. OSM, OS, Natural Earth and Open-Meteo credits are also bundled. Data licences retain their legal URLs; a failed direct download of optional ODbL/Creative Commons full-text copies did not change the source licence or its attribution.
+Screenshots are retained under `evidence/ui-test/` with `v11-` names. The suite duration covers the combined instrumented checks; it is not a routing-performance measurement. The Android tests did not sign into Google, upload to a real service or publish a contribution.
 
-## Runtime and release evidence
+## Community service verification
 
-The final offline instrumentation flow passed on the dedicated Android 16 emulator with Wi-Fi and mobile data disabled: one test, no failures/errors/skips, 40.013 seconds for the test body. It exercised visible cluster-count pixels and cluster expansion; real regional MBTiles paths, cliffs and parking; a licensed photo and selectable source overlay; a private logbook tick and CSV escaping; a locally queued proposal; bundled regional installation; activity recreation and persistence; and opening/scanning the offline Apache licence text. The test does not submit a public contribution. Local evidence: `evidence/ui-test/result.xml` and its screenshots.
+The 31 local backend tests cover Google's official verification library with a locally signed RSA token/certificate fixture, including signature, issuer, audience and expiry rejection. They also cover a single-use nonce, session revocation, omission of Google email/real name from stored/exported account data, pseudonyms, optional avatar moderation, image validation and metadata removal, ownership checks, partial submission, complete-guide gating and refusal of moderator self-approval.
 
-The real Clean Wall parking example returned 836.55 m within the test's 3 m tolerance. The UI displayed 836 m, 12 minutes and 16 m of unverified endpoint connections. No isolated routing stopwatch was recorded, so the 40-second complete flow must not be reported as routing computation time.
+Publication tests verify required route prose, parking/start guidance and descent; separate gallery approval; credit limits; reuse of an approved shared photo; additive route revisions; and original photo, route and guide-section attribution. They verify that oversized merged guides leave the previous publication intact, that reports can hide affected content, and that account deletion removes private records/uploads and anonymises inherited attribution in another contributor's surviving reviewed guide. This last case is deliberate: deletion does not guarantee removal of every previously incorporated route or text passage. Moderation/report free text may require individual privacy review.
 
-Visual review found that this PC's old SwiftShader emulator translator omitted bitmap icons and dashed-line pixels despite reporting their geometry. The same APK rendered correctly after the dedicated emulator switched to host graphics (AMD Radeon 8060S). Final screenshots visibly contain cluster numerals, parking symbols and green path dashes. Tests now check actual numeral pixels, not merely feature-query results. The app's map still uses local sources and OpenGL; no network glyph or sprite service was added. See the local toolchain notes for the reproducible emulator configuration.
+The private Windows launcher also passed health/auth-challenge, status, pruning and SQLite-backup smoke checks and was stopped afterward. It did not install a persistent service, tunnel or cloud resource. See [community/VERIFICATION.md](../community/VERIFICATION.md) for the exact local setup and its limits.
 
-The separate online instrumentation test passed in 15.37 seconds with no failures/errors/skips. It required a genuine public `data-v1` JSON download and checked installed JSON and MBTiles SHA-256 digests against the manifest. It fetched a real Open-Meteo forecast covering the current time, then disabled both radios and verified the saved forecast's retrieval time stayed unchanged after activity recreation and a refresh within the cache window. **Use my location** returned an injected emulator GPS position of 53.066, −4.075 within 0.002 degrees while offline. This verifies permission/UI/location processing, not real-world GPS accuracy. Local evidence: `evidence/online-test/result.xml` and screenshots 10–12.
+**The community service is not publicly deployed.** Real Google Credential Manager sign-in, production HTTPS, public uploads, public moderation and deployment recovery remain unverified. Android service configuration stays empty until a real isolated deployment and OAuth clients exist. The local authentication fixtures are not a claim of a live Google login. Operational moderation, a private contact route, hosting details and launch privacy/online-safety review remain prerequisites; see [COMMUNITY.md](COMMUNITY.md) and [PRIVACY.md](PRIVACY.md).
 
-Runtime coverage is the dedicated Android 16 emulator. Other Android versions and physical devices have not been exercised in this release check.
+## Signed release and external checks
 
-The actual signed release APK was installed and opened with both radios disabled on the dedicated API 36 emulator. It was non-debuggable, displayed all 828 catalogue entries and native map/count pixels, and remained alive without a recorded crash. Its APK v2 signature verifies with certificate SHA-256 `424a616906bcc8a97c412d89189a522d98216a1bc1379b9f980cee5e5fca28c6`.
+The final 1.1.0 APK/AAB build and signature verification passed. Official bundletool 1.18.3 validation and APK-set generation also passed, as confirmed by the release operator.
 
-Official bundletool validation and universal APK generation both passed for the signed AAB. Its random-access JAR cryptographic signature also verifies. The generated validation APK was unsigned and was neither installed nor published. The AAB enables `PAGE_ALIGNMENT_16K`; both APKs have 16 KB-aligned uncompressed native ZIP offsets and at least 16 KB alignment for every packaged 64-bit ELF load segment. These are structural compatibility checks; this run did not test a device using 16 KB memory pages. The JDK streaming-signature warning was traced to the manifest's position as the last ZIP entry, with no duplicate entries or CRC errors. See [release bundle validation](RELEASE_BUNDLE_VALIDATION.md) for the warning diagnosis, reproduction commands and evidence inventory. No Play Console acceptance or publication is claimed.
+The actual signed 1.1.0 APK was installed and launched with Wi-Fi/mobile data disabled on the isolated API 36 emulator. It displayed ten guides and the native MapLibre map, remained alive, was non-debuggable and recorded no app crash. APK/AAB hashes and structural native alignment are recorded in [RELEASE_BUNDLE_VALIDATION.md](RELEASE_BUNDLE_VALIDATION.md).
 
-| Signed release artifact | SHA-256 |
-| --- | --- |
-| `CragLight-1.0.0.apk` | `f0e4ea6f90ab0cc4cf75f4173d9817d4fc46a1610af29daa03c73e8cf68a3050` |
-| `CragLight-1.0.0.aab` | `70a1cb5696fcbc80860d42cafc0242bd297ef75d8fa80b03fc8cab1ea16a289e` |
+**Online pack/weather/location run:** the current-release test is pending. This report does not yet claim a genuine download of the current public pack, a current live forecast/cache round trip or the current build's location flow.
 
-Local release evidence includes `evidence/release/emulator-result.json`, `release-explore.png`, `release-map.png`, `apk-alignment.json`, `bundletool-apk-alignment.json` and the signature/validation logs. All checks preserved the original release artifacts.
+A current-source GitHub CI result will be recorded after publication. The successful local build does not establish Play acceptance.
 
-## Reference-directory integrity
+## Practical limits
 
-The final read-only snapshot at 20:21 UTC on 18 October 2026 matches the initial snapshot structurally: exact Git HEADs and status output, 3,082 and 364 tracked-file records, Git metadata and the root instruction-file evidence. Secret-shaped files were compared by metadata only; their contents were never read. Evidence is in the local `evidence/infra-comparison.json`.
+Runtime coverage is the dedicated API 36 emulator. Physical devices, other Android versions and devices using 16 KB memory pages have not been exercised for 1.1.0. Structural artifact alignment checks must not be described as a runtime test on such a device.
 
-The reference repositories were already dirty at the start, with one and 345 status entries respectively. Those entries were preserved exactly. They were neither cleaned nor reset, and the result must not be described as a clean initial working tree. An initial serializer-based false alarm was resolved by comparing parsed JSON values rather than formatting/escaping differences; no underlying evidence differed.
+Solar position, weather-derived drying suggestions and mapped walk-in calculations are estimates. Unknown aspect remains unknown; solar geometry does not model local cliffs, trees or cloud shadow. Automated tests validate the implemented rules and preserved source data, not route safety, surveying accuracy or legal access. No store publication or completed legal-compliance assessment is claimed.

@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+google-auth[requests]
+CacheControl
+cryptography
+Pillow
+httpx
+pytest

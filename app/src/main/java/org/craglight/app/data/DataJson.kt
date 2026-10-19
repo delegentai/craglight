@@ -44,7 +44,7 @@ object DataJson {
         val width = o.optInt("width")
         val height = o.optInt("height")
         if (width !in 1..100_000 || height !in 1..100_000) return null
-        return TopoPhoto(ref, path, url, source, author, license, licenseUrl, width, height, o.text("changes") ?: "No source-image edits recorded", o.text("sha256"), o.number("bytes")?.toLong())
+        return TopoPhoto(ref, path, url, source, author, license, licenseUrl, width, height, o.text("changes") ?: "No source-image edits recorded", o.text("sha256"), o.number("bytes")?.toLong(), o.text("kind"))
     }
 
     private fun nodeIds(array: JSONArray?): List<Long> {
@@ -74,7 +74,8 @@ object DataJson {
             grades = grades.keys().asSequence().mapNotNull { key -> grades.text(key)?.let { key to it } }.toMap(),
             styles = o.optJSONArray("styles")?.strings().orEmpty(), description = o.text("description"),
             geometry = geometry(o.opt("geometry")), provenance = provenance(o.optJSONObject("provenance")),
-            topoImageRef = o.text("topoImageRef"), topoPath = topoPath(o.optJSONArray("topoPath")))
+            topoImageRef = o.text("topoImageRef"), topoPath = topoPath(o.optJSONArray("topoPath")),
+            lengthM = o.number("lengthM"), pitches = o.number("pitches")?.toInt(), sourceUrl = o.text("sourceUrl"))
     }
     fun crag(o: JSONObject): Crag {
         val ranges = o.optJSONObject("gradeRanges") ?: o.optJSONObject("gradeBands") ?: JSONObject()
@@ -97,6 +98,11 @@ object DataJson {
             accessConditional = o.text("accessConditional"), restriction = o.text("restriction"),
             restrictionDescription = o.text("restrictionDescription"), openingHours = o.text("openingHours"),
             outdoorStatus = o.text("outdoorStatus"),
+            publicationStatus = o.text("publicationStatus"), qualityVersion = o.number("qualityVersion")?.toInt(),
+            coverageScope = o.text("coverageScope"), approachDescription = o.text("approachDescription"),
+            descentDescription = o.text("descentDescription"), parkingDescription = o.text("parkingDescription"),
+            approachSourceUrl = o.text("approachSourceUrl"), sourceUrl = o.text("sourceUrl"),
+            contentCheckedAt = o.text("contentCheckedAt"), accessNotes = o.text("accessNotes"),
             photos = (o.optJSONArray("photos")?.objects().orEmpty() + listOfNotNull(o.optJSONObject("photo"))).mapNotNull(::photo).distinctBy { commonsReferenceKey(it.ref) },
             familyFriendly = if (o.isNull("familyFriendly")) null else o.optBoolean("familyFriendly"),
             walkInDistanceM = o.number("walkInDistanceM"), walkInTimeMin = o.number("walkInTimeMin"),

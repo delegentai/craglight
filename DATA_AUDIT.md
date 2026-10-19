@@ -1,5 +1,40 @@
 # Open UK climbing data audit
 
+## Current curated guide — 19 October 2026
+
+The public catalogue now contains **10 physical venues, 10 named route guides or explicitly labelled link-ups, 10 useful annotated photographs, and 10 source-authored approaches with separate descent/return descriptions**. Every entry states its limited route scope. It is a small curated guide, not a UK-wide guidebook or a complete route inventory at those crags.
+
+| Venue | Included route |
+| --- | --- |
+| Bosigran | Doorpost |
+| Wintour's Leap | Right Hand Route |
+| Great Tor | East Ridge |
+| Idwal Slabs | Ordinary Route |
+| Cneifion Arete | Cneifion Arete |
+| Dinorwig Quarry | Australia West Face six-pitch link-up |
+| Buzzards Roost | The Sheugh |
+| Eagle Mountain | Sammy Higgins |
+| Pigeon Rock | Virgo |
+| Slieve Lamagan | FM, with described finish alternatives |
+
+All climbing prose and annotated JPEGs in this seed come from individually checked [Multi-pitch.com](https://www.multi-pitch.com/) pages. Per-record URLs, page hashes, explicit original-image rights evidence, retained image hashes, original grades and editorial decisions are in `data/curated/source-records.json`. Nine site-owned original photographs use CC BY-SA 4.0; Dinorwig's original is CC BY 4.0, with annotations/text under CC BY-SA 4.0. The ten unchanged JPEGs occupy 18,237,310 bytes.
+
+Publication requires an approved review, licensed useful image, evidenced UK location, named native-graded route with substantive climbing description, authored approach from an identified start, parking/start information, separate descent, scope, source/check date and access notes. Missing material stays outside the public catalogue. The source check is a **desk review**, not field inspection or confirmation of current access, parking prices, tides, bird restrictions or equipment. Dated source observations remain visible.
+
+Three venues have explicit source parking coordinates (Wintour's Leap, Dinorwig, Eagle Mountain). The other seven retain named start/parking descriptions and no asserted parking pin. Dinorwig's apparent source crag pin is its parking coordinate: the crag instead uses the separately attributed OSM Australia cliff geometry. There are **zero authored approach geometries**. OSM paths remain context and can only support a labelled estimate where the app finds a connected, permitted graph. No path or walking distance is invented.
+
+Native grade aliases Diff→D and VDiff→VD are normalized without converting grade systems. Slieve Lamagan and Cneifion's variable/inconsistent length and pitch totals are omitted; original descriptions/statistics remain retained. Missing family suitability stays unknown.
+
+Research found some open rock topo material at 19 sites, plus one separate winter face. That is **not** the public count. Held candidates: Avon/Morpheus (conflicting image/page grade and length); Old Man of Stoer (five-pitch headline, text ends at pitch four); Old Man of Hoy (no complete pitch text); Slieve Beg (conflicting summaries); Chair Ladder and Cornakey (descent to climb start, no established post-climb return); Smugglers (incomplete integrated route records and dated rope approach); Halkyn and Elder Tree (no adequate authored approach); Creag Meagaidh (winter-only). Held candidates and incomplete community drafts never become public merely because they have coordinates or a photo.
+
+The original OSM snapshot is preserved unchanged. Current maps retain 2,529 contextual OSM features and OS Open Names labels, but **only ten curated crag markers**. Six delivery zones remain supported: Wales four venues, Northern Ireland four, Southern England two, other zones zero. Six SQLite, six genuine gzip MVT MBTiles (3,757 tiles), GeoJSON, catalogue and media ledger are generated. Largest JSON is 2.23 MB; largest vector pack 0.63 MB. Exact values/hashes are in `data/coverage.json` and `data/packs/manifest.json`.
+
+Validation: 26 ingestion/quality tests pass; an isolated network-free rebuild matches all **38** catalogue, regional, ledger and image outputs byte-for-byte. Public metadata has no machine-private paths or signed URLs. Current data provenance is detailed in `SOURCES.md`.
+
+## Historical geographic extraction audit
+
+The remaining sections record the first release's broad OSM extraction, not current public guide coverage. Its 16 photo-bearing objects collapsed to seven physical sites; 67 overlays came from only Halkyn (64) and Elder Tree (3), with no source-authored approaches. Those object counts overstated practical guide coverage. Sparse source objects and the old Commons images are retained for provenance/research, but are not published by the curated builder.
+
 Audit started 18 October 2026, after `INFRA_MAP.md` was written. This document distinguishes licensed data from mere public visibility. Measured coverage will be recorded by the ingestion report; no guidebook-equivalent completeness is claimed.
 
 | Source | Licence and scope | Decision |
@@ -34,7 +69,7 @@ The official OpenBeta v2026-10-18 Parquet export contains 72,420 routes across 2
 
 OS Open Names is obtained from the unauthenticated public OpenData download endpoint, with no OS account, API key, premium data or billing registration. Selected place labels and the original licence notice are retained in the reproducible snapshot.
 
-## Measured release coverage
+## Historical first-release object coverage — superseded
 
 The final catalogue contains **828 mapped climbing locations and 2,093 individual routes**. These are source objects, not a claim of 828 guidebook-complete crags. There are 184 locations with individual route entries, 16 licensed photos, 67 photo route overlays, and 23 geographic route line geometries. Native grades are preserved: French, V/Hueco, UK adjectival and a few UK technical values occur; no Font grades are invented.
 

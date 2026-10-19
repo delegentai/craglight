@@ -1,8 +1,8 @@
 # CragLight privacy policy
 
-Effective date: 18 October 2026. App: CragLight (`org.craglight.app`).
+Draft updated: 19 October 2026. App: CragLight (`org.craglight.app`). The optional community service described below is implemented but not publicly deployed; its final controller/contact and hosting details remain launch prerequisites.
 
-CragLight is a free UK climbing guide. It has no advertising, analytics, account system, payment processing or background location tracking.
+CragLight is a free UK climbing guide with no advertising, analytics, payment processing or background location tracking. Browsing, offline guides and your private logbook do not require an account. The optional community contribution workflow is designed to use a separate Google sign-in account only when a real community service is configured. Until then, drafts remain local and the app must not describe them as uploaded.
 
 ## Data on your device
 
@@ -19,16 +19,28 @@ The app asks for location permission only when you choose **Use my location**. L
 - **Maps:** map geometry and label assets are rendered locally. CragLight does not request public raster tiles, third-party map glyphs or a tracking-enabled map service.
 - **External links:** opening an OpenStreetMap, UKC, licence or other external page uses your browser. The destination's privacy practices apply. External climbing pages are not scraped or copied into the app.
 
-## Contributions and moderation
+## Optional community account and submissions
 
-An edit first enters a queue stored only on your device. **Queue for review** does not send it to a maintainer. You can export it to a file or choose **Open review form**, which opens an independent CragLight GitHub issue form in your browser. Review the text before submitting. GitHub may require you to log in; your GitHub profile and submitted text may be publicly visible. Do not include personal information or copied guidebook material. The app contains no GitHub access token.
+Local community drafts may contain your chosen alias, crag/parking coordinates, photographs, drawn route lines, descriptions and access observations. These are not private logbook uploads. Sending them requires a configured real server, sign-in, an explicit action and the contribution-licence confirmation. A confirmed server response distinguishes a remote pending submission from a local-only draft.
 
-A moderator checks proposed changes, source evidence and reuse rights before adding anything to a public data release. Deleting a local proposal does not delete an issue you separately submitted on GitHub. Use the issue's controls or contact the project maintainer to request changes to a submitted contribution. Contributions published under an open licence may already have been copied by others.
+The implemented server verifies a Google ID token and one-time nonce. It stores a random account ID and a keyed identifier derived from Google's stable account subject; it discards Google email and real name. Its own login sessions expire after seven days and are stored as hashes on the server. Google processes the sign-in under its own terms. A custom public alias is optional; the default is a random pseudonym. Copying your Google profile photo is a separate optional choice. Custom aliases/profile photos require review before public display. Sign-in minimisation does not make these records anonymous or remove data-protection duties.
+
+Server uploads start private. JPEG/PNG photos are decoded, oriented and re-encoded, removing embedded EXIF/GPS/text metadata. Visible faces, number plates and other details in the pixels remain; choose photos you have rights to share and avoid unnecessary personal information. Moderators can inspect private submissions to assess rights, content, access information and completeness. Approved original climbing/crag photos and captions may appear in the separate gallery; a complete public guide needs additional route, approach and descent information. Reusing an approved photo retains its original attribution. Public contributions use CC BY-SA 4.0; that licence does not authorise uploading someone else's protected work.
+
+Public profiles show the pseudonym, approved optional photo and limited accepted-contribution credits. No credit is awarded for merely uploading or submitting. Reports are received privately by moderators and their submitter is not published. The service uses short-lived keyed abuse-limit identifiers and may receive technical network information through its eventual HTTPS host. The actual provider, proxy logs, lawful bases, international transfers and private contact route must be documented before launch; none is silently treated as configured today.
+
+The older **Open review form** option opens a GitHub issue page in your browser. It is a separate service: review before submitting, and remember that your GitHub profile and issue may be public. Deleting a local draft or community account does not delete a GitHub issue you separately posted.
+
+## Community access, deletion and retention
+
+The implemented account export returns profile information, private drafts, accepted records, upload metadata and submitted reports; normalized photos can be downloaded through authenticated image endpoints. Account deletion revokes all sessions, removes active private drafts/uploads, withdraws dependent public content and removes/anonymises public credit. Routes and guide text already incorporated into another contributor's reviewed guide may remain under the contribution licence, with your attribution anonymised; your uploaded photos and publications depending on them are withdrawn. Limited non-public moderation/withdrawal records may remain with account links removed; retained reports may require individual privacy review under the retention policy. It cannot recall previously downloaded public content or exported copies. Report a photo/privacy concern for review even if you are not its uploader.
+
+The service's proposed operational policy is seven-day sessions, five-minute login challenges, expired abuse-limit buckets, 180-day inactive/rejected drafts, 30-day orphan unpublished photos, 90-day resolved reports, one-year moderation audit and backups no older than 30 days. Pending cases require active operator review rather than indefinite unattended queues. The cleanup command is implemented, but its deployment schedule and real backup/logging processes are not installed yet. Account deletion applies immediately to the active database; backups must be protected, age out and have deletion records replayed before restoration. See the [community operation and retention guide](../community/README.md).
 
 ## Contact and requests
 
 Use the [CragLight project contact and issue page](https://github.com/delegentai/craglight/issues) for app questions, source corrections and privacy requests that contain no private information. Do not post personal or sensitive data in a public issue. A dedicated private publisher contact address must be added to this policy and the Play listing before Play Store submission; this document is a release-candidate policy draft until that address is supplied.
 
-CragLight does not maintain a server-side user account or a copy of your private logbook. For device-local data, the app's delete/export controls and Android's clear-storage/uninstall controls are the direct means of access and deletion.
+The currently delivered service has no live public community accounts because it is not deployed. If enabled later, it will maintain the optional community data described above, separately from your private logbook. For device-local data, use the app's delete/export controls or Android's clear-storage/uninstall controls. The [community launch policy](../community/UGC_POLICY.md) records further privacy and online-safety work required before public launch; this draft is not a completed legal-compliance assessment.
 
 Changes to this policy will be recorded in the public project history with a new effective date.

@@ -16,11 +16,13 @@ with tempfile.TemporaryDirectory(prefix='craglight-repro-',dir=root/'data') as t
         for kind,expected in before['sha256'].items():
             actual=after['sha256'][kind]
             checks.append({'region':before['id'],'format':kind,'sha256':actual,'identical':expected==actual})
-    for name in ('all-crags.json','basemap.geojson','manifest.json'):
+    extra=['all-crags.json','basemap.geojson','manifest.json','photo-licences.json']
+    extra += sorted('photos/'+p.name for p in (root/'data/packs/photos').glob('*') if p.is_file())
+    for name in extra:
         expected=hashlib.sha256((root/'data/packs'/name).read_bytes()).hexdigest()
         actual=hashlib.sha256((target/name).read_bytes()).hexdigest()
         checks.append({'file':name,'sha256':actual,'identical':actual==expected})
-    report={'verifiedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'method':'Network-free rebuild from committed compact snapshots in isolated temporary output directory. All JSON, SQLite, GeoJSON and MBTiles compared byte-for-byte using SHA-256.','snapshotSha256':hashlib.sha256((root/'data/snapshot.json.gz').read_bytes()).hexdigest(),'checks':checks,'allIdentical':all(c['identical'] for c in checks)}
+    report={'verifiedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'method':'Network-free rebuild from committed curated source records, licensed JPEGs and compact geographic snapshots in isolated temporary output directory. JSON, SQLite, GeoJSON, MBTiles, media ledger and images compared byte-for-byte using SHA-256.','snapshotSha256':hashlib.sha256((root/'data/snapshot.json.gz').read_bytes()).hexdigest(),'curatedSourceSha256':hashlib.sha256((root/'data/curated/source-records.json').read_bytes()).hexdigest(),'checks':checks,'allIdentical':all(c['identical'] for c in checks)}
     (root/'data/reproducibility.json').write_bytes((json.dumps(report,indent=2)+'\n').encode('utf8'))
     if not report['allIdentical']:raise AssertionError('Non-deterministic pack output; see data/reproducibility.json')
     print('Reproducible:',len(checks),'outputs identical',flush=True)

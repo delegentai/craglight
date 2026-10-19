@@ -16,11 +16,13 @@ android {
         applicationId = "org.craglight.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        buildConfigField("String", "PACK_BASE_URL", "\"https://github.com/delegentai/craglight/releases/download/data-v1/\"")
+        buildConfigField("String", "PACK_BASE_URL", "\"https://github.com/delegentai/craglight/releases/download/data-v2/\"")
+        buildConfigField("String", "COMMUNITY_BASE_URL", "\"${providers.gradleProperty("communityBaseUrl").getOrElse("")}\"")
+        buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${providers.gradleProperty("googleWebClientId").getOrElse("")}\"")
         buildConfigField("String", "CONTRIBUTION_URL", "\"https://github.com/delegentai/craglight/issues/new\"")
     }
     signingConfigs {
@@ -54,6 +56,10 @@ dependencies {
     androidTestImplementation(composeBom)
     implementation("androidx.core:core-ktx:1.16.0")
     implementation("androidx.activity:activity-compose:1.10.1")
+    implementation("androidx.exifinterface:exifinterface:1.4.2")
+    implementation("androidx.credentials:credentials:1.6.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.6.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.1")
     implementation("androidx.compose.ui:ui")

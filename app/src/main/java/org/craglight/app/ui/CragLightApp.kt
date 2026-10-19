@@ -44,6 +44,7 @@ import org.craglight.app.AppViewModel
 import org.craglight.app.BuildConfig
 import org.craglight.app.data.*
 import org.craglight.app.domain.*
+import org.craglight.app.community.*
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.UUID
@@ -63,6 +64,8 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
     val contributions by vm.contributions.collectAsState()
     var page by rememberSaveable { mutableStateOf("Explore") }
     var selectedId by rememberSaveable { mutableStateOf<String?>(null) }
+    var contributionCragId by rememberSaveable { mutableStateOf<String?>(null) }
+    val communityConfig = remember { CommunityConfig(BuildConfig.COMMUNITY_BASE_URL, BuildConfig.GOOGLE_WEB_CLIENT_ID) }
     val selected = state.crags.find { it.id == selectedId }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -98,7 +101,7 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Cream))
         },
         bottomBar = { if (selected == null) NavigationBar(containerColor = Cream) {
-            listOf("Explore" to Icons.Default.Explore, "Logbook" to Icons.Default.Book, "Offline" to Icons.Default.DownloadForOffline, "About" to Icons.Default.Info).forEach { (label, icon) ->
+            listOf("Explore" to Icons.Default.Explore, "Community" to Icons.Default.People, "Logbook" to Icons.Default.Book, "Offline" to Icons.Default.DownloadForOffline, "About" to Icons.Default.Info).forEach { (label, icon) ->
                 NavigationBarItem(selected = page == label, onClick = { page = label }, icon = { Icon(icon, label) }, label = { Text(label) })
             }
         } }
@@ -107,8 +110,9 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
             when {
                 state.loading -> Column(Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) { CircularProgressIndicator(); Spacer(Modifier.height(16.dp)); Text("Opening the UK catalogue…") }
                 state.error != null -> Column(Modifier.padding(24.dp)) { Text(state.error!!); Button(onClick = { vm.initialize() }) { Text("Retry") } }
-                selected != null -> CragDetail(selected, state, vm) { tick -> vm.saveTick(tick) }
+                selected != null -> CragDetail(selected, state, vm, onContribute = { contributionCragId = selected.id; selectedId = null; page = "Community" }, onTick = vm::saveTick)
                 page == "Explore" -> Explore(state, vm, onSelect = { selectedId = it })
+                page == "Community" -> CommunityScreen(config = communityConfig, initialCrag = state.crags.find { it.id == contributionCragId }, onClose = { contributionCragId = null; page = "Explore" })
                 page == "Logbook" -> Logbook(ticks, onSave = vm::saveTick, onDelete = vm::deleteTick, onExport = { exportContent = vm.csv(ticks); exportCsv.launch("craglight-logbook.csv") })
                 page == "Offline" -> Offline(state, vm, onImport = { importPack.launch(arrayOf("application/json", "application/octet-stream")) })
                 else -> About(state, contributions, onExport = { exportContent = vm.contributionJson(contributions); exportJson.launch("craglight-review-queue.json") }, onDelete = vm::deleteContribution)
@@ -121,7 +125,7 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
     var filter by remember { mutableStateOf(Filtering.Filter()) }
     var sort by remember { mutableStateOf(Filtering.Sort.NAME) }
     var showFilters by remember { mutableStateOf(false) }
-    var map by rememberSaveable { mutableStateOf(false) }
+    var map by rememberSaveable { mutableStateOf(true) }
     var onlySun by remember { mutableStateOf(false) }
     var time by remember { mutableStateOf(Instant.now()) }
     var timeDialog by remember { mutableStateOf(false) }
@@ -141,7 +145,7 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
             if (!map) {
                 Text("A good day\nstarts outside.", style = MaterialTheme.typography.headlineLarge)
                 Spacer(Modifier.height(6.dp))
-                Text("${state.crags.size} mapped climbing places. Yours to explore.", style = MaterialTheme.typography.bodyMedium, color = Forest.copy(alpha = .8f))
+                Text("${state.crags.size} small guides with photo topos and written approaches.", style = MaterialTheme.typography.bodyMedium, color = Forest.copy(alpha = .8f))
                 Spacer(Modifier.height(14.dp))
             }
             OutlinedTextField(value = filter.query, onValueChange = { filter = filter.copy(query = it) }, placeholder = { Text("Search crags, routes or regions") },
@@ -152,7 +156,7 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
                 Spacer(Modifier.weight(1f)); IconButton(onClick = { locationDialog = true }, modifier = Modifier.testTag("location-open")) { Icon(Icons.Default.MyLocation, "Choose starting location") }
             }
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text("${result.size} places", style = MaterialTheme.typography.labelLarge)
+                Text("${result.size} crag guides", style = MaterialTheme.typography.labelLarge)
                 Spacer(Modifier.weight(1f))
                 TextButton(onClick = { timeDialog = true }) { Icon(Icons.Default.WbSunny, null, Modifier.size(16.dp)); Spacer(Modifier.width(4.dp)); Text(if (onlySun) "Sun filter on" else "Plan for sunlight") }
             }
@@ -173,7 +177,7 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
             EmptyState("No matching places", "Try a wider filter. Missing grades, walk-ins and family suitability do not count as confirmed matches.")
         } else LazyColumn(Modifier.weight(1f).testTag("crag-list"), contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             items(result, key = { it.id }) { crag -> CragCard(crag, state, onSelect) }
-            item { Text("Open data has gaps. Check access on the ground and help improve your crag.", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 10.dp)) }
+            item { Text("A small start, built to grow. Each guide states which routes it covers. Share your own photos and local knowledge in Community.", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 10.dp)) }
         }
     }
     if (showFilters) FilterDialog(filter, sort, state, onDismiss = { showFilters = false }, onApply = { f, s -> filter = f; sort = s; showFilters = false })
@@ -187,13 +191,14 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
 @Composable private fun CragCard(crag: Crag, state: AppState, onSelect: (String) -> Unit) {
     Card(onClick = { onSelect(crag.id) }, modifier = Modifier.fillMaxWidth().testTag("crag-${crag.id}"), colors = CardDefaults.cardColors(containerColor = Color.White), shape = RoundedCornerShape(18.dp)) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-            Surface(color = Sage, shape = RoundedCornerShape(12.dp), modifier = Modifier.size(48.dp)) { Box(contentAlignment = Alignment.Center) { Icon(Icons.Default.Terrain, null, tint = Forest) } }
+            GuideThumbnail(crag, Modifier.size(76.dp))
             Spacer(Modifier.width(14.dp))
             Column(Modifier.weight(1f)) {
                 Text(crag.name, style = MaterialTheme.typography.titleMedium, maxLines = 2)
                 Text(crag.region.replace('-', ' ') + (crag.rock?.let { " · $it" } ?: ""), style = MaterialTheme.typography.bodySmall)
                 Spacer(Modifier.height(5.dp))
                 Text(crag.styles.joinToString(" · ").ifBlank { "Style not recorded" }, color = Clay, style = MaterialTheme.typography.labelMedium)
+                Text("Photo topo · written approach", style = MaterialTheme.typography.labelSmall, color = Forest)
                 if (crag.walkInDistanceM != null) Text("${distance(crag.walkInDistanceM)} · ${crag.walkInTimeMin?.toInt() ?: "?"} min walk-in" + if (state.origin != null) " estimate" else "", style = MaterialTheme.typography.bodySmall)
             }
             Column(horizontalAlignment = Alignment.End) { Text("${crag.routes.size}", fontWeight = FontWeight.Bold, fontSize = 22.sp, color = Forest); Text("routes", style = MaterialTheme.typography.labelSmall) }
@@ -205,7 +210,7 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
     LazyColumn(contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
         item { Text("Take the guide\nwith you.", style = MaterialTheme.typography.headlineLarge); Spacer(Modifier.height(8.dp)); Text("Save a region for maps, paths and parking without signal. Your logbook and sun calculations always work offline.") }
         item { OutlinedButton(onClick = onImport, enabled = state.busy == null) { Icon(Icons.Default.FileOpen, null); Spacer(Modifier.width(8.dp)); Text("Import downloaded pack") } }
-        items(state.regions, key = { it.id }) { region ->
+        items(state.regions.filter { it.cragCount > 0 }, key = { it.id }) { region ->
             val installed = region.id in state.installed
             Card(colors = CardDefaults.cardColors(containerColor = Color.White)) { Column(Modifier.fillMaxWidth().padding(16.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) { Text(region.name, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f)); if (installed) Icon(Icons.Default.CheckCircle, "Available offline", tint = Forest) }
@@ -246,12 +251,13 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
     var showLicences by remember { mutableStateOf(false) }
     if (showLicences) LicenceDialog { showLicences = false }
     LazyColumn(contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        item { Text("Open rock.\nShared knowledge.", style = MaterialTheme.typography.headlineLarge); Text("CragLight ${BuildConfig.VERSION_NAME} · Free, UK only. No ads, accounts or analytics.", Modifier.padding(top = 8.dp)) }
+        item { Text("Open rock.\nShared knowledge.", style = MaterialTheme.typography.headlineLarge); Text("CragLight ${BuildConfig.VERSION_NAME} · Free, UK only. No ads or analytics. Browsing and local drafts need no account.", Modifier.padding(top = 8.dp)) }
         item { SectionCard("What this guide knows") {
-            Text("${state.crags.size} mapped climbing places and ${state.crags.flatMap { it.routes }.distinctBy { it.id }.size} unique routes. Coverage varies greatly. A missing restriction does not mean access is permitted. A nearby car park is not a verified approach.")
+            Text("${state.crags.size} crag guides and ${state.crags.flatMap { it.routes }.distinctBy { it.id }.size} routes. Every listed guide includes a licensed photo topo, route description, written approach and descent. Most cover one selected climb, not the whole crag. Source review does not establish today's access or conditions.")
             Text("Map geometry is not a face topo. Sun estimates use aspect and solar position, without terrain shadows or overhangs. Drying is a weather heuristic, not a statement that rock is safe or dry.", Modifier.padding(top = 8.dp))
         } }
         item { SectionCard("Sources & attribution") {
+            Text("Photo topos and authored approaches: MultiPitch contributors under CC BY-SA 4.0; individual authors and original photo licences appear with each image. Thank you to the people who made these guides.")
             Text("© OpenStreetMap contributors · ODbL 1.0. Extracted and normalised by CragLight. Source IDs, versions and dates are retained with every record.")
             TextButton(onClick = { openUrl(context, "https://www.openstreetmap.org/copyright") }) { Text("OpenStreetMap licence") }
             Text("OS Open Names place labels: Open Government Licence v3. Contains OS data © Crown Copyright and database rights 2026. Contains Royal Mail data © Royal Mail copyright and database right 2026. Contains National Statistics data © Crown copyright and database right 2026. Land outlines use Natural Earth (public domain), clipped to OpenStreetMap country boundaries.")
@@ -263,7 +269,8 @@ internal fun gradeSummary(route: Route): String = route.grades.entries.joinToStr
             TextButton(onClick = { openUrl(context, "https://github.com/delegentai/craglight/blob/main/SOURCES.md") }) { Text("Full sources & reusable data") }
         } }
         item { SectionCard("Privacy") {
-            Text("Ticks, notes and queued edits stay in this app's private storage. Android cloud backup is disabled. Export a backup before uninstalling; uninstalling deletes local data.")
+            Text("Ticks and unsent photo/route drafts stay in this app's private storage. Android cloud backup is disabled. Export a backup before uninstalling; uninstalling deletes local data. Selected photos are re-encoded without location metadata.")
+            Text("Community publishing uses optional Google sign-in when the service is connected. It handles an account identifier, chosen credit name, optional avatar and the contributions you send. Google sign-in does not remove our responsibility for this data. Account export and deletion are available in Community.")
             Text("Location is optional and used on-device to sort or estimate walks. It is not sent to our servers. Weather requests send the selected public crag coordinates and your IP address to Open-Meteo; pack downloads contact GitHub. Nothing refreshes in the background.", Modifier.padding(top = 8.dp))
             Text("Sharing a review proposal opens GitHub in your browser. You choose whether to submit; your GitHub profile and submitted text may be public. Do not include personal information. Exports go only to the destination you choose.", Modifier.padding(top = 8.dp))
             TextButton(onClick = { openUrl(context, "https://github.com/delegentai/craglight/blob/main/docs/PRIVACY.md") }) { Text("Privacy policy & contact") }

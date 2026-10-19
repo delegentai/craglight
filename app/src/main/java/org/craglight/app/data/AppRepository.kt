@@ -1,6 +1,8 @@
 package org.craglight.app.data
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.util.JsonReader
 import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
@@ -9,6 +11,7 @@ import org.craglight.app.BuildConfig
 import org.craglight.app.domain.Crag
 import org.craglight.app.domain.Approach
 import org.craglight.app.domain.GeoPoint
+import org.craglight.app.domain.GuideQuality
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -34,16 +37,34 @@ class AppRepository(private val context: Context) {
             RegionPack(o.getString("id"), o.getString("name"), o.optInt("cragCount"), o.optInt("routeCount"), f.getString("json"), hash.getString("json"), bytes.optLong("json"), f.getString("mbtiles"), hash.getString("mbtiles"), bytes.optLong("mbtiles"))
         }
         val catalogueText = context.assets.open("packs/all-crags.json").bufferedReader().use { it.readText() }
-        val rows = JSONObject(catalogueText).getJSONArray("crags").objects()
+        val rows = JSONObject(catalogueText).getJSONArray("crags").objects().filter { GuideQuality.isPublishable(DataJson.crag(it)) }
         dao.replaceCatalogue(rows.map { CragRecord(it.getString("id"), it.toString()) })
         crags = dao.crags().map { DataJson.crag(JSONObject(it.json)) }.sortedBy { it.name.lowercase() }
+        // Old installed packs must not put withdrawn/sparse catalogue pins back on the map.
+        regions.forEach { region ->
+            val json = File(packDir, "${region.id}.json")
+            val tiles = File(packDir, "${region.id}.mbtiles")
+            if ((json.exists() && !matchesHash(json, region.sha256)) || (tiles.exists() && !matchesHash(tiles, region.tilesSha256))) {
+                json.delete(); tiles.delete()
+            }
+        }
     }
+    private fun hasNetwork(): Boolean {
+        val manager = context.getSystemService(ConnectivityManager::class.java)
+        return manager.getNetworkCapabilities(manager.activeNetwork)?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+    }
+    private fun matchesHash(file: File, expected: String): Boolean = runCatching {
+        val digest = MessageDigest.getInstance("SHA-256")
+        file.inputStream().use { input -> val buffer = ByteArray(8192); while (true) { val n = input.read(buffer); if (n < 0) break; digest.update(buffer, 0, n) } }
+        digest.digest().joinToString("") { "%02x".format(it) }.equals(expected, true)
+    }.getOrDefault(false)
     fun installed(): Set<String> = regions.filter { File(packDir, "${it.id}.json").exists() && File(packDir, "${it.id}.mbtiles").exists() }.map { it.id }.toSet()
     fun tileFiles(): List<File> = installed().map { File(packDir, "$it.mbtiles") }
     suspend fun install(region: RegionPack): String = withContext(Dispatchers.IO) {
         var bytes: ByteArray
         var origin: String
         try {
+            check(hasNetwork()) { "No network; use the bundled pack" }
             bytes = download(BuildConfig.PACK_BASE_URL + region.file, 100L * 1024 * 1024)
             origin = "Downloaded and verified"
         } catch (networkError: Exception) {
@@ -91,6 +112,7 @@ class AppRepository(private val context: Context) {
     private fun prepareTiles(region: RegionPack) {
         val temporary = File(packDir, "${region.id}.mbtiles.tmp")
         try {
+            check(hasNetwork()) { "No network; use the bundled map" }
             downloadFile(BuildConfig.PACK_BASE_URL + region.tilesFile, temporary, 200L * 1024 * 1024)
         } catch (networkError: Exception) {
             runCatching { context.assets.open("packs/${region.tilesFile}").use { input -> temporary.outputStream().use(input::copyTo) } }
