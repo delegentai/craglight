@@ -37,3 +37,5 @@
 
 - Final v1.1 offline verification: use the bundled pack immediately when Android reports no active internet-capable network, avoiding network timeouts without a connection. Added the normal network-state permission; this collects no user data.
 - Account deletion wording now explicitly describes anonymised inherited text/route content that may survive in another reviewed guide. New Android authentication-library notices are bundled separately from curated data/photo credits.
+
+- Release verification: 63 Android unit tests, four offline emulator checks and one real data-v2/weather/cache/GPS check passed; 31 backend tests and the independent clean GitHub build passed. Signed 1.1.0 APK/AAB use the existing isolated CragLight certificate. The online community remains unconfigured; no public Google login or upload is claimed.

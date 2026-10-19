@@ -6,7 +6,7 @@ Version 1.1 starts with **10 crags, 10 selected routes/link-ups and 10 real anno
 
 ## Install and explore
 
-Use the signed APK in [Releases](https://github.com/delegentai/craglight/releases), or the local `release/CragLight-1.1.0.apk`. The AAB is for Play Console, not direct installation.
+Download the [signed 1.1.0 APK](https://github.com/delegentai/craglight/releases/download/v1.1.0/CragLight-1.1.0.apk) from [Releases](https://github.com/delegentai/craglight/releases/tag/v1.1.0), or the local `release/CragLight-1.1.0.apk`. The AAB is for Play Console, not direct installation.
 
 The app opens on an interactive map. Switch to List for photo cards, open a guide, pinch to zoom its annotated topo, and use Approach for written directions and descent. Each guide states its route coverage and links the source and author. Source inspection is not a recent field check or assurance of access.
 

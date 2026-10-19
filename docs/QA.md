@@ -56,9 +56,9 @@ The final 1.1.0 APK/AAB build and signature verification passed. Official bundle
 
 The actual signed 1.1.0 APK was installed and launched with Wi-Fi/mobile data disabled on the isolated API 36 emulator. It displayed ten guides and the native MapLibre map, remained alive, was non-debuggable and recorded no app crash. APK/AAB hashes and structural native alignment are recorded in [RELEASE_BUNDLE_VALIDATION.md](RELEASE_BUNDLE_VALIDATION.md).
 
-**Online pack/weather/location run:** the current-release test is pending. This report does not yet claim a genuine download of the current public pack, a current live forecast/cache round trip or the current build's location flow.
+**Online pack/weather/location run:** one instrumented test passed with zero failures/errors/skips in 15.606 seconds. It downloaded the real public `data-v2` Northern Ireland JSON and MBTiles and checked their SHA-256 digests. It retrieved a live Open-Meteo forecast covering the current time, disabled both radios, recreated the activity and verified the cached retrieval timestamp. The location flow returned an injected emulator GPS position of 53.066, -4.075 within 0.002 degrees while offline. This is permission/UI/location-processing evidence, not field GPS accuracy. Local report: `evidence/online-test/result.xml`.
 
-A current-source GitHub CI result will be recorded after publication. The successful local build does not establish Play acceptance.
+The clean Ubuntu [GitHub CI run 39256922677](https://github.com/delegentai/craglight/actions/runs/39256922677) passed for implementation commit `bb49be11bbec2f65691940c5525d0f4fcd6ae78f`: data rebuild, ingestion/legacy moderation tests, community tests, Android compilation, unit tests and lint. The job completed in 5m53s. Later release-document updates do not change app/service code. CI and local validation do not establish Play acceptance.
 
 ## Practical limits
 
